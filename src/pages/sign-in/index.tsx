@@ -9,7 +9,7 @@ const SignIn: NextPageWithLayout = () => {
       formCaption={
         <>
           Don&apos;t have an account?{" "}
-          <Link href="#" className="text-blue-light">
+          <Link href="sign-up" className="text-blue-light">
             Sign up
           </Link>
         </>
