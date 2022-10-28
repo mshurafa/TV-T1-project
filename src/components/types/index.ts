@@ -10,6 +10,7 @@ export interface InputProps extends HTMLProps<HTMLInputElement> {
   helperText?: string;
   inputClassName?: string;
   startIcon?: React.ReactElement;
+  inputSize?: "small" | "medium" | "large";
 }
 export type InputType = FC<InputProps>;
 
@@ -18,3 +19,8 @@ export interface LogoProps extends Omit<ImageProps, "src" | "alt"> {
   alt?: string;
 }
 export type LogoType = FC<LogoProps>;
+
+export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
+  type?: "button" | "submit" | "reset";
+}
+export type ButtonType = FC<ButtonProps>;
