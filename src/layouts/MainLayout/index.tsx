@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Footer from "components/Footer";
+import Footer from "./Footer";
 import type { MainLayoutType } from "layouts/types";
 
 export const MainLayout: MainLayoutType = ({
