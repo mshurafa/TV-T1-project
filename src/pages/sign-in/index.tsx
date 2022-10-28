@@ -21,8 +21,8 @@ const SignIn: NextPageWithLayout = () => {
 };
 
 SignIn.mainLayoutProps = {
-  title: "Talents Valley",
-  pageDescription: "Home page description",
+  title: "Talents Valley Sign In",
+  pageDescription: "Sign in page description",
   withoutNavbar: true,
 };
 
