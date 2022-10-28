@@ -4,14 +4,24 @@ import { Input } from "components";
 export const LoginForm = () => {
   return (
     <form>
-      <Input label="Email" inputClassName="mb-[35px]" />
-      <Input label="Password" type="password" />
+      <Input
+        id="email-input"
+        label="Email"
+        placeholder="Email"
+        className="mb-6"
+      />
+      <Input
+        id="password-input"
+        type="password"
+        label="Password"
+        placeholder="Password"
+      />
       <Link href="#" className="block text-sm text-gray-dark text-right">
         Forgot Password?
       </Link>
       <button
         type="submit"
-        className="block w-full text-2xl bg-blue-light text-white rounded-lg p-[14px] mt-16"
+        className="block w-full text-2xl bg-blue-light text-white rounded-md p-3 mt-11"
       >
         Sign In
       </button>
