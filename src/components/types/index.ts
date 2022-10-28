@@ -1,7 +1,6 @@
 import type { HTMLProps, FC } from "react";
-import { ImageProps } from "next/image";
-
-type DivElementType = HTMLProps<HTMLDivElement>;
+import type { ImageProps } from "next/image";
+import type { DivElementType } from "types";
 
 export interface CardProps extends DivElementType {}
 export type CardType = FC<CardProps>;
