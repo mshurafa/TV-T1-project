@@ -1,7 +1,9 @@
 import type { HTMLProps, FC } from "react";
 import { ImageProps } from "next/image";
 
-interface CardProps extends HTMLProps<HTMLDivElement> {}
+type DivElementType = HTMLProps<HTMLDivElement>;
+
+interface CardProps extends DivElementType {}
 export type CardType = FC<CardProps>;
 
 interface InputProps extends HTMLProps<HTMLInputElement> {
@@ -17,3 +19,5 @@ interface LogoProps extends Omit<ImageProps, "src" | "alt"> {
   alt?: string;
 }
 export type LogoType = FC<LogoProps>;
+
+export type RegistrationCardType = CardType;
