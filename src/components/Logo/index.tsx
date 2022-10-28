@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { LogoType } from "components/types";
 
-const Logo: LogoType = ({
+export const Logo: LogoType = ({
   src = "/logo.png",
   alt = "Talents Valley Logo",
   ...rest

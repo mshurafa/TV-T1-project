@@ -1,6 +1,6 @@
 import type { CardType } from "components/types";
 
-const Card: CardType = ({ children, className, ...rest }) => {
+export const Card: CardType = ({ children, className, ...rest }) => {
   const cardClassName = `bg-white p-4 rounded-[20px] shadow-md ${
     className || ""
   }`.trim();

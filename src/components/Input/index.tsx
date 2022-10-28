@@ -1,6 +1,6 @@
 import type { InputType } from "components/types";
 
-const Input: InputType = ({
+export const Input: InputType = ({
   label,
   placeholder,
   id,

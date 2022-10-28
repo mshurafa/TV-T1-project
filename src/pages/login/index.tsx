@@ -1,7 +1,5 @@
 import Link from "next/link";
-import Card from "components/Card";
-import Input from "components/Input";
-import Logo from "components/Logo";
+import { Card, Input, Logo } from "components";
 import type { NextPageWithLayout } from "types";
 
 const Login: NextPageWithLayout = () => {
