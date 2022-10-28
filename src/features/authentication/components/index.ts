@@ -1,2 +1,2 @@
 export * from "./RegistrationCard";
-export * from "./LoginForm";
+export * from "./SignInForm";

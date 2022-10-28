@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Input, Button } from "components";
 
-export const LoginForm = () => {
+export const SignInForm = () => {
   return (
     <form>
       <Input
@@ -26,4 +26,4 @@ export const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignInForm;

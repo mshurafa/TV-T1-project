@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { RegistrationCard, LoginForm } from "features/authentication";
+import { RegistrationCard, SignInForm } from "features/authentication";
 import type { NextPageWithLayout } from "types";
 
-const Login: NextPageWithLayout = () => {
+const SignIn: NextPageWithLayout = () => {
   return (
     <RegistrationCard
       formTitle="Login to Your Account"
@@ -15,15 +15,15 @@ const Login: NextPageWithLayout = () => {
         </>
       }
     >
-      <LoginForm />
+      <SignInForm />
     </RegistrationCard>
   );
 };
 
-Login.mainLayoutProps = {
+SignIn.mainLayoutProps = {
   title: "Talents Valley",
   pageDescription: "Home page description",
   withoutNavbar: true,
 };
 
-export default Login;
+export default SignIn;
