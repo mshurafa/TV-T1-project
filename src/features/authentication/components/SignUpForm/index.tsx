@@ -21,26 +21,26 @@ export const SignUpForm = () => {
       <Input
         id="email-input"
         label="Email"
-        placeholder="Email"
+        placeholder="Enter Email"
         className="mb-6"
       />
       <Input
         id="password-input"
         type="password"
         label="Password"
-        placeholder="Password"
+        placeholder="Enter Password"
         className="mb-6"
       />
       <Input
         id="phone-input"
         label="Phone Number"
-        placeholder="Phone Number"
+        placeholder="Enter Phone Number"
         className="mb-6"
       />
       <Input
         id="country-select"
         label="Country"
-        placeholder="Country"
+        placeholder="Enter Country"
         className="mb-6"
       />
       <Link href="#" className="block text-sm text-gray-dark text-right">

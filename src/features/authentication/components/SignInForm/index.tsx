@@ -7,14 +7,14 @@ export const SignInForm = () => {
       <Input
         id="email-input"
         label="Email"
-        placeholder="Email"
+        placeholder="Enter Email"
         className="mb-6"
       />
       <Input
         id="password-input"
         type="password"
         label="Password"
-        placeholder="Password"
+        placeholder="Enter Password"
       />
       <Link href="#" className="block text-sm text-gray-dark text-right">
         Forgot Password?
