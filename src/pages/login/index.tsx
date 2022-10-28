@@ -19,10 +19,7 @@ const Login: NextPageWithLayout = () => {
       <form>
         <Input label="Email" inputClassName="mb-[35px]" />
         <Input label="Password" type="password" />
-        <Link
-          href="#"
-          className="block text-base text-gray-dark font-normal text-right"
-        >
+        <Link href="#" className="block text-sm text-gray-dark text-right">
           Forgot Password?
         </Link>
         <button
