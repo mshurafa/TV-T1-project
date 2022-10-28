@@ -1,6 +1,11 @@
+import type { AppProps } from "next/app";
 import { MainLayout } from "layouts";
-import { AppPropsWithLayout } from "types";
+import { NextPageWithLayout } from "types";
 import "../../styles/globals.css";
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
