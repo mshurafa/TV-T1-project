@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Input } from "components";
+import { Input, Button } from "components";
 
 export const LoginForm = () => {
   return (
@@ -19,12 +19,9 @@ export const LoginForm = () => {
       <Link href="#" className="block text-sm text-gray-dark text-right">
         Forgot Password?
       </Link>
-      <button
-        type="submit"
-        className="block w-full text-2xl bg-blue-light text-white rounded-md p-3 mt-11"
-      >
+      <Button type="submit" className="mt-11">
         Sign In
-      </button>
+      </Button>
     </form>
   );
 };
