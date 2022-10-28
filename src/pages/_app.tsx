@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import { MainLayout } from "layouts";
-import { NextPageWithLayout } from "types";
+import type { NextPageWithLayout } from "types";
 import "../../styles/globals.css";
 
 type AppPropsWithLayout = AppProps & {
