@@ -24,3 +24,12 @@ export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
   type?: "button" | "submit" | "reset";
 }
 export type ButtonType = FC<ButtonProps>;
+
+export interface SelectProps extends HTMLProps<HTMLSelectElement> {
+  label?: string;
+  helperText?: string;
+  selectClassName?: string;
+  selectSize?: "small" | "medium" | "large";
+  options: { value: string; label: string }[];
+}
+export type SelectType = FC<SelectProps>;
