@@ -9,6 +9,7 @@ export const Input: InputType = ({
   inputClassName,
   startIcon,
   inputSize = "medium",
+  type = "text",
   ...rest
 }) => {
   const classNames = useMemo(() => {
@@ -16,7 +17,7 @@ export const Input: InputType = ({
       inputContainer: `mb-2 relative ${className ?? ""}`,
       label: "block mb-2 text-gray-dark",
       startIcon: "absolute left-3 top-1/2 -translate-y-2/4",
-      input: `block w-full px-4 text-gray-dark outline-none border border-gray focus:border-blue rounded-md ${
+      input: `block w-full px-4 text-gray-dark border-gray focus:ring-0 focus:border-blue rounded-md ${
         inputClassName || ""
       }`,
       helperText: "text-sm text-gray-500",
@@ -44,7 +45,7 @@ export const Input: InputType = ({
         </label>
       )}
       {startIcon && <span className={classNames.startIcon}>{startIcon}</span>}
-      <input id={id} className={classNames.input} {...rest} />
+      <input id={id} type={type} className={classNames.input} {...rest} />
       {helperText && <p className={classNames.helperText}>{helperText}</p>}
     </div>
   );
