@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Input, Button } from "components";
+import { Input, Button, Select } from "components";
 
 export const SignUpForm = () => {
   return (
@@ -37,11 +37,15 @@ export const SignUpForm = () => {
         placeholder="Enter Phone Number"
         className="mb-6"
       />
-      <Input
+      <Select
+        options={[
+          { value: "ps", label: "Palestine" },
+          { value: "ca", label: "Canada" },
+          { value: "us", label: "United states" },
+        ]}
         id="country-select"
         label="Country"
         placeholder="Enter Country"
-        className="mb-6"
       />
       <Link href="#" className="block text-sm text-gray-dark text-right">
         Forgot Password?
