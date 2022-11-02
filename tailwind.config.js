@@ -19,6 +19,9 @@ module.exports = {
           DEFAULT: "#00000029", // better to be hexadecimal
           light: "#F3F4F6",
         },
+        red: {
+          DEFAULT: "#EE404C",
+        },
       },
     },
   },
