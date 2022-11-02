@@ -11,7 +11,7 @@ const usePasswordInput = () => {
 
   const passwordIconProps = useMemo(
     () => ({
-      className: "w-6 h-6 text-gray-400 cursor-pointer",
+      className: "w-6 h-6 cursor-pointer",
       onClick: toggleShowPassword,
     }),
     [toggleShowPassword]

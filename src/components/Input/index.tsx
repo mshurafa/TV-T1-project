@@ -19,7 +19,7 @@ export const Input: InputType = ({
     const classes = {
       inputContainer: `mb-2 relative text-gray-dark ${className ?? ""}`,
       label: "block mb-2",
-      icon: "absolute select-none top-1/2 -translate-y-2/4",
+      icon: "absolute text-gray-400 select-none top-1/2 -translate-y-2/4",
       startIcon: "left-4",
       endIcon: "right-4",
       input: `block w-full px-4 border-gray focus:ring-0 focus:border-blue rounded-md ${
