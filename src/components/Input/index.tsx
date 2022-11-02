@@ -17,15 +17,15 @@ export const Input: InputType = ({
   const { passwordInputType, passwordInputIcon } = usePasswordInput();
   const classNames = useMemo(() => {
     const classes = {
-      inputContainer: `mb-2 relative ${className ?? ""}`,
-      label: "block mb-2 text-gray-dark",
-      icon: "absolute top-1/2 -translate-y-2/4",
+      inputContainer: `mb-2 relative text-gray-dark ${className ?? ""}`,
+      label: "block mb-2",
+      icon: "absolute select-none top-1/2 -translate-y-2/4",
       startIcon: "left-4",
       endIcon: "right-4",
-      input: `block w-full px-4 text-gray-dark  border-gray focus:ring-0 focus:border-blue rounded-md ${
+      input: `block w-full px-4 border-gray focus:ring-0 focus:border-blue rounded-md ${
         inputClassName || ""
       }`,
-      helperText: "text-sm text-gray-500",
+      helperText: "text-sm mt-1",
     };
 
     if (inputSize === "large") {
