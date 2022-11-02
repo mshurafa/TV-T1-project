@@ -52,6 +52,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 **Plugins:** Add @tailwindcss/forms plugin that provides a basic reset for form styles
 
+**Icons:** @heroicons/react
+
 **Server:** Node, Express
 
 ## Optimizations
