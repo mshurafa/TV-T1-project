@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import usePasswordInput from "./usePasswordInput";
 import type { InputType } from "components/types";
 
 export const Input: InputType = ({
@@ -8,15 +9,19 @@ export const Input: InputType = ({
   className,
   inputClassName,
   startIcon,
+  endIcon,
   inputSize = "medium",
   type = "text",
   ...rest
 }) => {
+  const { passwordInputType, passwordInputIcon } = usePasswordInput();
   const classNames = useMemo(() => {
     const classes = {
       inputContainer: `mb-2 relative ${className ?? ""}`,
       label: "block mb-2 text-gray-dark",
-      startIcon: "absolute left-3 top-1/2 -translate-y-2/4",
+      icon: "absolute top-1/2 -translate-y-2/4",
+      startIcon: "left-4",
+      endIcon: "right-4",
       input: `block w-full px-4 text-gray-dark  border-gray focus:ring-0 focus:border-blue rounded-md ${
         inputClassName || ""
       }`,
@@ -37,6 +42,9 @@ export const Input: InputType = ({
     return classes;
   }, [className, inputClassName, inputSize]);
 
+  const inputType = type === "password" ? passwordInputType : type;
+  const inputEndIcon = type === "password" ? passwordInputIcon : endIcon;
+
   return (
     <div className={classNames.inputContainer}>
       {label && (
@@ -44,8 +52,24 @@ export const Input: InputType = ({
           {label}
         </label>
       )}
-      {startIcon && <span className={classNames.startIcon}>{startIcon}</span>}
-      <input id={id} type={type} className={classNames.input} {...rest} />
+      <div className="relative">
+        {startIcon && (
+          <span className={`${classNames.icon} ${classNames.startIcon}`}>
+            {startIcon}
+          </span>
+        )}
+        <input
+          id={id}
+          type={inputType}
+          className={classNames.input}
+          {...rest}
+        />
+        {inputEndIcon && (
+          <span className={`${classNames.icon} ${classNames.endIcon}`}>
+            {inputEndIcon}
+          </span>
+        )}
+      </div>
       {helperText && <p className={classNames.helperText}>{helperText}</p>}
     </div>
   );
