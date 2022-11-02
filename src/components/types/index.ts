@@ -1,4 +1,4 @@
-import type { HTMLProps, FC } from "react";
+import type { HTMLProps, FC, ReactNode } from "react";
 import type { ImageProps } from "next/image";
 import type { DivElementType } from "types";
 
@@ -7,10 +7,10 @@ export type CardType = FC<CardProps>;
 
 export interface InputProps extends HTMLProps<HTMLInputElement> {
   label?: string;
-  helperText?: string;
+  helperText?: ReactNode;
   inputClassName?: string;
-  startIcon?: React.ReactElement;
-  endIcon?: React.ReactElement;
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
   inputSize?: "small" | "medium" | "large";
 }
 export type InputType = FC<InputProps>;
@@ -34,3 +34,11 @@ export interface SelectProps extends HTMLProps<HTMLSelectElement> {
   options: { value: string; label: string }[];
 }
 export type SelectType = FC<SelectProps>;
+
+export interface HelperTextProps extends HTMLProps<HTMLParagraphElement> {
+  text?: string;
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
+}
+
+export type HelperTextType = FC<HelperTextProps>;
