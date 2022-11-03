@@ -1,25 +1,36 @@
+import { useState } from "react";
 import Link from "next/link";
-import { Input, Button } from "components";
+import { ExclamationTriangleIcon } from "@heroicons/react/20/solid";
+import { Input, Button, HelperText } from "components";
 
 export const SignInForm = () => {
+  const [error, setError] = useState("");
+
   return (
-    <form>
-      <Input
-        id="email-input"
-        label="Email"
-        placeholder="Enter Email"
-        className="mb-6"
-      />
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        setError((e) => (e ? "" : "Incorrect email or password"));
+      }}
+    >
+      <Input id="email-input" label="Email" placeholder="Enter Email" />
       <Input
         id="password-input"
         type="password"
         label="Password"
         placeholder="Enter Password"
+        withoutHelperText
       />
       <Link href="#" className="block text-sm text-gray-dark text-right">
         Forgot Password?
       </Link>
-      <Button type="submit" className="mt-11">
+      <HelperText
+        showContent={!!error}
+        className="text-red w-full justify-center min-h-[20px] mt-2"
+        startIcon={<ExclamationTriangleIcon className="w-5 h5" />}
+        text={error}
+      />
+      <Button type="submit" className="mt-4">
         Sign In
       </Button>
     </form>
