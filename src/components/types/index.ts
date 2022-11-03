@@ -13,6 +13,7 @@ export interface InputProps extends HTMLProps<HTMLInputElement> {
   endIcon?: ReactNode;
   inputSize?: "small" | "medium" | "large";
   error?: boolean;
+  withoutHelperText?: boolean;
 }
 export type InputType = FC<InputProps>;
 
@@ -40,6 +41,7 @@ export interface HelperTextProps extends HTMLProps<HTMLParagraphElement> {
   text?: string;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
+  showContent?: boolean;
 }
 
 export type HelperTextType = FC<HelperTextProps>;
