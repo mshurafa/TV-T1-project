@@ -12,6 +12,7 @@ export interface InputProps extends HTMLProps<HTMLInputElement> {
   startIcon?: ReactNode;
   endIcon?: ReactNode;
   inputSize?: "small" | "medium" | "large";
+  error?: boolean;
 }
 export type InputType = FC<InputProps>;
 
