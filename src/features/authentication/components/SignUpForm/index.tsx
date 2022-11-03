@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Input, Button, Select } from "components";
+import { CheckCircleIcon } from "@heroicons/react/20/solid";
+import { Input, Button, Select, HelperText } from "components";
 import { countriesList } from "data";
 
 export const SignUpForm = () => {
@@ -31,6 +32,12 @@ export const SignUpForm = () => {
         label="Password"
         placeholder="Enter Password"
         className="mb-6"
+        helperText={
+          <HelperText
+            startIcon={<CheckCircleIcon className="w-5 h5 text-green-600" />}
+            text="Nice work. This is an excellent password"
+          />
+        }
       />
       <Input
         id="phone-input"
