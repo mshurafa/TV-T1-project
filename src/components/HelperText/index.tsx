@@ -6,14 +6,19 @@ export const HelperText: HelperTextType = ({
   className,
   startIcon,
   endIcon,
+  showContent = true,
 }) => {
   const textClassName = `inline-flex text-sm text-black ${className ?? ""}`;
   const iconClassName = "mx-1";
   return (
     <span className={textClassName}>
-      {startIcon && <span className={iconClassName}>{startIcon}</span>}
-      {children || text}
-      {endIcon && <span className={iconClassName}>{endIcon}</span>}
+      {showContent ? (
+        <>
+          {startIcon && <span className={iconClassName}>{startIcon}</span>}
+          {children || text}
+          {endIcon && <span className={iconClassName}>{endIcon}</span>}
+        </>
+      ) : null}
     </span>
   );
 };
