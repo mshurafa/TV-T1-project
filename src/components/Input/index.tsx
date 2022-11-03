@@ -13,6 +13,7 @@ export const Input: InputType = ({
   inputSize = "medium",
   type = "text",
   error = false,
+  withoutHelperText = false,
   ...rest
 }) => {
   const { passwordInputType, passwordInputIcon } = usePasswordInput();
@@ -75,7 +76,9 @@ export const Input: InputType = ({
           </span>
         )}
       </div>
-      <p className={classNames.helperText}>{helperText}</p>
+      {!withoutHelperText && (
+        <p className={classNames.helperText}>{helperText}</p>
+      )}
     </div>
   );
 };
