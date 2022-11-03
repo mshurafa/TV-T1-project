@@ -26,7 +26,7 @@ export const Input: InputType = ({
       input: `block w-full px-4 border-gray focus:ring-0 focus:border-blue rounded-md ${
         inputClassName || ""
       }`,
-      helperText: "text-sm mt-1",
+      helperText: "inline-flex min-h-[20px] text-sm mt-1",
     };
 
     if (inputSize === "large") {
@@ -75,7 +75,7 @@ export const Input: InputType = ({
           </span>
         )}
       </div>
-      {helperText && <p className={classNames.helperText}>{helperText}</p>}
+      <p className={classNames.helperText}>{helperText}</p>
     </div>
   );
 };
