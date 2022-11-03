@@ -12,6 +12,7 @@ export const Input: InputType = ({
   endIcon,
   inputSize = "medium",
   type = "text",
+  error = false,
   ...rest
 }) => {
   const { passwordInputType, passwordInputIcon } = usePasswordInput();
@@ -39,8 +40,12 @@ export const Input: InputType = ({
       classes.inputContainer += " text-base";
     }
 
+    if (error) {
+      classes.input += " border-red focus:border-red";
+    }
+
     return classes;
-  }, [className, inputClassName, inputSize]);
+  }, [className, inputClassName, inputSize, error]);
 
   const inputType = type === "password" ? passwordInputType : type;
   const inputEndIcon = type === "password" ? passwordInputIcon : endIcon;
