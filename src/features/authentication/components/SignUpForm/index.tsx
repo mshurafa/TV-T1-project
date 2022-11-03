@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Input, Button, Select } from "components";
+import { countriesList } from "data";
 
 export const SignUpForm = () => {
   return (
@@ -38,11 +39,7 @@ export const SignUpForm = () => {
         className="mb-6"
       />
       <Select
-        options={[
-          { value: "ps", label: "Palestine" },
-          { value: "ca", label: "Canada" },
-          { value: "us", label: "United states" },
-        ]}
+        options={countriesList}
         id="country-select"
         label="Country"
         placeholder="Enter Country"
