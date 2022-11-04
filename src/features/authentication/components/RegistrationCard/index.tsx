@@ -1,4 +1,5 @@
-import { Card, Logo } from "components";
+import { Card, Logo, IconButton } from "components";
+import { ChevronLeftIcon } from "lib/@heroicons";
 import type { RegistrationCardType } from "../../types";
 
 export const RegistrationCard: RegistrationCardType = ({
@@ -6,12 +7,22 @@ export const RegistrationCard: RegistrationCardType = ({
   className,
   formTitle,
   formCaption,
+  withBackButton = false,
   ...rest
 }) => {
-  const cardClassName = `w-full sm:w-[600px] ${className || ""}`;
+  const cardClassName = `w-full sm:w-[600px] relative ${className || ""}`;
 
   return (
     <Card {...rest} className={cardClassName}>
+      {withBackButton && (
+        <IconButton
+          onClick={() => {}}
+          className="absolute top-10 sm:left-14"
+          buttonSize="large"
+        >
+          <ChevronLeftIcon />
+        </IconButton>
+      )}
       <Logo className="m-auto" />
       <h1 className="text-2xl font-medium tracking-wider text-center">
         Talents Valley
