@@ -36,8 +36,12 @@ export const Select: SelectType = ({
       classes.selectContainer += " text-base";
     }
 
+    if (error) {
+      classes.select += " border-red focus:border-red";
+    }
+
     return classes;
-  }, [className, selectClassName, selectSize]);
+  }, [className, selectClassName, selectSize, error]);
 
   return (
     <div className={classNames.selectContainer}>
