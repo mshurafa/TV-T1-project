@@ -1,6 +1,6 @@
 import {
-  ExclamationTriangleIcon,
-  CheckCircleIcon,
+  ExclamationTriangleIcon as ErrorIconMini,
+  CheckCircleIcon as CheckCircleIconMini,
 } from "@heroicons/react/20/solid";
 import {
   EyeSlashIcon,
@@ -9,8 +9,8 @@ import {
 } from "@heroicons/react/24/solid";
 
 export {
-  ExclamationTriangleIcon as ErrorIcon,
-  CheckCircleIcon,
+  ErrorIconMini,
+  CheckCircleIconMini,
   EyeSlashIcon,
   EyeIcon,
   ChevronLeftIcon,

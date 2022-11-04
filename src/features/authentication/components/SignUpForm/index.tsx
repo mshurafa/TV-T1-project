@@ -1,5 +1,5 @@
 import { Input, Button, Select, HelperText } from "components";
-import { CheckCircleIcon } from "lib/@heroicons";
+import { CheckCircleIconMini } from "lib/@heroicons";
 import { countriesList } from "data";
 
 export const SignUpForm = () => {
@@ -27,7 +27,9 @@ export const SignUpForm = () => {
         placeholder="Enter Password"
         helperText={
           <HelperText
-            startIcon={<CheckCircleIcon className="w-5 h5 text-green-600" />}
+            startIcon={
+              <CheckCircleIconMini className="w-5 h5 text-green-600" />
+            }
             text="Nice work. This is an excellent password"
           />
         }
