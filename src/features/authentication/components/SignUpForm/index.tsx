@@ -1,6 +1,5 @@
-import Link from "next/link";
-import { CheckCircleIcon } from "@heroicons/react/20/solid";
 import { Input, Button, Select, HelperText } from "components";
+import { CheckCircleIcon } from "lib/@heroicons";
 import { countriesList } from "data";
 
 export const SignUpForm = () => {

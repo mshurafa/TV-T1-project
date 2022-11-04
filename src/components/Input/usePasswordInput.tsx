@@ -1,5 +1,5 @@
 import { useMemo, useState, useCallback } from "react";
-import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
+import { EyeSlashIcon, EyeIcon } from "lib/@heroicons";
 
 const usePasswordInput = () => {
   const [showPassword, setShowPassword] = useState(false);

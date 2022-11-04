@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
-import { ExclamationTriangleIcon } from "@heroicons/react/20/solid";
 import { Input, Button, HelperText } from "components";
+import { ErrorIcon } from "lib/@heroicons";
 
 export const SignInForm = () => {
   const [error, setError] = useState("");
@@ -27,7 +27,7 @@ export const SignInForm = () => {
       <HelperText
         showContent={!!error}
         className="text-red w-full justify-center min-h-[20px] mt-2"
-        startIcon={<ExclamationTriangleIcon className="w-5 h5" />}
+        startIcon={<ErrorIcon className="w-5 h5" />}
         text={error}
       />
       <Button type="submit" className="mt-4">
