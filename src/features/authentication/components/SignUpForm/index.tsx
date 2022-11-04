@@ -44,7 +44,7 @@ export const SignUpForm = () => {
         label="Country"
         placeholder="Enter Country"
       />
-      <Button type="submit" className="mt-11">
+      <Button type="submit" className="mt-4">
         Sign Up
       </Button>
     </form>
