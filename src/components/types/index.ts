@@ -2,6 +2,8 @@ import type { HTMLProps, FC, ReactNode } from "react";
 import type { ImageProps } from "next/image";
 import type { DivElementType } from "types";
 
+//@TODO: Create custom type for the duplicated properties like: helperText etc...
+
 export interface CardProps extends DivElementType {}
 export type CardType = FC<CardProps>;
 
@@ -34,6 +36,8 @@ export interface SelectProps extends HTMLProps<HTMLSelectElement> {
   selectClassName?: string;
   selectSize?: "small" | "medium" | "large";
   options: { value: string; label: string }[];
+  error?: boolean;
+  withoutHelperText?: boolean;
 }
 export type SelectType = FC<SelectProps>;
 
