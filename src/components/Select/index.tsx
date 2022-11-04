@@ -10,17 +10,18 @@ export const Select: SelectType = ({
   selectSize = "medium",
   options,
   placeholder,
+  error = false,
+  withoutHelperText = false,
   ...rest
 }) => {
   const classNames = useMemo(() => {
     const classes = {
-      selectContainer: `mb-2 relative ${className ?? ""}`,
-      label: "block mb-2 text-gray-dark",
-      startIcon: "absolute left-3 top-1/2 -translate-y-2/4",
-      select: `block w-full px-4 text-gray-dark border-gray focus:ring-0 focus:border-blue rounded-md ${
+      selectContainer: `mb-2 relative text-gray-dark ${className ?? ""}`,
+      label: "block mb-2",
+      select: `block w-full px-4 border-gray focus:ring-0 focus:border-blue rounded-md ${
         selectClassName || ""
       }`,
-      helperText: "text-sm text-gray-500",
+      helperText: "inline-flex min-h-[20px] text-sm mt-1",
       placeholder: "text-gray-400",
     };
 
@@ -57,7 +58,9 @@ export const Select: SelectType = ({
           </option>
         ))}
       </select>
-      {helperText && <p className={classNames.helperText}>{helperText}</p>}
+      {!withoutHelperText && (
+        <p className={classNames.helperText}>{helperText}</p>
+      )}
     </div>
   );
 };
