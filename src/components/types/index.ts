@@ -27,6 +27,7 @@ export type LogoType = FC<LogoProps>;
 
 export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
   type?: "button" | "submit" | "reset";
+  buttonSize?: "small" | "medium" | "large";
 }
 export type ButtonType = FC<ButtonProps>;
 
@@ -49,3 +50,7 @@ export interface HelperTextProps extends HTMLProps<HTMLParagraphElement> {
 }
 
 export type HelperTextType = FC<HelperTextProps>;
+
+export interface IconButtonProps extends ButtonProps {}
+
+export type IconButtonType = FC<IconButtonProps>;
