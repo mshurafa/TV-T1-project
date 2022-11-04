@@ -21,7 +21,10 @@ export const SignInForm = () => {
         placeholder="Enter Password"
         withoutHelperText
       />
-      <Link href="#" className="block text-sm text-gray-dark text-right">
+      <Link
+        href="forgot-password"
+        className="block text-sm text-gray-dark text-right"
+      >
         Forgot Password?
       </Link>
       <HelperText
