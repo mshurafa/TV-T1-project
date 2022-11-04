@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { Card, Logo, IconButton } from "components";
 import { ChevronLeftIcon } from "lib/@heroicons";
 import type { RegistrationCardType } from "../../types";
@@ -10,13 +11,14 @@ export const RegistrationCard: RegistrationCardType = ({
   withBackButton = false,
   ...rest
 }) => {
+  const router = useRouter();
   const cardClassName = `w-full sm:w-[600px] relative ${className || ""}`;
 
   return (
     <Card {...rest} className={cardClassName}>
       {withBackButton && (
         <IconButton
-          onClick={() => {}}
+          onClick={() => router.back()}
           className="absolute top-10 sm:left-14"
           buttonSize="large"
         >
