@@ -83,7 +83,7 @@ The following table simplifies the main layout props
 When using any of these pages features, you should use the following type for that specific page:
 
 ```
-import { NextPageWithLayout } from "pages/_app";
+import { NextPageWithLayout } from "types";
 
 const Login: NextPageWithLayout = () => {
     return (
