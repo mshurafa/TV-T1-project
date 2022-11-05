@@ -92,6 +92,20 @@ const Login: NextPageWithLayout = () => {
 }
 ```
 
+#### NoSsr component
+
+To dynamically load a component on the client side, you can use the NoSsr component to disable server-rendering.
+This is useful if an external dependency or component relies on browser APIs like window.
+
+```NoSsr usage example
+import { NoSsr } from "components";
+
+ <NoSsr>
+  // children will be rendered on the client side only
+ </NoSsr>
+
+```
+
 ## Color Reference
 
 You can check the default theme within `tailwind.config.js` file
