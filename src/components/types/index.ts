@@ -1,6 +1,6 @@
 import type { HTMLProps, FC, ReactNode } from "react";
 import type { ImageProps } from "next/image";
-import type { DivElementType } from "types";
+import type { DivElementType, ChildrenProp } from "types";
 
 //@TODO: Create custom type for the duplicated properties like: helperText etc...
 
@@ -54,3 +54,7 @@ export type HelperTextType = FC<HelperTextProps>;
 export interface IconButtonProps extends ButtonProps {}
 
 export type IconButtonType = FC<IconButtonProps>;
+
+export interface NoSsrProps extends ChildrenProp {}
+
+export type NoSsrType = FC<NoSsrProps>;
