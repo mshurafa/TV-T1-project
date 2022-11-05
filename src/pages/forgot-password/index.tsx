@@ -1,5 +1,5 @@
-import { NoSsr } from "components";
 import { RegistrationCard, ForgotPasswordForm } from "features/authentication";
+import { NoSsr } from "components";
 import type { NextPageWithLayout } from "types";
 
 const ForgotPassword: NextPageWithLayout = () => {
