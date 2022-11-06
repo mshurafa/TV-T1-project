@@ -30,7 +30,7 @@ export const RegistrationCard: RegistrationCardType = ({
         Talents Valley
       </h1>
       <div className="max-w-[450px] m-auto">
-        <h6 className="text-lg my-10">{formTitle}</h6>
+        {formTitle && <h6 className="text-lg my-10">{formTitle}</h6>}
         {children}
       </div>
       {formCaption && (
