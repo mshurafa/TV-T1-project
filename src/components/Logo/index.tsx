@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { LogoType } from "components/types";
 
 export const Logo: LogoType = ({
-  src = "/logo.png",
+  src = "/assets/img/logo.png",
   alt = "Talents Valley Logo",
   ...rest
 }) => {
