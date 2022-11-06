@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { Input, Button, HelperText } from "components";
 import { ErrorIconMini } from "lib/@heroicons";
 
 export const VerifyCodeForm = () => {
   const [error, setError] = useState("");
+  const router = useRouter();
 
   // pattern="\d*" will prevent submitting the form if the user does not match the pattern which is a digit
   // maxLength={1} to prevent adding more than one character
@@ -12,6 +14,7 @@ export const VerifyCodeForm = () => {
       onSubmit={(event) => {
         event.preventDefault();
         setError((e) => (e ? "" : "Incorrect code"));
+        router.push("verified");
       }}
     >
       <div className="flex flex-wrap justify-center gap-2.5 sm:gap-10 sm:px-6">
