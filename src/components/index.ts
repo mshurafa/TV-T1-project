@@ -7,4 +7,5 @@ export * from "./Button";
 export * from "./Select";
 export * from "./HelperText";
 export * from "./IconButton";
+export * from "./PhoneInput";
 export { NoSsr };
