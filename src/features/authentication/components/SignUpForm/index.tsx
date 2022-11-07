@@ -1,4 +1,4 @@
-import { Input, Button, Select, HelperText } from "components";
+import { Input, Button, Select, PhoneInput, HelperText } from "components";
 import { CheckCircleIconMini } from "lib/@heroicons";
 import { countriesList } from "data";
 
@@ -34,7 +34,7 @@ export const SignUpForm = () => {
           />
         }
       />
-      <Input
+      <PhoneInput
         id="phone-input"
         label="Phone Number"
         placeholder="Enter Phone Number"
