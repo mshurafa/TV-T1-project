@@ -5,18 +5,29 @@ import type { DivElementType, ChildrenProp } from "types";
 
 //@TODO: Create custom type for the duplicated properties like: helperText etc...
 
+type CommonFormElementsType = {
+  label?: string;
+  helperText?: ReactNode;
+  error?: boolean;
+  withoutHelperText?: boolean;
+};
+
+type SizeVariantsType = "small" | "medium" | "large";
+
+type IconsVariantsType = {
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
+};
+
 export interface CardProps extends DivElementType {}
 export type CardType = FC<CardProps>;
 
-export interface InputProps extends HTMLProps<HTMLInputElement> {
-  label?: string;
-  helperText?: ReactNode;
+export interface InputProps
+  extends HTMLProps<HTMLInputElement>,
+    CommonFormElementsType,
+    IconsVariantsType {
   inputClassName?: string;
-  startIcon?: ReactNode;
-  endIcon?: ReactNode;
-  inputSize?: "small" | "medium" | "large";
-  error?: boolean;
-  withoutHelperText?: boolean;
+  inputSize?: SizeVariantsType;
 }
 export type InputType = FC<InputProps>;
 
@@ -28,25 +39,23 @@ export type LogoType = FC<LogoProps>;
 
 export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
   type?: "button" | "submit" | "reset";
-  buttonSize?: "small" | "medium" | "large";
+  buttonSize?: SizeVariantsType;
 }
 export type ButtonType = FC<ButtonProps>;
 
-export interface SelectProps extends HTMLProps<HTMLSelectElement> {
-  label?: string;
-  helperText?: ReactNode;
+export interface SelectProps
+  extends HTMLProps<HTMLSelectElement>,
+    CommonFormElementsType {
   selectClassName?: string;
-  selectSize?: "small" | "medium" | "large";
+  selectSize?: SizeVariantsType;
   options: { value: string; label: string }[];
-  error?: boolean;
-  withoutHelperText?: boolean;
 }
 export type SelectType = FC<SelectProps>;
 
-export interface HelperTextProps extends HTMLProps<HTMLParagraphElement> {
+export interface HelperTextProps
+  extends HTMLProps<HTMLParagraphElement>,
+    IconsVariantsType {
   text?: string;
-  startIcon?: ReactNode;
-  endIcon?: ReactNode;
   showContent?: boolean;
 }
 
@@ -60,15 +69,11 @@ export interface NoSsrProps extends ChildrenProp {}
 
 export type NoSsrType = FC<NoSsrProps>;
 
-export interface PhoneInputProps extends ReactPhoneInputProps {
-  label?: string;
-  helperText?: ReactNode;
+export interface PhoneInputProps
+  extends ReactPhoneInputProps,
+    CommonFormElementsType {
   inputClassName?: string;
-  startIcon?: ReactNode;
-  endIcon?: ReactNode;
-  inputSize?: "small" | "medium" | "large";
-  error?: boolean;
-  withoutHelperText?: boolean;
+  inputSize?: SizeVariantsType;
   className?: string;
   id?: string;
 }
