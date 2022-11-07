@@ -1,5 +1,6 @@
 import type { HTMLProps, FC, ReactNode } from "react";
 import type { ImageProps } from "next/image";
+import type { PhoneInputProps as ReactPhoneInputProps } from "react-phone-input-2";
 import type { DivElementType, ChildrenProp } from "types";
 
 //@TODO: Create custom type for the duplicated properties like: helperText etc...
@@ -58,3 +59,18 @@ export type IconButtonType = FC<IconButtonProps>;
 export interface NoSsrProps extends ChildrenProp {}
 
 export type NoSsrType = FC<NoSsrProps>;
+
+export interface PhoneInputProps extends ReactPhoneInputProps {
+  label?: string;
+  helperText?: ReactNode;
+  inputClassName?: string;
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
+  inputSize?: "small" | "medium" | "large";
+  error?: boolean;
+  withoutHelperText?: boolean;
+  className?: string;
+  id?: string;
+}
+
+export type PhoneInputType = FC<PhoneInputProps>;
