@@ -56,6 +56,7 @@ export const PhoneInput: PhoneInputType = ({
         specialLabel=""
         inputClass={classNames.input}
         // country={"us"}
+        {...rest}
       />
       {!withoutHelperText && (
         <p className={classNames.helperText}>{helperText}</p>
