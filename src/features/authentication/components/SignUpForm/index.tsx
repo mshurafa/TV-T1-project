@@ -34,11 +34,7 @@ export const SignUpForm = () => {
           />
         }
       />
-      <PhoneInput
-        id="phone-input"
-        label="Phone Number"
-        placeholder="Enter Phone Number"
-      />
+      <PhoneInput id="phone-input" label="Phone Number" />
       <Select
         options={countriesList}
         id="country-select"
