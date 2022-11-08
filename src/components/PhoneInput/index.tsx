@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import ReactPhoneInput from "react-phone-input-2";
-// import "react-phone-input-2/lib/style.css";
+import "react-phone-input-2/lib/high-res.css";
 import type { PhoneInputType } from "components/types";
 
 export const PhoneInput: PhoneInputType = ({
@@ -18,25 +18,25 @@ export const PhoneInput: PhoneInputType = ({
     const classes = {
       inputContainer: `mb-2 relative text-gray-dark ${className ?? ""}`,
       label: "block mb-2",
-      input: `block w-full px-4 border-gray focus:ring-0 focus:border-blue rounded-md ${
+      input: `!block !w-full !h-auto !px-4 !pl-16 !border !border-gray focus:!ring-0 focus:!border-blue !rounded-md ${
         inputClassName || ""
       }`,
       helperText: "inline-flex min-h-[20px] text-sm mt-1",
     };
 
     if (inputSize === "large") {
-      classes.input += " py-4";
+      classes.input += " py-4 !text-lg";
       classes.inputContainer += " text-lg";
     } else if (inputSize === "small") {
-      classes.input += " py-2";
+      classes.input += " py-2 !text-base";
       classes.inputContainer += " text-base";
     } else {
-      classes.input += " py-3";
+      classes.input += " py-3 !text-base";
       classes.inputContainer += " text-base";
     }
 
     if (error) {
-      classes.input += " border-red focus:border-red";
+      classes.input += " !border-red focus:!border-red";
     }
 
     return classes;
@@ -55,7 +55,6 @@ export const PhoneInput: PhoneInputType = ({
         }}
         specialLabel=""
         inputClass={classNames.input}
-        // country={"us"}
         {...rest}
       />
       {!withoutHelperText && (
