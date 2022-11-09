@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import ReactPhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/high-res.css";
+import usePhoneInputMutation from "./usePhoneInputMutation";
 import type { PhoneInputType } from "components/types";
 
 export const PhoneInput: PhoneInputType = ({
@@ -16,6 +17,7 @@ export const PhoneInput: PhoneInputType = ({
   preferredCountries = [],
   ...rest
 }) => {
+  usePhoneInputMutation();
   const classNames = useMemo(() => {
     const classes = {
       inputContainer: `mb-2 relative text-gray-dark ${className ?? ""}`,
