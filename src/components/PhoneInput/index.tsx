@@ -12,6 +12,8 @@ export const PhoneInput: PhoneInputType = ({
   inputSize = "medium",
   error = false,
   withoutHelperText = false,
+  country = "ps",
+  preferredCountries = [],
   ...rest
 }) => {
   const classNames = useMemo(() => {
@@ -58,6 +60,8 @@ export const PhoneInput: PhoneInputType = ({
         specialLabel=""
         inputClass={classNames.input}
         buttonClass={classNames.button}
+        country={country}
+        preferredCountries={["ps", "il", ...preferredCountries]}
         {...rest}
       />
       {!withoutHelperText && (
