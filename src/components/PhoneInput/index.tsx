@@ -21,6 +21,8 @@ export const PhoneInput: PhoneInputType = ({
       input: `!block !w-full !h-auto !px-4 !pl-16 !border !border-gray focus:!ring-0 focus:!border-blue !rounded-md ${
         inputClassName || ""
       }`,
+      button:
+        "!bg-transparent !border-none [&>div]:border-r [&>div]:border-gray [&>div:hover]:!bg-transparent [&_.selected-flag.open]:!bg-transparent [&_.arrow]:!border-none",
       helperText: "inline-flex min-h-[20px] text-sm mt-1",
     };
 
@@ -55,6 +57,7 @@ export const PhoneInput: PhoneInputType = ({
         }}
         specialLabel=""
         inputClass={classNames.input}
+        buttonClass={classNames.button}
         {...rest}
       />
       {!withoutHelperText && (
