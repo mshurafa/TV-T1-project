@@ -29,7 +29,6 @@ export interface InputProps
   inputClassName?: string;
   inputSize?: SizeVariantsType;
 }
-export type InputType = FC<InputProps>;
 
 export interface LogoProps extends Omit<ImageProps, "src" | "alt"> {
   src?: string;
