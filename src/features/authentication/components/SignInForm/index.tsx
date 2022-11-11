@@ -3,28 +3,34 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { Input, Button, HelperText } from "components";
 import { ErrorIconMini } from "lib/@heroicons";
+import { emailRegisterOptions } from "data";
+import type { SignInFormInputsType } from "../../types";
 
 export const SignInForm = () => {
   const [error, setError] = useState("");
-  const { register, handleSubmit } = useForm<{
-    email: string;
-    password: string;
-  }>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignInFormInputsType>();
+
   const onSubmit = handleSubmit((data) => console.log(data));
 
   return (
-    <form
-      onSubmit={onSubmit}
-      // onSubmit={(event) => {
-      //   event.preventDefault();
-      //   setError((e) => (e ? "" : "Incorrect email or password"));
-      // }}
-    >
+    <form onSubmit={onSubmit}>
       <Input
         id="email-input"
         label="Email"
         placeholder="Enter Email"
-        {...register("email")}
+        {...register("email", emailRegisterOptions)}
+        helperText={
+          <HelperText
+            showContent={!!errors.email}
+            className="text-red"
+            startIcon={<ErrorIconMini className="w-5 h5" />}
+            text={errors.email?.message}
+          />
+        }
       />
       <Input
         id="password-input"
