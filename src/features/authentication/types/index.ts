@@ -7,3 +7,8 @@ interface RegistrationCardProps extends CardProps {
   withBackButton?: boolean;
 }
 export type RegistrationCardType = FC<RegistrationCardProps>;
+
+export type SignInFormInputsType = {
+  email: string;
+  password: string;
+};
