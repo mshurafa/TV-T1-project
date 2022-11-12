@@ -50,11 +50,18 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 **Client:** React, Next, TailwindCSS
 
-**Plugins:** Add @tailwindcss/forms plugin that provides a basic reset for form styles
-
-**Icons:** @heroicons/react
-
 **Server:** Node, Express
+
+## Dependencies
+
+- **Form validation** [react-hook-form](https://www.npmjs.com/package/react-hook-form)
+- **Phone input** [react-phone-input-2](https://www.npmjs.com/package/react-phone-input-2)
+- **Icons:** [@heroicons/react](https://www.npmjs.com/package/@heroicons/react)
+
+## Dev Dependencies
+
+- **Tailwind CSS** [tailwindcss](https://tailwindcss.com)
+- **Plugin to Reset form styles** [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms)
 
 ## Optimizations
 
