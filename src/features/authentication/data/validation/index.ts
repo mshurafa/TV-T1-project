@@ -8,7 +8,7 @@ export const formValidation = {
     required: "First Name is required",
   },
   lastName: {
-    required: "First Name is required",
+    required: "Last Name is required",
   },
   email: {
     required: "Email address is required",
