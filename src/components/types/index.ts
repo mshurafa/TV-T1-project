@@ -49,7 +49,6 @@ export interface SelectProps
   selectSize?: SizeVariantsType;
   options: { value: string; label: string }[];
 }
-export type SelectType = FC<SelectProps>;
 
 export interface HelperTextProps
   extends HTMLProps<HTMLParagraphElement>,
