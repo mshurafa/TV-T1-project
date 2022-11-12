@@ -12,3 +12,12 @@ export type SignInFormInputsType = {
   email: string;
   password: string;
 };
+
+export type SignUpFormInputsType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  phoneNumber: string;
+  country: string;
+};
