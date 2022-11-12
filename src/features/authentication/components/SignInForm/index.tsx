@@ -23,6 +23,7 @@ export const SignInForm = () => {
         label="Email"
         placeholder="Enter Email"
         {...register("email", emailRegisterOptions)}
+        error={!!errors.email}
         helperText={
           <HelperText
             showContent={!!errors.email}
