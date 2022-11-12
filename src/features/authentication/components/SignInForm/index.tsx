@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { Input, Button, HelperText } from "components";
 import { ErrorIconMini } from "lib/@heroicons";
-import { emailRegisterOptions } from "data";
+import { formValidation } from "../../data";
 import type { SignInFormInputsType } from "../../types";
 
 export const SignInForm = () => {
@@ -22,7 +22,7 @@ export const SignInForm = () => {
         id="email-input"
         label="Email"
         placeholder="Enter Email"
-        {...register("email", emailRegisterOptions)}
+        {...register("email", formValidation.email)}
         error={!!errors.email}
         helperText={
           <HelperText
