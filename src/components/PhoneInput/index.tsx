@@ -64,6 +64,7 @@ export const PhoneInput: PhoneInputType = ({
         buttonClass={classNames.button}
         country={country}
         preferredCountries={["ps", "il", ...preferredCountries]}
+        masks={{ ps: "... ... ...", il: "... ... ..." }}
         {...rest}
       />
       {!withoutHelperText && (
