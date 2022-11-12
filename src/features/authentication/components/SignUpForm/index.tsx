@@ -2,6 +2,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Input, Button, Select, PhoneInput, HelperText } from "components";
 import { CheckCircleIconMini } from "lib/@heroicons";
 import { countriesList } from "data";
+import { formValidation } from "../../data";
 import type { SignUpFormInputsType } from "../../types";
 
 export const SignUpForm = () => {
@@ -11,6 +12,7 @@ export const SignUpForm = () => {
     formState: { errors },
     control,
   } = useForm<SignUpFormInputsType>();
+  console.log("🚀 ~ file: index.tsx ~ line 15 ~ SignUpForm ~ errors", errors);
 
   const onSubmit = handleSubmit((data) => console.log(data));
 
@@ -22,28 +24,32 @@ export const SignUpForm = () => {
           label="First Name"
           placeholder="Enter first name"
           className="flex-1 basis-full"
-          {...register("firstName")}
+          {...register("firstName", formValidation.firstName)}
+          error={!!errors.firstName}
         />
         <Input
           id="last-name-input"
           label="Last Name"
           placeholder="Enter last name"
           className="flex-1 basis-full"
-          {...register("lastName")}
+          {...register("lastName", formValidation.lastName)}
+          error={!!errors.lastName}
         />
       </div>
       <Input
         id="email-input"
         label="Email"
         placeholder="Enter Email"
-        {...register("email")}
+        {...register("email", formValidation.email)}
+        error={!!errors.email}
       />
       <Input
         id="password-input"
         type="password"
         label="Password"
         placeholder="Enter Password"
-        {...register("password")}
+        {...register("password", formValidation.password)}
+        error={!!errors.password}
         helperText={
           <HelperText
             startIcon={
@@ -56,7 +62,7 @@ export const SignUpForm = () => {
       <Controller
         control={control}
         name="phoneNumber"
-        rules={{ required: "Phone Number is required" }}
+        rules={formValidation.phoneNumber}
         render={({ field: { ref, ...field } }) => (
           <PhoneInput
             id="phone-input"
@@ -74,7 +80,8 @@ export const SignUpForm = () => {
         id="country-select"
         label="Country"
         placeholder="Enter Country"
-        {...register("country")}
+        {...register("country", formValidation.country)}
+        error={!!errors.country}
       />
       <Button type="submit" className="mt-4">
         Sign Up
