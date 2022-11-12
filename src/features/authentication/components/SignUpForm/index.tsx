@@ -1,7 +1,7 @@
 import { useForm, Controller } from "react-hook-form";
-import { Input, Button, Select, PhoneInput, HelperText } from "components";
-import { CheckCircleIconMini } from "lib/@heroicons";
+import { Input, Button, Select, PhoneInput } from "components";
 import { countriesList } from "data";
+import { getFieldHelperText } from "../../utils";
 import { formValidation } from "../../data";
 import type { SignUpFormInputsType } from "../../types";
 
@@ -26,6 +26,7 @@ export const SignUpForm = () => {
           className="flex-1 basis-full"
           {...register("firstName", formValidation.firstName)}
           error={!!errors.firstName}
+          helperText={getFieldHelperText("error", errors.firstName?.message)}
         />
         <Input
           id="last-name-input"
@@ -34,6 +35,7 @@ export const SignUpForm = () => {
           className="flex-1 basis-full"
           {...register("lastName", formValidation.lastName)}
           error={!!errors.lastName}
+          helperText={getFieldHelperText("error", errors.lastName?.message)}
         />
       </div>
       <Input
@@ -42,6 +44,7 @@ export const SignUpForm = () => {
         placeholder="Enter Email"
         {...register("email", formValidation.email)}
         error={!!errors.email}
+        helperText={getFieldHelperText("error", errors.email?.message)}
       />
       <Input
         id="password-input"
@@ -50,14 +53,7 @@ export const SignUpForm = () => {
         placeholder="Enter Password"
         {...register("password", formValidation.password)}
         error={!!errors.password}
-        helperText={
-          <HelperText
-            startIcon={
-              <CheckCircleIconMini className="w-5 h5 text-green-600" />
-            }
-            text="Nice work. This is an excellent password"
-          />
-        }
+        helperText={getFieldHelperText("error", errors.password?.message)}
       />
       <Controller
         control={control}
@@ -71,6 +67,10 @@ export const SignUpForm = () => {
               ref,
             }}
             error={!!errors.phoneNumber}
+            helperText={getFieldHelperText(
+              "error",
+              errors.phoneNumber?.message
+            )}
             {...field}
           />
         )}
@@ -82,6 +82,7 @@ export const SignUpForm = () => {
         placeholder="Enter Country"
         {...register("country", formValidation.country)}
         error={!!errors.country}
+        helperText={getFieldHelperText("error", errors.country?.message)}
       />
       <Button type="submit" className="mt-4">
         Sign Up
