@@ -55,6 +55,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Dependencies
 
 - **Client side data fetching** [SWR](https://swr.vercel.app/docs/getting-started)
+- **Promise based HTTP client** [axios](https://axios-http.com/docs/intro)
 - **Form validation** [react-hook-form](https://www.npmjs.com/package/react-hook-form)
 - **Phone input** [react-phone-input-2](https://www.npmjs.com/package/react-phone-input-2)
 - **Icons:** [@heroicons/react](https://www.npmjs.com/package/@heroicons/react)
