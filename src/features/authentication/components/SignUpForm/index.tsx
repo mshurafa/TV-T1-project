@@ -1,8 +1,10 @@
 import { useForm, Controller } from "react-hook-form";
+// import useSWR from "swr";
 import { Input, Button, Select, PhoneInput } from "components";
 import { countriesList } from "data";
+// import { signUp } from "../../services";
 import { getFieldHelperText } from "../../utils";
-import { formValidation } from "../../data";
+import { formValidation, API_SERVICES_KEYS } from "../../data";
 import type { SignUpFormInputsType } from "../../types";
 
 export const SignUpForm = () => {
@@ -12,9 +14,24 @@ export const SignUpForm = () => {
     formState: { errors },
     control,
   } = useForm<SignUpFormInputsType>();
-  console.log("🚀 ~ file: index.tsx ~ line 15 ~ SignUpForm ~ errors", errors);
+  // const { data, error, mutate } = useSWR(API_SERVICES_KEYS.SIGN_UP, signUp);
+  console.log("🚀 ~ file: index.tsx ~ line 15 ~ SignUpF orm ~ errors", errors);
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+    // fetch("https://talents-valley.herokuapp.com/api/user/signup", {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ ...data, mobile: `+${data.mobile}` }),
+    // })
+    //   .then((r) => r.json())
+    //   .then((data) => {
+    //     console.log("🚀 ~ file: index.tsx ~ line 23 ~ onSubmit ~ data", data);
+    //   });
+  });
 
   return (
     <form onSubmit={onSubmit}>
@@ -57,8 +74,8 @@ export const SignUpForm = () => {
       />
       <Controller
         control={control}
-        name="phoneNumber"
-        rules={formValidation.phoneNumber}
+        name="mobile"
+        rules={formValidation.mobile}
         render={({ field: { ref, ...field } }) => (
           <PhoneInput
             id="phone-input"
@@ -66,11 +83,8 @@ export const SignUpForm = () => {
             inputProps={{
               ref,
             }}
-            error={!!errors.phoneNumber}
-            helperText={getFieldHelperText(
-              "error",
-              errors.phoneNumber?.message
-            )}
+            error={!!errors.mobile}
+            helperText={getFieldHelperText("error", errors.mobile?.message)}
             {...field}
           />
         )}

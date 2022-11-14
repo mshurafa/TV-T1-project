@@ -18,6 +18,6 @@ export type SignUpFormInputsType = {
   lastName: string;
   email: string;
   password: string;
-  phoneNumber: string;
+  mobile: string;
   country: string;
 };
