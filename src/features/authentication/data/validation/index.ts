@@ -19,8 +19,17 @@ export const formValidation = {
   },
   password: {
     required: "Password is required",
+    minLength: {
+      value: 8,
+      message: "Password must be at least 8 characters",
+    },
+    pattern: {
+      value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*$/,
+      message:
+        "password must contain one of each: uppercase, lowercase, number and special",
+    },
   },
-  phoneNumber: {
+  mobile: {
     required: "Phone number is required",
   },
   country: {
