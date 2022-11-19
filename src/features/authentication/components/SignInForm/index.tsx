@@ -32,7 +32,7 @@ export const SignInForm = () => {
     onSuccess: () => router.push(URL_PATHS.HOME),
   });
 
-  const onSubmit = handleSubmit((data) => signIn(data));
+  const onSubmit = handleSubmit(signIn);
 
   return (
     <form onSubmit={onSubmit}>
