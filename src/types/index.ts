@@ -21,3 +21,27 @@ export type APIResponseType<DataType = any> = {
   message: string;
   data: null | DataType;
 };
+
+export type UserType = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobile: string;
+  balance: number;
+  verifiedEmail: boolean;
+  verifiedMobile: boolean;
+  verifiedAddress: {
+    disapproveReason: {};
+    status: "not_uploaded";
+  };
+  verifiedId: {
+    disapproveReason: {};
+    status: "not_uploaded";
+  };
+  role: number;
+  address: {
+    country: string;
+  };
+  isBlocked: boolean;
+};
