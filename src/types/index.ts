@@ -22,6 +22,10 @@ export type APIResponseType<DataType = any> = {
   data: null | DataType;
 };
 
+export type ErrorType = APIResponseType<null> & {
+  status: "failed";
+};
+
 export type UserType = {
   _id: string;
   firstName: string;
