@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from "react";
 import type { CardProps } from "components/types";
-import type { UserType } from "types";
+import type { UserType, APIResponseType } from "types";
 
 interface RegistrationCardProps extends CardProps {
   formTitle?: string;
@@ -23,8 +23,10 @@ export type SignUpFormInputsType = {
   country: string;
 };
 
-export type SignUpResponseType = {
+export type AuthResponseType = {
   accessToken: string;
   refreshToken: string;
   user: UserType;
 };
+
+export type SignInResponseType = APIResponseType<AuthResponseType>;
