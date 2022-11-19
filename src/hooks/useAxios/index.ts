@@ -25,7 +25,7 @@ export const useAxios = <DataType = any, BodyType = any>({
 
   const [data, setData] = useState<DataType>();
   const [error, setError] = useState<ErrorType>();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(_options.manual ? false : true);
 
   const fetchData = useCallback(
     async (body?: BodyType) => {
