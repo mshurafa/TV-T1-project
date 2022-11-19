@@ -1,20 +1,37 @@
-import { useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 import { Input, Button, HelperText } from "components";
+import { useAxios } from "hooks";
+import { API_SERVICES_URLS, URL_PATHS } from "data";
 import { ErrorIconMini } from "lib/@heroicons";
 import { formValidation } from "../../data";
-import type { SignInFormInputsType } from "../../types";
+import type { SignInFormInputsType, SignInResponseType } from "../../types";
 
 export const SignInForm = () => {
-  const [error, setError] = useState("");
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignInFormInputsType>();
+  const {
+    fetchData: signIn,
+    data,
+    error,
+    loading,
+  } = useAxios<SignInResponseType, SignInFormInputsType>({
+    config: {
+      url: API_SERVICES_URLS.SIGN_IN,
+      method: "POST",
+    },
+    options: {
+      manual: true,
+    },
+    onSuccess: () => router.push(URL_PATHS.HOME),
+  });
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) => signIn(data));
 
   return (
     <form onSubmit={onSubmit}>
@@ -42,7 +59,7 @@ export const SignInForm = () => {
         {...register("password")}
       />
       <Link
-        href="forgot-password"
+        href={URL_PATHS.AUTH.FORGOT_PASSWORD}
         className="block text-sm text-gray-dark text-right"
       >
         Forgot Password?
@@ -51,10 +68,10 @@ export const SignInForm = () => {
         showContent={!!error}
         className="text-red w-full justify-center min-h-[20px] mt-2"
         startIcon={<ErrorIconMini className="w-5 h5" />}
-        text={error}
+        text={error?.message}
       />
       <Button type="submit" className="mt-4">
-        Sign In
+        {loading ? "Loading.." : "Sign In"}
       </Button>
     </form>
   );
