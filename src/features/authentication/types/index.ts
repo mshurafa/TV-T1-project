@@ -1,5 +1,6 @@
 import type { FC, ReactNode } from "react";
 import type { CardProps } from "components/types";
+import type { UserType } from "types";
 
 interface RegistrationCardProps extends CardProps {
   formTitle?: string;
@@ -20,4 +21,10 @@ export type SignUpFormInputsType = {
   password: string;
   mobile: string;
   country: string;
+};
+
+export type SignUpResponseType = {
+  accessToken: string;
+  refreshToken: string;
+  user: UserType;
 };
