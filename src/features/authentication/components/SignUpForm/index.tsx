@@ -1,11 +1,10 @@
 import { useForm, Controller } from "react-hook-form";
-// import useSWR from "swr";
 import { Input, Button, Select, PhoneInput } from "components";
-import { countriesList } from "data";
-// import { signUp } from "../../services";
+import { useAxios } from "hooks";
+import { countriesList, API_SERVICES_URLS } from "data";
 import { getFieldHelperText } from "../../utils";
-import { formValidation, API_SERVICES_KEYS } from "../../data";
-import type { SignUpFormInputsType } from "../../types";
+import { formValidation } from "../../data";
+import type { SignUpFormInputsType, SignUpResponseType } from "../../types";
 
 export const SignUpForm = () => {
   const {
@@ -14,24 +13,22 @@ export const SignUpForm = () => {
     formState: { errors },
     control,
   } = useForm<SignUpFormInputsType>();
-  // const { data, error, mutate } = useSWR(API_SERVICES_KEYS.SIGN_UP, signUp);
-  console.log("🚀 ~ file: index.tsx ~ line 15 ~ SignUpF orm ~ errors", errors);
-
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
-    // fetch("https://talents-valley.herokuapp.com/api/user/signup", {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ ...data, mobile: `+${data.mobile}` }),
-    // })
-    //   .then((r) => r.json())
-    //   .then((data) => {
-    //     console.log("🚀 ~ file: index.tsx ~ line 23 ~ onSubmit ~ data", data);
-    //   });
+  const {
+    fetchData: signUp,
+    data,
+    error,
+    loading,
+  } = useAxios<SignUpResponseType, SignUpFormInputsType>({
+    config: {
+      url: API_SERVICES_URLS.SIGN_UP,
+      method: "POST",
+    },
+    options: {
+      manual: true,
+    },
   });
+
+  const onSubmit = handleSubmit(signUp);
 
   return (
     <form onSubmit={onSubmit}>
@@ -76,7 +73,7 @@ export const SignUpForm = () => {
         control={control}
         name="mobile"
         rules={formValidation.mobile}
-        render={({ field: { ref, ...field } }) => (
+        render={({ field: { ref, onChange, ...field } }) => (
           <PhoneInput
             id="phone-input"
             label="Phone Number"
@@ -85,6 +82,7 @@ export const SignUpForm = () => {
             }}
             error={!!errors.mobile}
             helperText={getFieldHelperText("error", errors.mobile?.message)}
+            onChange={(_, __, event) => onChange(event)}
             {...field}
           />
         )}
@@ -99,7 +97,7 @@ export const SignUpForm = () => {
         helperText={getFieldHelperText("error", errors.country?.message)}
       />
       <Button type="submit" className="mt-4">
-        Sign Up
+        {loading ? "Loading..." : "Sign Up"}
       </Button>
     </form>
   );
