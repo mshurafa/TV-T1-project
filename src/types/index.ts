@@ -14,3 +14,10 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 };
 
 export type DivElementType = HTMLProps<HTMLDivElement>;
+
+export type APIResponseType<DataType = any> = {
+  statusCode: number;
+  status: "success" | "failed";
+  message: string;
+  data: null | DataType;
+};
