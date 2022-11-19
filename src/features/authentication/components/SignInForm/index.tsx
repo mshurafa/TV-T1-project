@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
 import { Input, Button, HelperText } from "components";
 import { useAxios } from "hooks";
 import { API_SERVICES_URLS, URL_PATHS } from "data";
 import { ErrorIconMini } from "lib/@heroicons";
+import { getFieldHelperText } from "../../utils";
 import { formValidation } from "../../data";
 import type { SignInFormInputsType, SignInResponseType } from "../../types";
 
@@ -41,14 +42,7 @@ export const SignInForm = () => {
         placeholder="Enter Email"
         {...register("email", formValidation.email)}
         error={!!errors.email}
-        helperText={
-          <HelperText
-            showContent={!!errors.email}
-            className="text-red"
-            startIcon={<ErrorIconMini className="w-5 h5" />}
-            text={errors.email?.message}
-          />
-        }
+        helperText={getFieldHelperText("error", errors.email?.message)}
       />
       <Input
         id="password-input"
