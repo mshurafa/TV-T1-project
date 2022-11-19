@@ -7,4 +7,8 @@ const axiosInstance = axios.create({
 
 export type { AxiosRequestConfig, AxiosError, AxiosResponse };
 
+const isAxiosError = axios.isAxiosError;
+
+export { isAxiosError };
+
 export default axiosInstance;
