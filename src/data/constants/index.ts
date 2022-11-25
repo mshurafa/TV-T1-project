@@ -11,3 +11,7 @@ export const URL_PATHS = {
     FORGOT_PASSWORD: "/forgot-password",
   },
 } as const;
+
+export const COOKIES_KEYS = {
+  currentUser: "currentUser",
+} as const;
