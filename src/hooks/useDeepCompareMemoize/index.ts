@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { deepEqual } from "utils";
 
-const useDeepCompareMemoize = <ValueType = any>(value: ValueType) => {
+export const useDeepCompareMemoize = <ValueType = any>(value: ValueType) => {
   const ref = useRef<ValueType>(value);
 
   if (!deepEqual(value, ref.current)) {
