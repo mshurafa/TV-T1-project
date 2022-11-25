@@ -3,8 +3,9 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { Input, Button, HelperText } from "components";
 import { useAxios } from "hooks";
-import { API_SERVICES_URLS, URL_PATHS } from "data";
+import { API_SERVICES_URLS, URL_PATHS, COOKIES_KEYS } from "data";
 import { ErrorIconMini } from "lib/@heroicons";
+import { setCookie } from "lib/js-cookie";
 import { getFieldHelperText } from "../../utils";
 import { formValidation } from "../../data";
 import type { SignInFormInputsType, SignInResponseType } from "../../types";
@@ -18,7 +19,6 @@ export const SignInForm = () => {
   } = useForm<SignInFormInputsType>();
   const {
     fetchData: signIn,
-    data,
     error,
     loading,
   } = useAxios<SignInResponseType, SignInFormInputsType>({
@@ -29,7 +29,12 @@ export const SignInForm = () => {
     options: {
       manual: true,
     },
-    onSuccess: () => router.push(URL_PATHS.HOME),
+    onSuccess: (data) => {
+      setCookie(COOKIES_KEYS.currentUser, JSON.stringify(data.data), {
+        expires: 30,
+      });
+      router.push(URL_PATHS.HOME);
+    },
   });
 
   const onSubmit = handleSubmit(signIn);
