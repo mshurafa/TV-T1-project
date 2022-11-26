@@ -13,10 +13,14 @@ const usePhoneInputMutation = () => {
           '[data-country-code="il"] .country-name'
         ) as HTMLElement;
         if (inputFlagToChange) {
-          inputFlagToChange.style.backgroundPosition = "-288px -264px";
+          inputFlagToChange.classList.add("ps");
+          const elementToChangeItsTitle = inputFlagToChange.parentElement;
+          if (elementToChangeItsTitle?.hasAttribute("title")) {
+            elementToChangeItsTitle.setAttribute("title", "Palestine: + 972");
+          }
         }
         if (dropdownFlagToChange) {
-          dropdownFlagToChange.style.backgroundPosition = "-288px -264px";
+          dropdownFlagToChange.classList.add("ps");
         }
         if (countryNameToChange) {
           countryNameToChange.innerText = "Palestine";
