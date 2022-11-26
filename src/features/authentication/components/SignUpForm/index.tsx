@@ -82,7 +82,7 @@ export const SignUpForm = () => {
             }}
             error={!!errors.mobile}
             helperText={getFieldHelperText("error", errors.mobile?.message)}
-            onChange={(_, __, event) => onChange(event)}
+            onChange={(_, __, ___, value) => onChange(value)}
             {...field}
           />
         )}
