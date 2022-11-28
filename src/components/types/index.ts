@@ -1,5 +1,6 @@
-import type { HTMLProps, FC, ReactNode } from "react";
+import type { HTMLProps, FC, ReactNode, RefAttributes } from "react";
 import type { ImageProps } from "next/image";
+import type { LinkProps as NextLinkProps } from "next/link";
 import type { PhoneInputProps as ReactPhoneInputProps } from "react-phone-input-2";
 import type { DivElementType, ChildrenProp } from "types";
 
@@ -77,3 +78,12 @@ export interface PhoneInputProps
 }
 
 export type PhoneInputType = FC<PhoneInputProps>;
+
+export interface LinkProps
+  extends NextLinkProps,
+    RefAttributes<HTMLAnchorElement>,
+    ChildrenProp {
+  className?: string;
+}
+
+export type LinkType = FC<LinkProps>;
