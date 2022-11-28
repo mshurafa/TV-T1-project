@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import { useForm, Controller } from "react-hook-form";
-import { Input, Button, Select, PhoneInput } from "components";
+import { Input, Button, Select, PhoneInput, HelperText } from "components";
 import { useAxios } from "hooks";
 import { countriesList, API_SERVICES_URLS, URL_PATHS } from "data";
+import { ErrorIconMini } from "lib/@heroicons";
 import { getFieldHelperText } from "../../utils";
 import { formValidation } from "../../data";
 import type { SignUpFormInputsType, SignUpResponseType } from "../../types";
@@ -100,7 +101,13 @@ export const SignUpForm = () => {
         error={!!errors.country}
         helperText={getFieldHelperText("error", errors.country?.message)}
       />
-      <Button type="submit" className="mt-4">
+      <HelperText
+        showContent={!!error}
+        className="text-red w-full justify-center min-h-[20px]"
+        startIcon={<ErrorIconMini className="w-5 h5" />}
+        text={error?.message}
+      />
+      <Button type="submit" className="mt-2">
         {loading ? "Loading..." : "Sign Up"}
       </Button>
     </form>
