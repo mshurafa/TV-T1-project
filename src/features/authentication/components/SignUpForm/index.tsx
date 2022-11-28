@@ -1,12 +1,14 @@
+import { useRouter } from "next/router";
 import { useForm, Controller } from "react-hook-form";
 import { Input, Button, Select, PhoneInput } from "components";
 import { useAxios } from "hooks";
-import { countriesList, API_SERVICES_URLS } from "data";
+import { countriesList, API_SERVICES_URLS, URL_PATHS } from "data";
 import { getFieldHelperText } from "../../utils";
 import { formValidation } from "../../data";
 import type { SignUpFormInputsType, SignUpResponseType } from "../../types";
 
 export const SignUpForm = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -15,7 +17,6 @@ export const SignUpForm = () => {
   } = useForm<SignUpFormInputsType>();
   const {
     fetchData: signUp,
-    data,
     error,
     loading,
   } = useAxios<SignUpResponseType, SignUpFormInputsType>({
@@ -25,6 +26,9 @@ export const SignUpForm = () => {
     },
     options: {
       manual: true,
+    },
+    onSuccess: () => {
+      router.push(URL_PATHS.AUTH.SIGN_IN);
     },
   });
 
