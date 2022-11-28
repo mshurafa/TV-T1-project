@@ -3,15 +3,6 @@ export const API_SERVICES_URLS = {
   SIGN_IN: "/user/login",
 } as const;
 
-export const URL_PATHS = {
-  HOME: "/",
-  AUTH: {
-    SIGN_IN: "/sign-in",
-    SIGN_UP: "/sign-up",
-    FORGOT_PASSWORD: "/forgot-password",
-  },
-} as const;
-
 export const COOKIES_KEYS = {
   currentUser: "currentUser",
 } as const;
