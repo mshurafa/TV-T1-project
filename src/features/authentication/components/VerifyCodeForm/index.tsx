@@ -19,14 +19,14 @@ export const VerifyCodeForm = () => {
     >
       <div className="flex flex-wrap justify-center gap-2.5 sm:gap-10 sm:px-6">
         <div className="flex w-44 gap-2.5">
-          <Input withoutHelperText />
-          <Input withoutHelperText />
-          <Input withoutHelperText />
+          <Input withoutHelperText autoComplete="nope" />
+          <Input withoutHelperText autoComplete="nope" />
+          <Input withoutHelperText autoComplete="nope" />
         </div>
         <div className="flex w-44 gap-2.5">
-          <Input withoutHelperText />
-          <Input withoutHelperText />
-          <Input withoutHelperText />
+          <Input withoutHelperText autoComplete="nope" />
+          <Input withoutHelperText autoComplete="nope" />
+          <Input withoutHelperText autoComplete="nope" />
         </div>
       </div>
       <HelperText
