@@ -32,3 +32,9 @@ export type AuthResponseType = {
 export type SignInResponseType = APIResponseType<AuthResponseType>;
 
 export type SignUpResponseType = APIResponseType<AuthResponseType>;
+
+export type ForgotPasswordFormInputType = {
+  email: string;
+};
+
+export type ForgotPasswordResponseType = APIResponseType<{ _id: string }>;
