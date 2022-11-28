@@ -7,3 +7,7 @@ export const API_SERVICES_URLS = {
 export const COOKIES_KEYS = {
   currentUser: "currentUser",
 } as const;
+
+export const LOCAL_STORAGE_KEYS = {
+  EMAIL: "email",
+};
