@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { RegistrationCard, SignUpForm } from "features/authentication";
+import { Link } from "components";
 import type { NextPageWithLayout } from "types";
 
 const SignUp: NextPageWithLayout = () => {
