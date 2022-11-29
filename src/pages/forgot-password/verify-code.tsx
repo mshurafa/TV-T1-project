@@ -1,8 +1,14 @@
-import { RegistrationCard, VerifyCodeForm } from "features/authentication";
+import {
+  RegistrationCard,
+  VerifyCodeForm,
+  useVerifyPasswordCode,
+} from "features/authentication";
 import { NoSsr } from "components";
 import type { NextPageWithLayout } from "types";
 
 const VerifyCode: NextPageWithLayout = () => {
+  const { sendCodeRequest, loading } = useVerifyPasswordCode("resend");
+
   return (
     <NoSsr>
       <RegistrationCard
@@ -10,8 +16,11 @@ const VerifyCode: NextPageWithLayout = () => {
         formCaption={
           <>
             Didn&apos;t get the code?{" "}
-            <a href="#" className="text-blue-light">
-              Resend
+            <a
+              onClick={() => sendCodeRequest()}
+              className="text-blue-light cursor-pointer"
+            >
+              {loading ? "Loading..." : "Resend"}
             </a>
           </>
         }
