@@ -1,38 +1,18 @@
-import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { Input, Button } from "components";
-import { useAxios } from "hooks";
-import { API_SERVICES_URLS, URL_PATHS } from "data";
+import { useVerifyPasswordCode } from "../../hooks";
 import { getFieldHelperText } from "../../utils";
 import { formValidation } from "../../data";
-import type {
-  ForgotPasswordFormInputType,
-  ForgotPasswordResponseType,
-} from "../../types";
+import type { ForgotPasswordFormInputType } from "../../types";
 
 export const ForgotPasswordForm = () => {
-  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ForgotPasswordFormInputType>();
-  const {
-    fetchData: sendCodeRequest,
-    error,
-    loading,
-  } = useAxios<ForgotPasswordResponseType, ForgotPasswordFormInputType>({
-    config: {
-      url: API_SERVICES_URLS.FORGOT_PASSWORD,
-      method: "POST",
-    },
-    options: {
-      manual: true,
-    },
-    onSuccess: () => {
-      router.push(URL_PATHS.AUTH.VERIFY_CODE);
-    },
-  });
+
+  const { sendCodeRequest, loading, error } = useVerifyPasswordCode();
 
   const onSubmit = handleSubmit(sendCodeRequest);
 
