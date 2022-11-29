@@ -8,6 +8,4 @@ export const COOKIES_KEYS = {
   currentUser: "currentUser",
 } as const;
 
-export const LOCAL_STORAGE_KEYS = {
-  FORGOT_PASSWORD_DATA: "forgot_password_data",
-};
+export const LOCAL_STORAGE_KEYS = {} as const;
