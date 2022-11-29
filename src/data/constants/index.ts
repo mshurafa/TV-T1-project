@@ -9,5 +9,5 @@ export const COOKIES_KEYS = {
 } as const;
 
 export const LOCAL_STORAGE_KEYS = {
-  EMAIL: "email",
+  FORGOT_PASSWORD_DATA: "forgot_password_data",
 };
