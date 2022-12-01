@@ -1,6 +1,7 @@
 const VALIDATION_RULES = {
   isEmail:
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+  password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*$/,
 } as const;
 
 export const formValidation = {
@@ -24,7 +25,7 @@ export const formValidation = {
       message: "Password must be at least 8 characters",
     },
     pattern: {
-      value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*$/,
+      value: VALIDATION_RULES.password,
       message:
         "password must contain one of each: uppercase, lowercase, number and special",
     },
