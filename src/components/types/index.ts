@@ -24,7 +24,7 @@ export interface CardProps extends DivElementType {}
 export type CardType = FC<CardProps>;
 
 export interface InputProps
-  extends HTMLProps<HTMLInputElement>,
+  extends React.InputHTMLAttributes<HTMLInputElement>,
     CommonFormElementsType,
     IconsVariantsType {
   inputClassName?: string;
