@@ -1,0 +1,77 @@
+import { useState, useCallback } from "react";
+import { formValidation } from "../../data";
+
+const getInitialOtpFieldsState = () => {
+  return {
+    value: Array(6).fill("") as string[],
+    activeIndex: 0,
+  };
+};
+
+export const useOtp = () => {
+  const [otpFields, setOtpFields] = useState(getInitialOtpFieldsState());
+
+  const onChange =
+    (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      const target = event.target;
+      const value = target.value;
+      if (value !== "" && !formValidation.otp.pattern.test(value)) return;
+
+      const newValue = otpFields.value.map((fieldValue, fieldValueIndex) =>
+        fieldValueIndex === index ? value : fieldValue
+      );
+      setOtpFields({ value: newValue, activeIndex: value ? index + 1 : index });
+    };
+
+  const onKeyDown =
+    (index: number) => (event: React.KeyboardEvent<HTMLInputElement>) => {
+      const target = event.target as HTMLInputElement;
+      const key = event.key;
+      target.select();
+
+      let activeIndex = index;
+      if (key === "ArrowRight" || key === "ArrowDown") {
+        activeIndex = index + 1;
+      } else if (key === "ArrowLeft" || key === "ArrowUp") {
+        activeIndex = index - 1;
+      }
+
+      setOtpFields((prevOtpFields) => ({
+        ...prevOtpFields,
+        activeIndex,
+      }));
+
+      if (key !== "Backspace") return;
+
+      setOtpFields((prevOtpFields) => ({
+        ...prevOtpFields,
+        activeIndex: target.value ? prevOtpFields.activeIndex : index - 1,
+      }));
+    };
+
+  const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    event.target.select();
+  };
+
+  const onPaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
+    const data = event.clipboardData.getData("text");
+    if (data.length !== otpFields.value.length) return;
+
+    setOtpFields((prevOtpFields) => ({
+      value: data.split(""),
+      activeIndex: prevOtpFields.activeIndex,
+    }));
+
+    event.currentTarget.blur();
+  };
+
+  const activeInputRef = useCallback((node: HTMLInputElement) => {
+    if (node !== null) {
+      node.focus();
+    }
+  }, []);
+
+  return { otpFields, activeInputRef, onChange, onKeyDown, onFocus, onPaste };
+};
+
+export default useOtp;
