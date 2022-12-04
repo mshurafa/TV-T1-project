@@ -8,7 +8,9 @@ export const HelperText: HelperTextType = ({
   endIcon,
   showContent = true,
 }) => {
-  const textClassName = `inline-flex text-sm text-black ${className ?? ""}`;
+  const textClassName = `inline-flex items-center text-black ${
+    className ?? ""
+  }`;
   const iconClassName = "mx-1";
   return (
     <span className={textClassName}>
