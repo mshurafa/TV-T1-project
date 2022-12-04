@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { formValidation } from "../../data";
+import type { OnOtpChange } from "../../types";
 
 const getInitialOtpFieldsState = () => {
   return {
@@ -8,7 +9,7 @@ const getInitialOtpFieldsState = () => {
   };
 };
 
-export const useOtp = () => {
+export const useOtp = (onOtpChange: OnOtpChange) => {
   const [otpFields, setOtpFields] = useState(getInitialOtpFieldsState());
 
   const onChange =
@@ -21,6 +22,7 @@ export const useOtp = () => {
         fieldValueIndex === index ? value : fieldValue
       );
       setOtpFields({ value: newValue, activeIndex: value ? index + 1 : index });
+      onOtpChange(newValue.join(""));
     };
 
   const onKeyDown =
@@ -62,6 +64,7 @@ export const useOtp = () => {
       activeIndex: prevOtpFields.activeIndex,
     }));
 
+    onOtpChange(data);
     event.currentTarget.blur();
   };
 
