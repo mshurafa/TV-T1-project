@@ -47,6 +47,7 @@ export const SignInForm = () => {
         id="email-input"
         label="Email"
         placeholder="Enter Email"
+        inputSize="small"
         {...register("email", formValidation.email)}
         error={!!errors.email}
         helperText={getFieldHelperText("error", errors.email?.message)}
@@ -56,6 +57,7 @@ export const SignInForm = () => {
         type="password"
         label="Password"
         placeholder="Enter Password"
+        inputSize="small"
         withoutHelperText
         {...register("password")}
       />
@@ -67,13 +69,11 @@ export const SignInForm = () => {
       </Link>
       <HelperText
         showContent={!!error}
-        className="text-red w-full justify-center min-h-[20px] mt-2"
+        className="text-red w-full text-xs justify-center min-h-[20px]"
         startIcon={<ErrorIconMini className="w-5 h5" />}
         text={error?.message}
       />
-      <Button type="submit" className="mt-4">
-        {loading ? "Loading.." : "Sign In"}
-      </Button>
+      <Button type="submit">{loading ? "Loading.." : "Sign In"}</Button>
     </form>
   );
 };
