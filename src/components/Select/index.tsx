@@ -20,12 +20,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ) => {
     const classNames = useMemo(() => {
       const classes = {
-        selectContainer: `mb-2 relative text-gray-dark ${className ?? ""}`,
-        label: "block mb-2",
+        selectContainer: `mb-1 relative text-gray-dark ${className ?? ""}`,
+        label: "block mb-1",
         select: `block w-full px-4 border-gray focus:ring-0 focus:border-blue rounded-md ${
           selectClassName || ""
         }`,
-        helperText: "inline-flex min-h-[20px] text-sm mt-1",
+        helperText: "inline-flex min-h-[20px] text-xs mt-1",
         placeholder: "text-gray-400",
       };
 
@@ -33,8 +33,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         classes.select += " py-4";
         classes.selectContainer += " text-lg";
       } else if (selectSize === "small") {
-        classes.select += " py-2";
-        classes.selectContainer += " text-base";
+        classes.select += " py-2 text-sm";
+        classes.selectContainer += " text-sm";
       } else {
         classes.select += " py-3";
         classes.selectContainer += " text-base";
