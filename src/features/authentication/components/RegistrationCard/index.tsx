@@ -31,7 +31,7 @@ export const RegistrationCard: RegistrationCardType = ({
       <h1 className="text-base font-medium tracking-wider text-center">
         Talents Valley
       </h1>
-      <div className="max-w-[450px] m-auto">
+      <div>
         {formTitle && <h6 className="text-xl my-4">{formTitle}</h6>}
         {children}
       </div>
