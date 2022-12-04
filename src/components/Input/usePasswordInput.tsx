@@ -1,7 +1,8 @@
 import { useMemo, useState, useCallback } from "react";
-import { EyeSlashIcon, EyeIcon } from "lib/@heroicons";
+import { EyeIconMini, EyeSlashIconMini } from "lib/@heroicons";
+import type { SizeVariantsType } from "components/types";
 
-const usePasswordInput = () => {
+const usePasswordInput = (inputSize: SizeVariantsType) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleShowPassword = useCallback(
@@ -11,16 +12,18 @@ const usePasswordInput = () => {
 
   const passwordIconProps = useMemo(
     () => ({
-      className: "w-6 h-6 cursor-pointer",
+      className: `${
+        inputSize === "small" ? "w-5 h-5" : "w-6 h-6"
+      } cursor-pointer`,
       onClick: toggleShowPassword,
     }),
-    [toggleShowPassword]
+    [toggleShowPassword, inputSize]
   );
 
   const passwordInputIcon = showPassword ? (
-    <EyeIcon {...passwordIconProps} />
+    <EyeIconMini {...passwordIconProps} />
   ) : (
-    <EyeSlashIcon {...passwordIconProps} />
+    <EyeSlashIconMini {...passwordIconProps} />
   );
 
   const passwordInputType = showPassword ? "text" : "password";
