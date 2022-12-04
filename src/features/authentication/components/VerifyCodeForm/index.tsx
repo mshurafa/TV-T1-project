@@ -30,7 +30,7 @@ export const VerifyCodeForm = () => {
         startIcon={<ErrorIconMini className="w-5 h5" />}
         text={error}
       />
-      <Button type="submit" className="mt-4">
+      <Button type="submit" buttonSize="small" fullWidth className="mt-4">
         Continue
       </Button>
     </form>

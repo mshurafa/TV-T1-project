@@ -28,7 +28,7 @@ export const ForgotPasswordForm = () => {
         error={!!errorMessage}
         helperText={getFieldHelperText("error", errorMessage)}
       />
-      <Button type="submit" className="mt-9 mb-14">
+      <Button type="submit" buttonSize="small" fullWidth className="mt-9 mb-14">
         {loading ? "Loading..." : "Send Code"}
       </Button>
     </form>

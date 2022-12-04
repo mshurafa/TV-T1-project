@@ -18,7 +18,12 @@ export const CodeVerified = () => {
       <p className="text-base text-black mb-9">
         Your Password has been Successfully Reset. Click Below To Login
       </p>
-      <Button className="my-20" onClick={() => router.push("/sign-in")}>
+      <Button
+        buttonSize="small"
+        fullWidth
+        className="my-20"
+        onClick={() => router.push("/sign-in")}
+      >
         Sign In
       </Button>
     </>

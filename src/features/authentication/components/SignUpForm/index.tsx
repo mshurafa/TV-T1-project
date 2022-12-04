@@ -113,7 +113,9 @@ export const SignUpForm = () => {
         startIcon={<ErrorIconMini className="w-5 h5" />}
         text={error?.message}
       />
-      <Button type="submit">{loading ? "Loading..." : "Sign Up"}</Button>
+      <Button type="submit" buttonSize="small" fullWidth>
+        {loading ? "Loading..." : "Sign Up"}
+      </Button>
     </form>
   );
 };
