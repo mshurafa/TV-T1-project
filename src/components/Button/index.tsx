@@ -1,17 +1,36 @@
+import { useMemo } from "react";
 import type { ButtonType } from "components/types";
 
 export const Button: ButtonType = ({
   children,
   className,
   type = "button",
+  buttonSize = "medium",
+  fullWidth = false,
   ...rest
 }) => {
-  const buttonClassName = `block w-full text-2xl bg-blue-light text-white rounded-md p-3 ${
-    className ?? ""
-  }`;
+  const classNames = useMemo(() => {
+    let buttonClassName = `block bg-blue-light text-white rounded-md ${
+      className ?? ""
+    }`;
+
+    if (fullWidth) {
+      buttonClassName += " w-full";
+    }
+
+    if (buttonSize === "large") {
+      buttonClassName += " py-4 px-5 text-lg";
+    } else if (buttonSize === "small") {
+      buttonClassName += " py-2 px-3 text-sm";
+    } else {
+      buttonClassName += " py-3 px-4 text-base";
+    }
+
+    return { buttonClassName };
+  }, [buttonSize, className, fullWidth]);
 
   return (
-    <button className={buttonClassName} type={type} {...rest}>
+    <button className={classNames.buttonClassName} type={type} {...rest}>
       {children}
     </button>
   );
