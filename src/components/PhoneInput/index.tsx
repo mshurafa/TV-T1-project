@@ -20,22 +20,22 @@ export const PhoneInput: PhoneInputType = ({
   usePhoneInputMutation();
   const classNames = useMemo(() => {
     const classes = {
-      inputContainer: `mb-2 relative text-gray-dark ${className ?? ""}`,
-      label: "block mb-2",
+      inputContainer: `mb-1 relative text-gray-dark ${className ?? ""}`,
+      label: "block mb-1",
       input: `!block !w-full !h-auto !px-4 !pl-16 !border !border-gray focus:!ring-0 focus:!border-blue !rounded-md ${
         inputClassName || ""
       }`,
       button:
         "!bg-transparent !border-none [&>div]:border-r [&>div]:border-gray [&>div:hover]:!bg-transparent [&_.selected-flag.open]:!bg-transparent [&_.arrow]:!border-none",
-      helperText: "inline-flex min-h-[20px] text-sm mt-1",
+      helperText: "inline-flex min-h-[20px] text-xs mt-1",
     };
 
     if (inputSize === "large") {
       classes.input += " py-4 !text-lg";
       classes.inputContainer += " text-lg";
     } else if (inputSize === "small") {
-      classes.input += " py-2 !text-base";
-      classes.inputContainer += " text-base";
+      classes.input += " py-2 !text-sm";
+      classes.inputContainer += " text-sm";
     } else {
       classes.input += " py-3 !text-base";
       classes.inputContainer += " text-base";
