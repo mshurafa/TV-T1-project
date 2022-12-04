@@ -37,12 +37,13 @@ export const SignUpForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="flex flex-wrap sm:flex-nowrap sm:gap-8">
+      <div className="flex flex-wrap sm:flex-nowrap sm:gap-3">
         <Input
           id="first-name-input"
           label="First Name"
           placeholder="Enter first name"
           className="flex-1 basis-full"
+          inputSize="small"
           {...register("firstName", formValidation.firstName)}
           error={!!errors.firstName}
           helperText={getFieldHelperText("error", errors.firstName?.message)}
@@ -52,6 +53,7 @@ export const SignUpForm = () => {
           label="Last Name"
           placeholder="Enter last name"
           className="flex-1 basis-full"
+          inputSize="small"
           {...register("lastName", formValidation.lastName)}
           error={!!errors.lastName}
           helperText={getFieldHelperText("error", errors.lastName?.message)}
@@ -61,6 +63,7 @@ export const SignUpForm = () => {
         id="email-input"
         label="Email"
         placeholder="Enter Email"
+        inputSize="small"
         {...register("email", formValidation.email)}
         error={!!errors.email}
         helperText={getFieldHelperText("error", errors.email?.message)}
@@ -70,6 +73,7 @@ export const SignUpForm = () => {
         type="password"
         label="Password"
         placeholder="Enter Password"
+        inputSize="small"
         {...register("password", formValidation.password)}
         error={!!errors.password}
         helperText={getFieldHelperText("error", errors.password?.message)}
@@ -82,6 +86,7 @@ export const SignUpForm = () => {
           <PhoneInput
             id="phone-input"
             label="Phone Number"
+            inputSize="small"
             inputProps={{
               ref,
             }}
@@ -97,19 +102,18 @@ export const SignUpForm = () => {
         id="country-select"
         label="Country"
         placeholder="Enter Country"
+        selectSize="small"
         {...register("country", formValidation.country)}
         error={!!errors.country}
         helperText={getFieldHelperText("error", errors.country?.message)}
       />
       <HelperText
         showContent={!!error}
-        className="text-red w-full justify-center min-h-[20px]"
+        className="text-red w-full text-xs justify-center min-h-[20px]"
         startIcon={<ErrorIconMini className="w-5 h5" />}
         text={error?.message}
       />
-      <Button type="submit" className="mt-2">
-        {loading ? "Loading..." : "Sign Up"}
-      </Button>
+      <Button type="submit">{loading ? "Loading..." : "Sign Up"}</Button>
     </form>
   );
 };
