@@ -5,7 +5,7 @@ import type { NextPageWithLayout } from "types";
 const SignIn: NextPageWithLayout = () => {
   return (
     <RegistrationCard
-      formTitle="Login to Your Account"
+      formTitle="Sign In"
       formCaption={
         <>
           Don&apos;t have an account?{" "}
