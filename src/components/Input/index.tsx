@@ -20,26 +20,27 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const { passwordInputType, passwordInputIcon } = usePasswordInput();
+    const { passwordInputType, passwordInputIcon } =
+      usePasswordInput(inputSize);
     const classNames = useMemo(() => {
       const classes = {
-        inputContainer: `mb-2 relative text-gray-dark ${className ?? ""}`,
-        label: "block mb-2",
+        inputContainer: `mb-1 relative text-gray-dark ${className ?? ""}`,
+        label: "block mb-1",
         icon: "absolute text-gray-400 select-none top-1/2 -translate-y-2/4",
         startIcon: "left-4",
         endIcon: "right-4",
         input: `block w-full px-4 border-gray focus:ring-0 focus:border-blue rounded-md ${
           inputClassName || ""
         }`,
-        helperText: "inline-flex min-h-[20px] text-sm mt-1",
+        helperText: "inline-flex min-h-[20px] text-xs mt-1",
       };
 
       if (inputSize === "large") {
         classes.input += " py-4";
         classes.inputContainer += " text-lg";
       } else if (inputSize === "small") {
-        classes.input += " py-2";
-        classes.inputContainer += " text-base";
+        classes.input += " py-2 text-sm";
+        classes.inputContainer += " text-sm";
       } else {
         classes.input += " py-3";
         classes.inputContainer += " text-base";
