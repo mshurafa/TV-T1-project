@@ -1,14 +1,20 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { Input, Button, HelperText } from "components";
+import { Button, HelperText } from "components";
+import OtpInput from "../OtpInput";
 import { ErrorIconMini } from "lib/@heroicons";
 
 export const VerifyCodeForm = () => {
+  const [otpCode, setOtpCode] = useState("");
+  console.log(
+    "🚀 ~ file: index.tsx ~ line 9 ~ VerifyCodeForm ~ otpCode",
+    otpCode
+  );
   const [error, setError] = useState("");
   const router = useRouter();
 
-  // pattern="\d*" will prevent submitting the form if the user does not match the pattern which is a digit
-  // maxLength={1} to prevent adding more than one character
+  const otpChangeHandler = (value: string) => setOtpCode(value);
+
   return (
     <form
       onSubmit={(event) => {
@@ -17,18 +23,7 @@ export const VerifyCodeForm = () => {
         router.push("verified");
       }}
     >
-      <div className="flex flex-wrap justify-center gap-2.5 sm:gap-10 sm:px-6">
-        <div className="flex w-44 gap-2.5">
-          <Input withoutHelperText autoComplete="nope" />
-          <Input withoutHelperText autoComplete="nope" />
-          <Input withoutHelperText autoComplete="nope" />
-        </div>
-        <div className="flex w-44 gap-2.5">
-          <Input withoutHelperText autoComplete="nope" />
-          <Input withoutHelperText autoComplete="nope" />
-          <Input withoutHelperText autoComplete="nope" />
-        </div>
-      </div>
+      <OtpInput onOtpChange={otpChangeHandler} />
       <HelperText
         showContent={!!error}
         className="text-red w-full justify-center min-h-[20px] mt-2"
