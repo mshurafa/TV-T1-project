@@ -36,7 +36,10 @@ export const SignInForm = () => {
     },
   });
 
-  const onSubmit = handleSubmit(signIn);
+  const onSubmit = handleSubmit((data) => {
+    if (loading) return;
+    signIn(data);
+  });
 
   return (
     <form onSubmit={onSubmit}>
