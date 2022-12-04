@@ -87,3 +87,11 @@ export interface LinkProps
 }
 
 export type LinkType = FC<LinkProps>;
+
+export interface SpinnerProps {
+  size?: SizeVariantsType;
+  className?: string;
+  svgClassName?: string;
+}
+
+export type SpinnerType = FC<SpinnerProps>;
