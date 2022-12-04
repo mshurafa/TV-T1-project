@@ -24,11 +24,12 @@ export const ForgotPasswordForm = () => {
         id="email-input"
         label="Email"
         placeholder="Enter Email"
+        inputSize="small"
         {...register("email", formValidation.email)}
         error={!!errorMessage}
         helperText={getFieldHelperText("error", errorMessage)}
       />
-      <Button type="submit" buttonSize="small" fullWidth className="mt-9 mb-14">
+      <Button type="submit" buttonSize="small" fullWidth className="mb-4">
         {loading ? "Loading..." : "Send Code"}
       </Button>
     </form>
