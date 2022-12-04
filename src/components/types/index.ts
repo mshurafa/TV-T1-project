@@ -13,7 +13,7 @@ type CommonFormElementsType = {
   withoutHelperText?: boolean;
 };
 
-type SizeVariantsType = "small" | "medium" | "large";
+export type SizeVariantsType = "small" | "medium" | "large";
 
 type IconsVariantsType = {
   startIcon?: ReactNode;
