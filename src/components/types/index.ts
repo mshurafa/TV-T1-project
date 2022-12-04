@@ -40,6 +40,7 @@ export type LogoType = FC<LogoProps>;
 export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
   type?: "button" | "submit" | "reset";
   buttonSize?: SizeVariantsType;
+  fullWidth?: boolean;
 }
 export type ButtonType = FC<ButtonProps>;
 
