@@ -12,7 +12,9 @@ export const RegistrationCard: RegistrationCardType = ({
   ...rest
 }) => {
   const router = useRouter();
-  const cardClassName = `w-full sm:w-[600px] relative ${className || ""}`;
+  const cardClassName = `w-full max-w-[400px] relative py-8 px-6 min-[440px]:px-12 ${
+    className || ""
+  }`;
 
   return (
     <Card {...rest} className={cardClassName}>
@@ -26,16 +28,14 @@ export const RegistrationCard: RegistrationCardType = ({
         </IconButton>
       )}
       <Logo className="m-auto" />
-      <h1 className="text-2xl font-medium tracking-wider text-center">
+      <h1 className="text-base font-medium tracking-wider text-center">
         Talents Valley
       </h1>
       <div className="max-w-[450px] m-auto">
-        {formTitle && <h6 className="text-lg my-10">{formTitle}</h6>}
+        {formTitle && <h6 className="text-xl my-4">{formTitle}</h6>}
         {children}
       </div>
-      {formCaption && (
-        <p className="text-sm text-center my-12">{formCaption}</p>
-      )}
+      {formCaption && <p className="text-sm text-center mt-8">{formCaption}</p>}
     </Card>
   );
 };
