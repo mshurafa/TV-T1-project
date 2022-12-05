@@ -20,17 +20,17 @@ export const VerifyCodeForm = () => {
       onSubmit={(event) => {
         event.preventDefault();
         setError((e) => (e ? "" : "Incorrect code"));
-        router.push("verified");
+        // router.push("verified");
       }}
     >
       <OtpInput onOtpChange={otpChangeHandler} />
       <HelperText
         showContent={!!error}
-        className="text-red w-full justify-center min-h-[20px] mt-2"
+        className="text-red w-full text-xs justify-center min-h-[20px]"
         startIcon={<ErrorIconMini className="w-5 h5" />}
         text={error}
       />
-      <Button type="submit" buttonSize="small" fullWidth className="mt-4">
+      <Button type="submit" buttonSize="small" fullWidth>
         Continue
       </Button>
     </form>
