@@ -53,3 +53,15 @@ export type VerifyCodeFormPayloadType = {
 };
 
 export type VerifyCodeResponseType = APIResponseType<{ recoverToken: string }>;
+
+export type NewPasswordFormInputsType = {
+  password: string;
+  rePassword: string;
+};
+
+export type NewPasswordResponseType = APIResponseType;
+
+export type NewPasswordFormPayloadType = {
+  password: string;
+  recoverToken: string;
+};
