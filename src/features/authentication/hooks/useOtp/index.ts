@@ -57,7 +57,11 @@ export const useOtp = (onOtpChange: OnOtpChange) => {
 
   const onPaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
     const data = event.clipboardData.getData("text");
-    if (data.length !== otpFields.value.length) return;
+    if (
+      data.length !== otpFields.value.length ||
+      !formValidation.otp.pattern.test(data)
+    )
+      return;
 
     setOtpFields((prevOtpFields) => ({
       value: data.split(""),
