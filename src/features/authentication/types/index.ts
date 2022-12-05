@@ -46,3 +46,10 @@ interface OtpInputProps {
 }
 
 export type OtpInputType = FC<OtpInputProps>;
+
+export type VerifyCodeFormPayloadType = {
+  _id: string;
+  verificationCode: string;
+};
+
+export type VerifyCodeResponseType = APIResponseType<{ recoverToken: string }>;
