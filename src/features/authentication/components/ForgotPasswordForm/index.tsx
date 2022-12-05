@@ -14,7 +14,10 @@ export const ForgotPasswordForm = () => {
 
   const { sendCodeRequest, loading, error } = useVerifyPasswordCode();
 
-  const onSubmit = handleSubmit(sendCodeRequest);
+  const onSubmit = handleSubmit((data) => {
+    if (loading) return;
+    sendCodeRequest(data);
+  });
 
   const errorMessage = errors.email?.message || error?.message;
 

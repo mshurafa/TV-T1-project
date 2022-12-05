@@ -33,7 +33,10 @@ export const SignUpForm = () => {
     },
   });
 
-  const onSubmit = handleSubmit(signUp);
+  const onSubmit = handleSubmit((data) => {
+    if (loading) return;
+    signUp(data);
+  });
 
   return (
     <form onSubmit={onSubmit}>
