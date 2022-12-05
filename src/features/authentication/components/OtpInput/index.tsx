@@ -7,13 +7,13 @@ export const OtpInput: OtpInputType = ({ onOtpChange }) => {
     useOtp(onOtpChange);
 
   return (
-    <div className="flex flex-wrap gap-2.5 justify-center">
+    <div className="flex flex-wrap gap-2 justify-center">
       {otpFields.value.map((fieldValue, index) => {
-        let inputClassName = "mb-0 max-w-[50px]";
+        let inputClassName = "max-w-[38px]";
         if (index === 2) {
-          inputClassName += " sm:mr-2.5";
+          inputClassName += " sm:mr-2";
         } else if (index === 3) {
-          inputClassName += " sm:ml-2.5";
+          inputClassName += " sm:ml-2";
         }
 
         return (
@@ -30,6 +30,7 @@ export const OtpInput: OtpInputType = ({ onOtpChange }) => {
             onPaste={onPaste}
             ref={otpFields.activeIndex === index ? activeInputRef : null}
             className={inputClassName}
+            inputSize="small"
             inputClassName="text-center"
             withoutHelperText
           />
