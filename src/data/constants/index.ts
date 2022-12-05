@@ -3,6 +3,7 @@ export const API_SERVICES_URLS = {
   SIGN_IN: "/user/login",
   FORGOT_PASSWORD: "/user/password/forgot",
   VERIFY_CODE: "/user/password/verify-code",
+  RECOVER_PASSWORD: "/user/password/recover",
 } as const;
 
 export const COOKIES_KEYS = {
