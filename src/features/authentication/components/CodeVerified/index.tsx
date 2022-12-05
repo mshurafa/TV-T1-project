@@ -12,16 +12,16 @@ export const CodeVerified = () => {
         src="/assets/img/check-mark.png"
         width={65}
         height={65}
-        className="m-auto mt-10"
+        className="m-auto mt-4"
       />
-      <h6 className="text-lg my-10 font-medium text-center">Password Reset</h6>
-      <p className="text-base text-black mb-9">
+      <h6 className="text-lg my-4 font-medium text-center">Password Reset</h6>
+      <p className="text-sm text-black mb-4">
         Your Password has been Successfully Reset. Click Below To Login
       </p>
       <Button
         buttonSize="small"
         fullWidth
-        className="my-20"
+        className="mb-6"
         onClick={() => router.push("/sign-in")}
       >
         Sign In
