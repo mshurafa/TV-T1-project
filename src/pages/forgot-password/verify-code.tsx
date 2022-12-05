@@ -26,7 +26,7 @@ const VerifyCode: NextPageWithLayout = () => {
         }
         withBackButton
       >
-        <p className="text-sm text-gray-dark -mt-6 mb-9">
+        <p className="text-sm text-gray-dark mb-4">
           We have sent you an email that contains a code to reset your password
         </p>
         <VerifyCodeForm />
