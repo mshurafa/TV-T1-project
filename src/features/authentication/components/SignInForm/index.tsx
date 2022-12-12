@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
+import useForm from "lib/react-hook-form";
 import { Input, Button, HelperText, Link } from "components";
 import { useAxios } from "hooks";
 import { API_SERVICES_URLS, URL_PATHS, COOKIES_KEYS } from "data";

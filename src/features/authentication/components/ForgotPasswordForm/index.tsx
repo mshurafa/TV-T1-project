@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import useForm from "lib/react-hook-form";
 import { Input, Button } from "components";
 import { useVerifyPasswordCode } from "../../hooks";
 import { getFieldHelperText } from "../../utils";
