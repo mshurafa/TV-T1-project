@@ -65,3 +65,8 @@ export type NewPasswordFormPayloadType = {
   password: string;
   recoverToken: string;
 };
+
+interface NewPasswordFormProps {
+  onSuccess: () => void;
+}
+export type NewPasswordFormType = FC<NewPasswordFormProps>;
