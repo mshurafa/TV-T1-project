@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { Input, Button, HelperText } from "components";
 import { useAxios } from "hooks";
-import { API_SERVICES_URLS } from "data";
+import { API_SERVICES_URLS, URL_PATHS } from "data";
 import { ErrorIconMini } from "lib/@heroicons";
 import { getFieldHelperText } from "../../utils";
 import { formValidation } from "../../data";
@@ -10,15 +10,19 @@ import type {
   NewPasswordFormInputsType,
   NewPasswordResponseType,
   NewPasswordFormPayloadType,
+  NewPasswordFormType,
 } from "../../types";
 
-export const NewPasswordForm = () => {
+export const NewPasswordForm: NewPasswordFormType = ({ onSuccess }) => {
   const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm<NewPasswordFormInputsType>();
+
   const {
     fetchData: recoverPassword,
     error,
@@ -31,20 +35,22 @@ export const NewPasswordForm = () => {
     options: {
       manual: true,
     },
-    onSuccess: (data) => {
-      //show password reset screen
-      //   router.push(URL_PATHS.AUTH.VERIFIED);
-    },
+    onSuccess: () => onSuccess(),
   });
 
   const onSubmit = handleSubmit((data) => {
     if (loading) return;
     const payload = {
       password: data.password,
-      recoverToken: router.query.newPasswordData?.[0] || "",
+      recoverToken: router.query.recoverToken as string,
     };
     recoverPassword(payload);
   });
+
+  // maybe handle this in the middleware function
+  if (!router.query.recoverToken) {
+    router.replace(URL_PATHS.AUTH.FORGOT_PASSWORD);
+  }
 
   return (
     <form onSubmit={onSubmit}>
@@ -64,8 +70,11 @@ export const NewPasswordForm = () => {
         label="Re-Enter Password"
         placeholder="Re-Enter Password"
         inputSize="small"
-        withoutHelperText
-        {...register("rePassword")}
+        {...register("rePassword", {
+          validate: (value) => {
+            return getValues("password") === value || "Password does not match";
+          },
+        })}
         error={!!errors.rePassword}
         helperText={getFieldHelperText("error", errors.rePassword?.message)}
       />
