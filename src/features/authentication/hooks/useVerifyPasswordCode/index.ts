@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useAxios } from "hooks";
 import { API_SERVICES_URLS, URL_PATHS } from "data";
@@ -10,7 +10,7 @@ import type {
 export const useVerifyPasswordCode = (mode: "send" | "resend" = "send") => {
   const router = useRouter();
   const forgotPasswordData = router.query.forgotPasswordData;
-  const emailQuery = forgotPasswordData?.[0] || "";
+  const emailValueRef = useRef(forgotPasswordData?.[0] || "");
 
   const { fetchData, error, loading } = useAxios<
     ForgotPasswordResponseType,
@@ -23,31 +23,34 @@ export const useVerifyPasswordCode = (mode: "send" | "resend" = "send") => {
     options: {
       manual: true,
     },
-  });
-
-  useEffect(() => {
-    if (mode === "resend") {
-      if (!emailQuery) {
-        router.replace(URL_PATHS.AUTH.FORGOT_PASSWORD);
-      }
-    }
-  }, [emailQuery, mode, router]);
-
-  const sendCodeRequest = (payload?: { email: string }) => {
-    const emailValue = payload?.email || emailQuery;
-    fetchData({ email: emailValue }).then((response) => {
-      if (response && mode === "send") {
+    onSuccess: (data) => {
+      if (mode === "send") {
         router.push(
           {
             pathname: URL_PATHS.AUTH.VERIFY_CODE,
             query: {
-              forgotPasswordData: [emailValue, response.data?._id || ""],
+              forgotPasswordData: [emailValueRef.current, data.data?._id || ""],
             },
           },
           URL_PATHS.AUTH.VERIFY_CODE
         );
       }
-    });
+    },
+  });
+
+  useEffect(() => {
+    if (mode === "resend") {
+      // maybe handle this in the middleware function
+      if (!emailValueRef.current) {
+        router.replace(URL_PATHS.AUTH.FORGOT_PASSWORD);
+      }
+    }
+  }, [mode, router]);
+
+  const sendCodeRequest = (payload?: { email: string }) => {
+    const emailValue = payload?.email || emailValueRef.current;
+    emailValueRef.current = emailValue;
+    fetchData({ email: emailValue });
   };
 
   return { sendCodeRequest, error, loading };
