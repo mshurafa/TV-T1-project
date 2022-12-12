@@ -11,6 +11,9 @@ export const URL_PATHS = {
     INDEX: "/invoices",
     CREATE: "invoices/new",
   },
+  VERIFICATION: {
+    INDEX: "/verification",
+  },
 } as const;
 
 export const APP_ROUTES: {
@@ -18,7 +21,12 @@ export const APP_ROUTES: {
   readonly PUBLIC_ROUTES: readonly string[];
   readonly AUTH_ROUTES: readonly string[];
 } = {
-  PROTECTED_ROUTES: [URL_PATHS.HOME],
+  PROTECTED_ROUTES: [
+    URL_PATHS.HOME,
+    URL_PATHS.INVOICES.INDEX,
+    URL_PATHS.INVOICES.CREATE,
+    URL_PATHS.VERIFICATION.INDEX,
+  ],
   PUBLIC_ROUTES: [],
   AUTH_ROUTES: [
     URL_PATHS.AUTH.SIGN_IN,
