@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { Button, HelperText } from "components";
 import { useAxios } from "hooks";
-import { API_SERVICES_URLS, URL_PATHS, COOKIES_KEYS } from "data";
+import { API_SERVICES_URLS, URL_PATHS } from "data";
 import { ErrorIconMini } from "lib/@heroicons";
 import OtpInput from "../OtpInput";
 import type {
