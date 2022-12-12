@@ -1,4 +1,4 @@
-import { VerificationCard } from "features/verification";
+import { VerificationCard, VerificationMethods } from "features/verification";
 import type { NextPageWithLayout } from "types";
 
 const Verification: NextPageWithLayout = () => {
@@ -7,7 +7,7 @@ const Verification: NextPageWithLayout = () => {
       title="Verification"
       description="To use our services, We need to verify your account"
     >
-      Verification card
+      <VerificationMethods />
     </VerificationCard>
   );
 };
