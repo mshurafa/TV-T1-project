@@ -6,11 +6,8 @@ const VALIDATION_RULES = {
 } as const;
 
 export const formValidation = {
-  firstName: {
-    required: "First Name is required",
-  },
-  lastName: {
-    required: "Last Name is required",
+  fullName: {
+    required: "First and last Name are required",
   },
   email: {
     required: "Email address is required",
@@ -27,8 +24,7 @@ export const formValidation = {
     },
     pattern: {
       value: VALIDATION_RULES.password,
-      message:
-        "password must contain one of each: uppercase, lowercase, number and special",
+      message: "uppercase, lowercase, number and special",
     },
   },
   mobile: {
