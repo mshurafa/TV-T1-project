@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useForm, Controller } from "react-hook-form";
+import useForm, { Controller } from "lib/react-hook-form";
 import { Input, Button, Select, PhoneInput, HelperText } from "components";
 import { useAxios } from "hooks";
 import { countriesList, API_SERVICES_URLS, URL_PATHS } from "data";
@@ -15,6 +15,7 @@ export const SignUpForm = () => {
     handleSubmit,
     formState: { errors },
     control,
+    clearErrorOnChange,
   } = useForm<SignUpFormInputsType>();
   const {
     fetchData: signUp,
@@ -47,9 +48,12 @@ export const SignUpForm = () => {
           placeholder="Enter first name"
           className="flex-1 basis-full"
           inputSize="small"
-          {...register("firstName", formValidation.firstName)}
+          {...register("firstName", {
+            ...formValidation.fullName,
+            onChange: () => clearErrorOnChange("firstName"),
+          })}
           error={!!errors.firstName}
-          helperText={getFieldHelperText("error", errors.firstName?.message)}
+          withoutHelperText
         />
         <Input
           id="last-name-input"
@@ -57,17 +61,29 @@ export const SignUpForm = () => {
           placeholder="Enter last name"
           className="flex-1 basis-full"
           inputSize="small"
-          {...register("lastName", formValidation.lastName)}
+          {...register("lastName", {
+            ...formValidation.fullName,
+            onChange: () => clearErrorOnChange("lastName"),
+          })}
           error={!!errors.lastName}
-          helperText={getFieldHelperText("error", errors.lastName?.message)}
+          withoutHelperText
         />
       </div>
+      <HelperText
+        showContent={!!errors.firstName || !!errors.lastName}
+        className="text-red w-full text-xs justify-center min-h-[20px]"
+        startIcon={<ErrorIconMini className="w-5 h5" />}
+        text={errors.firstName?.message || errors.lastName?.message}
+      />
       <Input
         id="email-input"
         label="Email"
         placeholder="Enter Email"
         inputSize="small"
-        {...register("email", formValidation.email)}
+        {...register("email", {
+          ...formValidation.email,
+          onChange: () => clearErrorOnChange("email"),
+        })}
         error={!!errors.email}
         helperText={getFieldHelperText("error", errors.email?.message)}
       />
@@ -77,18 +93,25 @@ export const SignUpForm = () => {
         label="Password"
         placeholder="Enter Password"
         inputSize="small"
-        {...register("password", formValidation.password)}
+        {...register("password", {
+          ...formValidation.password,
+          onChange: () => clearErrorOnChange("password"),
+        })}
         error={!!errors.password}
         helperText={getFieldHelperText("error", errors.password?.message)}
       />
       <Controller
         control={control}
         name="mobile"
-        rules={formValidation.mobile}
+        rules={{
+          ...formValidation.mobile,
+          onChange: () => clearErrorOnChange("mobile"),
+        }}
         render={({ field: { ref, onChange, ...field } }) => (
           <PhoneInput
             id="phone-input"
             label="Phone Number"
+            placeholder="Enter your phone number"
             inputSize="small"
             inputProps={{
               ref,
@@ -106,7 +129,10 @@ export const SignUpForm = () => {
         label="Country"
         placeholder="Enter Country"
         selectSize="small"
-        {...register("country", formValidation.country)}
+        {...register("country", {
+          ...formValidation.country,
+          onChange: () => clearErrorOnChange("country"),
+        })}
         error={!!errors.country}
         helperText={getFieldHelperText("error", errors.country?.message)}
       />
