@@ -1,12 +1,26 @@
-import { RegistrationCard, NewPasswordForm } from "features/authentication";
+import { useState } from "react";
+import {
+  RegistrationCard,
+  NewPasswordForm,
+  CodeVerified,
+} from "features/authentication";
 import { NoSsr } from "components";
 import type { NextPageWithLayout } from "types";
 
 const NewPassword: NextPageWithLayout = () => {
+  const [showSuccess, setShowSuccess] = useState(false);
+
   return (
     <NoSsr>
-      <RegistrationCard formTitle="Create New Password" withBackButton>
-        <NewPasswordForm />
+      <RegistrationCard
+        formTitle={!showSuccess ? "Create New Password" : undefined}
+        withBackButton={!showSuccess}
+      >
+        {showSuccess ? (
+          <CodeVerified />
+        ) : (
+          <NewPasswordForm onSuccess={() => setShowSuccess(true)} />
+        )}
       </RegistrationCard>
     </NoSsr>
   );
