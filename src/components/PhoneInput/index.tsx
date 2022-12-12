@@ -15,6 +15,7 @@ export const PhoneInput: PhoneInputType = ({
   withoutHelperText = false,
   country = "ps",
   preferredCountries = [],
+  enableSearch = true,
   ...rest
 }) => {
   usePhoneInputMutation();
@@ -65,6 +66,7 @@ export const PhoneInput: PhoneInputType = ({
         country={country}
         preferredCountries={["ps", "il", ...preferredCountries]}
         masks={{ ps: "... ... ...", il: "... ... ..." }}
+        enableSearch={enableSearch}
         {...rest}
       />
       {!withoutHelperText && (
