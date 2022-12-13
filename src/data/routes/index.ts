@@ -13,6 +13,10 @@ export const URL_PATHS = {
   },
   VERIFICATION: {
     INDEX: "/verification",
+    EMAIL: "/verification/email",
+    PHONE: "/verification/phone",
+    IDENTITY: "/verification/identity",
+    ADDRESS: "/verification/address",
   },
 } as const;
 
