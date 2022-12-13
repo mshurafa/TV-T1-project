@@ -6,7 +6,9 @@ export const Logo: LogoType = ({
   alt = "Talents Valley Logo",
   ...rest
 }) => {
-  return <Image alt={alt} src={src} width={120} height={60} {...rest} />;
+  return (
+    <Image priority alt={alt} src={src} width={120} height={60} {...rest} />
+  );
 };
 
 export default Logo;
