@@ -36,7 +36,7 @@ export const VerificationMethods = () => {
         </div>
         {method.status === "Verified" ? (
           <Image
-            alt={`${method.title}-verified`}
+            alt={`${method.title} ${method.status}`}
             src="/assets/img/check-mark.png"
             width={36}
             height={36}
