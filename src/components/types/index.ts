@@ -98,3 +98,11 @@ export interface SpinnerProps {
 export type SpinnerType = FC<SpinnerProps>;
 
 export type ImageType = FC<NextImageProps>;
+
+export type OnOtpChange = (value: string) => void;
+
+interface OtpInputProps {
+  onOtpChange: OnOtpChange;
+}
+
+export type OtpInputType = FC<OtpInputProps>;

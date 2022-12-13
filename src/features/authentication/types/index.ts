@@ -39,14 +39,6 @@ export type ForgotPasswordFormInputType = {
 
 export type ForgotPasswordResponseType = APIResponseType<{ _id: string }>;
 
-export type OnOtpChange = (value: string) => void;
-
-interface OtpInputProps {
-  onOtpChange: OnOtpChange;
-}
-
-export type OtpInputType = FC<OtpInputProps>;
-
 export type VerifyCodeFormPayloadType = {
   _id: string;
   verificationCode: string;
