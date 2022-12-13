@@ -21,6 +21,14 @@ export const useVerificationMethods = () => {
         ? "Not verified"
         : "Verified";
 
+    const formattedMobile =
+      user.mobile.slice(0, 4) +
+      user.mobile.slice(4, -3).replaceAll(/\d/g, "*") +
+      user.mobile.slice(-3);
+
+    verificationMethods[0].caption = user.email;
+    verificationMethods[1].caption = formattedMobile;
+
     canContinue =
       verificationMethods[0].status === "Verified" &&
       verificationMethods[1].status === "Verified";
