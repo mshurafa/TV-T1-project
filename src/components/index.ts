@@ -11,3 +11,4 @@ export * from "./PhoneInput";
 export { NoSsr };
 export * from "./Link";
 export * from "./Spinner";
+export * from "./Image";

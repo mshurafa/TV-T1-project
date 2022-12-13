@@ -1,5 +1,5 @@
 import type { HTMLProps, FC, ReactNode, RefAttributes } from "react";
-import type { ImageProps } from "next/image";
+import type { ImageProps as NextImageProps } from "next/image";
 import type { LinkProps as NextLinkProps } from "next/link";
 import type { PhoneInputProps as ReactPhoneInputProps } from "react-phone-input-2";
 import type { DivElementType, ChildrenProp } from "types";
@@ -31,7 +31,7 @@ export interface InputProps
   inputSize?: SizeVariantsType;
 }
 
-export interface LogoProps extends Omit<ImageProps, "src" | "alt"> {
+export interface LogoProps extends Omit<NextImageProps, "src" | "alt"> {
   src?: string;
   alt?: string;
 }
@@ -96,3 +96,5 @@ export interface SpinnerProps {
 }
 
 export type SpinnerType = FC<SpinnerProps>;
+
+export type ImageType = FC<NextImageProps>;
