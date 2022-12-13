@@ -1,59 +1,70 @@
+import { Fragment } from "react";
+import { useRouter } from "next/router";
 import { Card, Button } from "components";
+import { useVerificationMethods } from "../../hooks";
 
 export const VerificationMethods = () => {
+  const router = useRouter();
+  const { verificationMethods, canContinue } = useVerificationMethods();
+
   const classNames = {
     methodCard:
       "flex justify-between items-center my-2 shadow-none bg-gray-light border border-gray-200",
     title: "text-sm",
     caption: "text-xs",
-    verified: "text-green-600",
-    unverified: "text-red",
+    verified: "text-xs text-green-600",
+    unverified: "text-xs text-red",
   };
+
+  const methods = verificationMethods.map((method) => {
+    const methodCard = (
+      <Card key={method.id} className={classNames.methodCard}>
+        <div>
+          <p className={classNames.title}>
+            {method.title}{" "}
+            <span
+              className={
+                method.status === "Verified"
+                  ? classNames.verified
+                  : classNames.unverified
+              }
+            >
+              ({method.status})
+            </span>
+          </p>
+          <span className={classNames.caption}>{method.caption}</span>
+        </div>
+        <Button buttonSize="small" onClick={() => router.push(method.url)}>
+          Verify
+        </Button>
+      </Card>
+    );
+
+    if (method.id === 3) {
+      return (
+        <Fragment key={method.id}>
+          <span className={classNames.caption}>
+            You can complete the 2 following tasks later
+          </span>
+          {methodCard}
+        </Fragment>
+      );
+    } else {
+      return methodCard;
+    }
+  });
 
   return (
     <>
-      <Card className={classNames.methodCard}>
-        <div>
-          <p className={classNames.title}>Email Address</p>
-          <span className={classNames.caption}>
-            mail@email.com{" "}
-            <span className={classNames.verified}>(Verified)</span>
-          </span>
-        </div>
-        <Button buttonSize="small">Verify</Button>
-      </Card>
-      <Card className={classNames.methodCard}>
-        <div>
-          <p className={classNames.title}>Phone Number</p>
-          <span className={classNames.caption}>
-            +972 ******966{" "}
-            <span className={classNames.unverified}>(not verified)</span>
-          </span>
-        </div>
-        <Button buttonSize="small">Verify</Button>
-      </Card>
-      <span className={classNames.caption}>
-        You can complete the 2 following tasks later
-      </span>
-      <Card className={classNames.methodCard}>
-        <div>
-          <p className={classNames.title}>ID Verification</p>
-          <span className={classNames.caption}>
-            Identity card - Driver license - Passport
-          </span>
-        </div>
-        <Button buttonSize="small">Verify</Button>
-      </Card>
-      <Card className={classNames.methodCard}>
-        <div>
-          <p className={classNames.title}>Address Verification</p>
-          <span className={classNames.caption}>
-            Phone, Electricity, Water Bill - Bank statement
-          </span>
-        </div>
-        <Button buttonSize="small">Verify</Button>
-      </Card>
-      <Button fullWidth className="mt-4">
+      {methods}
+      <Button
+        fullWidth
+        className="mt-4"
+        disabled={!canContinue}
+        onClick={() => {
+          //push to the next page
+        }}
+      >
         Continue
       </Button>
     </>
