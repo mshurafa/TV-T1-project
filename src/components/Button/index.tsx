@@ -10,7 +10,7 @@ export const Button: ButtonType = ({
   ...rest
 }) => {
   const classNames = useMemo(() => {
-    let buttonClassName = `block bg-blue-light text-white rounded-md ${
+    let buttonClassName = `block bg-blue-light hover:bg-blue transition-colors text-white rounded-md disabled:opacity-50 disabled:hover:bg-blue-light ${
       className ?? ""
     }`;
 
