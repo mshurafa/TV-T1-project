@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { useRouter } from "next/router";
-import { Card, Button } from "components";
+import { Card, Button, Image } from "components";
 import { useVerificationMethods } from "../../hooks";
 
 export const VerificationMethods = () => {
@@ -34,9 +34,18 @@ export const VerificationMethods = () => {
           </p>
           <span className={classNames.caption}>{method.caption}</span>
         </div>
-        <Button buttonSize="small" onClick={() => router.push(method.url)}>
-          Verify
-        </Button>
+        {method.status === "Verified" ? (
+          <Image
+            alt={`${method.title}-verified`}
+            src="/assets/img/check-mark.png"
+            width={36}
+            height={36}
+          />
+        ) : (
+          <Button buttonSize="small" onClick={() => router.push(method.url)}>
+            Verify
+          </Button>
+        )}
       </Card>
     );
 
