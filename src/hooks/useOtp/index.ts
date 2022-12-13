@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
-import { formValidation } from "../../data";
-import type { OnOtpChange } from "../../types";
+import { formValidation } from "../../features/authentication/data";
+import type { OnOtpChange } from "components/types";
 
 const getInitialOtpFieldsState = () => {
   return {
