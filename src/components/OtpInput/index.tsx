@@ -1,6 +1,6 @@
-import { Input } from "components";
-import { useOtp } from "../../hooks";
-import type { OtpInputType } from "../../types";
+import Input from "../Input";
+import { useOtp } from "hooks";
+import type { OtpInputType } from "../types";
 
 export const OtpInput: OtpInputType = ({ onOtpChange }) => {
   const { otpFields, activeInputRef, onChange, onKeyDown, onFocus, onPaste } =
