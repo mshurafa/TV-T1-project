@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "../Image";
 import type { LogoType } from "components/types";
 
 export const Logo: LogoType = ({

@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
-import Image from "next/image";
-import { Button } from "components";
+import { Button, Image } from "components";
 
 export const CodeVerified = () => {
   const router = useRouter();
