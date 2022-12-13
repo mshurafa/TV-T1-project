@@ -1,42 +1,30 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { useCurrentUser } from "features/authentication";
-import { URL_PATHS } from "data";
+import { VERIFICATION_METHODS } from "../../data";
 
 export const useVerificationMethods = () => {
-  const [canContinue, setCanContinue] = useState(false);
+  let { current: canContinue } = useRef(false);
+  let { current: verificationMethods } = useRef([...VERIFICATION_METHODS]);
   const user = useCurrentUser();
-  console.log("🚀 ~ file: index.tsx:11 ~ useVerificationMethods ~ user", user);
 
-  const verificationMethods = [
-    {
-      id: 1,
-      title: "Email Address",
-      caption: "mail@email.com",
-      status: "Verified",
-      url: URL_PATHS.VERIFICATION.EMAIL,
-    },
-    {
-      id: 2,
-      title: "Phone Number",
-      caption: "+972 ******966",
-      status: "not verified",
-      url: URL_PATHS.VERIFICATION.PHONE,
-    },
-    {
-      id: 3,
-      title: "ID Verification",
-      caption: "Identity card - Driver license - Passport",
-      status: "not verified",
-      url: URL_PATHS.VERIFICATION.IDENTITY,
-    },
-    {
-      id: 4,
-      title: "Address Verification",
-      caption: "Phone, Electricity, Water Bill - Bank statement",
-      status: "not verified",
-      url: URL_PATHS.VERIFICATION.ADDRESS,
-    },
-  ];
+  if (user) {
+    verificationMethods[0].status = user.verifiedEmail
+      ? "Verified"
+      : "Not verified";
+    verificationMethods[1].status = user.verifiedMobile
+      ? "Verified"
+      : "Not verified";
+    verificationMethods[2].status =
+      user?.verifiedId.status === "not_uploaded" ? "Not verified" : "Verified";
+    verificationMethods[3].status =
+      user?.verifiedAddress.status === "not_uploaded"
+        ? "Not verified"
+        : "Verified";
+
+    canContinue =
+      verificationMethods[0].status === "Verified" &&
+      verificationMethods[1].status === "Verified";
+  }
 
   return { verificationMethods, canContinue };
 };
