@@ -9,3 +9,11 @@ interface VerificationCardProps extends CardProps {
   icon?: ReactNode;
 }
 export type VerificationCardType = FC<VerificationCardProps>;
+
+export type VerificationMethodsList = {
+  id: number;
+  title: string;
+  caption: string;
+  status: "Verified" | "Not verified";
+  url: string;
+}[];
