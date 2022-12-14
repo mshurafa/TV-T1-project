@@ -8,7 +8,7 @@ export const useCurrentUser = () => {
 
   const currentUser = getCookie(COOKIES_KEYS.currentUser);
   if (currentUser) {
-    userRef.current = JSON.parse(currentUser)?.user;
+    userRef.current = currentUser?.user;
   }
 
   return userRef.current;

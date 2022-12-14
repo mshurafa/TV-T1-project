@@ -5,7 +5,7 @@ export const getAuthorizationHeader = () => {
   const currentUser = getCookie(COOKIES_KEYS.currentUser);
 
   return {
-    Authorization: `Bearer ${JSON.parse(currentUser || "")?.accessToken || ""}`,
+    Authorization: `Bearer ${currentUser?.accessToken || ""}`,
   };
 };
 
