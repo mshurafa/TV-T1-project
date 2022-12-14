@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import type { UseRouterEvents } from "./types";
+import type { UseRouterEventsProps } from "./types";
 
 export const useRouterEvents = ({
   onRouteChangeStart,
   onRouteChangeComplete,
   onRouteChangeError,
-}: UseRouterEvents) => {
+}: UseRouterEventsProps) => {
   const router = useRouter();
 
   useEffect(() => {
