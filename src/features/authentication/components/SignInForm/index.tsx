@@ -29,7 +29,7 @@ export const SignInForm = () => {
       manual: true,
     },
     onSuccess: (data) => {
-      setCookie(COOKIES_KEYS.currentUser, JSON.stringify(data.data), {
+      setCookie(COOKIES_KEYS.currentUser, data.data, {
         expires: 30,
       });
       router.push(URL_PATHS.HOME);
