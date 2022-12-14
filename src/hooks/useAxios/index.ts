@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import axios, { isAxiosError } from "lib/axios";
-import { axiosErrorHandler } from "utils";
+import { axiosErrorHandler, getAuthorizationHeader } from "utils";
 import useDeepCompareMemoize from "../useDeepCompareMemoize";
 import type { UseAxiosProps, ReturnedValuesType } from "./types";
 import type { ErrorType } from "types";
@@ -9,6 +9,7 @@ const DEFAULT_OPTIONS = {
   disabled: false,
   manual: false,
   withState: true,
+  withAuthHeader: false,
 };
 
 export const useAxios = <DataType = any, BodyType = any>({
@@ -32,10 +33,17 @@ export const useAxios = <DataType = any, BodyType = any>({
       _options.withState && setData(undefined);
       _options.withState && setLoading(true);
       _options.withState && setError(undefined);
+      const { headers, ...restParams } = _axiosParams;
       try {
         const response = await axios.request<DataType>({
           data: body || undefined,
-          ..._axiosParams,
+          headers: _options.withAuthHeader
+            ? {
+                ...getAuthorizationHeader(),
+                ...headers,
+              }
+            : headers,
+          ...restParams,
         });
         const data = response.data;
         _options.withState && setData(data);

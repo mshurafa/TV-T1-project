@@ -12,6 +12,7 @@ export interface OptionsType {
   manual?: boolean;
   withState?: boolean;
   disabled?: boolean;
+  withAuthHeader?: boolean;
 }
 
 export interface UseAxiosProps<DType = any> {
