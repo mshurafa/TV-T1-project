@@ -25,7 +25,7 @@ export const VerificationCard: VerificationCardType = ({
           src={imgSrc}
           width={60}
           height={60}
-          className="m-auto mt-4"
+          className="m-auto my-4"
         />
       )}
       <div>
