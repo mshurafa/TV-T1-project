@@ -2,13 +2,14 @@ import Cookies from "js-cookie";
 
 export const setCookie = (
   name: string,
-  value: string,
+  value: any,
   options?: Cookies.CookieAttributes
 ) => {
-  return Cookies.set(name, value, options);
+  return Cookies.set(name, JSON.stringify(value), options);
 };
 
-export const getCookie = (name: string) => Cookies.get(name);
+export const getCookie = (name: string) =>
+  JSON.parse(Cookies.get(name) || '""');
 
 export const removeCookie = (
   name: string,
