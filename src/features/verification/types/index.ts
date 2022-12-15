@@ -5,7 +5,6 @@ import type { UserType, APIResponseType } from "types";
 interface VerificationCardProps extends CardProps {
   title: string;
   description?: string;
-  caption?: ReactNode;
   imgSrc?: string;
 }
 export type VerificationCardType = FC<VerificationCardProps>;

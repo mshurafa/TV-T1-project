@@ -6,7 +6,6 @@ export const VerificationCard: VerificationCardType = ({
   className,
   title,
   description,
-  caption,
   imgSrc,
   ...rest
 }) => {
@@ -32,7 +31,6 @@ export const VerificationCard: VerificationCardType = ({
         {description && <p className="text-base my-4">{description}</p>}
         {children}
       </div>
-      {caption && <p className="text-sm text-center mt-8">{caption}</p>}
     </Card>
   );
 };
