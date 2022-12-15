@@ -1,10 +1,13 @@
 import { useRef } from "react";
+import { useRouter } from "next/router";
 import { useCurrentUser } from "features/authentication";
 import { VERIFICATION_METHODS } from "../../data";
+import type { VerificationMethodsUrlType } from "../../types";
 
 export const useVerificationMethods = () => {
   let { current: canContinue } = useRef(false);
   let { current: verificationMethods } = useRef([...VERIFICATION_METHODS]);
+  const router = useRouter();
   const user = useCurrentUser();
 
   if (user) {
@@ -34,7 +37,11 @@ export const useVerificationMethods = () => {
       verificationMethods[1].status === "Verified";
   }
 
-  return { verificationMethods, canContinue };
+  const onMethodClick = (url: VerificationMethodsUrlType) => {
+    router.push(url);
+  };
+
+  return { verificationMethods, onMethodClick, canContinue };
 };
 
 export default useVerificationMethods;
