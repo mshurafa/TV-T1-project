@@ -36,9 +36,7 @@ export const VerifyEmailForm = () => {
 
   if (user?.verifiedEmail) {
     return (
-      <p className="text-sm text-center text-gray-dark">
-        Your email has been verified
-      </p>
+      <p className="text-xl text-center">Your email is already verified.</p>
     );
   }
 
