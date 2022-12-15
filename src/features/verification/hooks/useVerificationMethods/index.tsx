@@ -9,7 +9,7 @@ export const useVerificationMethods = () => {
   let { current: canContinue } = useRef(false);
   let { current: verificationMethods } = useRef([...VERIFICATION_METHODS]);
   const router = useRouter();
-  const user = useCurrentUser();
+  const { user } = useCurrentUser();
 
   const { sendCodeRequest: sendEmailCodeRequest, loading: emailLoading } =
     useEmailCode();

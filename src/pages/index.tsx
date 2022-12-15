@@ -3,7 +3,7 @@ import { useCurrentUser, useLogout } from "features/authentication";
 import { Button } from "components";
 
 const Home = () => {
-  const user = useCurrentUser();
+  const { user } = useCurrentUser();
   const logout = useLogout();
   console.log("🚀 ~ file: index.tsx ~ line 7 ~ Home ~ user", user);
   return (
