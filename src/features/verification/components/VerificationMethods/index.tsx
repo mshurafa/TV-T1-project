@@ -42,7 +42,7 @@ export const VerificationMethods = () => {
           />
         ) : (
           <Button buttonSize="small" onClick={() => onMethodClick(method.url)}>
-            Verify
+            {method.loading ? "Loading.." : "Verify"}
           </Button>
         )}
       </Card>
