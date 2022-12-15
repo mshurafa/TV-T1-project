@@ -23,3 +23,9 @@ export type VerificationMethodsListType = {
   status: "Verified" | "Not verified";
   url: VerificationMethodsUrlType;
 }[];
+
+export type VerifyEmailFormPayloadType = {
+  verificationCode: string;
+};
+
+export type VerifyEmailResponseType = APIResponseType;
