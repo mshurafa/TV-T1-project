@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useRouter } from "next/router";
 import { useCurrentUser } from "features/authentication";
 import { VERIFICATION_METHODS } from "../../data";
+import { useEmailCode, useMobileCode } from "../../hooks";
 import type { VerificationMethodsUrlType } from "../../types";
 
 export const useVerificationMethods = () => {
@@ -10,16 +11,19 @@ export const useVerificationMethods = () => {
   const router = useRouter();
   const user = useCurrentUser();
 
+  const { sendCodeRequest: sendEmailCodeRequest, loading: emailLoading } =
+    useEmailCode();
+  const { sendCodeRequest: sendMobileCodeRequest, loading: mobileLoading } =
+    useMobileCode();
+
   if (user) {
-    verificationMethods[0].status = user.verifiedEmail
-      ? "Verified"
-      : "Not verified";
-    verificationMethods[1].status = user.verifiedMobile
-      ? "Verified"
-      : "Not verified";
-    verificationMethods[2].status =
+    const [email, mobile, identity, address] = verificationMethods;
+
+    email.status = user.verifiedEmail ? "Verified" : "Not verified";
+    mobile.status = user.verifiedMobile ? "Verified" : "Not verified";
+    identity.status =
       user?.verifiedId.status === "not_uploaded" ? "Not verified" : "Verified";
-    verificationMethods[3].status =
+    address.status =
       user?.verifiedAddress.status === "not_uploaded"
         ? "Not verified"
         : "Verified";
@@ -29,16 +33,24 @@ export const useVerificationMethods = () => {
       user.mobile.slice(4, -3).replaceAll(/\d/g, "*") +
       user.mobile.slice(-3);
 
-    verificationMethods[0].caption = user.email;
-    verificationMethods[1].caption = formattedMobile;
+    email.caption = user.email;
+    mobile.caption = formattedMobile;
 
-    canContinue =
-      verificationMethods[0].status === "Verified" &&
-      verificationMethods[1].status === "Verified";
+    email.loading = emailLoading;
+    mobile.loading = mobileLoading;
+
+    canContinue = email.status === "Verified" && mobile.status === "Verified";
   }
 
   const onMethodClick = (url: VerificationMethodsUrlType) => {
-    router.push(url);
+    console.log("🚀 ~ file: index.tsx:41 ~ onMethodClick ~ url", url);
+    if (url === "/verification/email") {
+      sendEmailCodeRequest();
+    } else if (url === "/verification/phone") {
+      sendMobileCodeRequest();
+    } else {
+      router.push(url);
+    }
   };
 
   return { verificationMethods, onMethodClick, canContinue };
