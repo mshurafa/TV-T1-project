@@ -65,13 +65,15 @@ export const useAxios = <DataType = any, BodyType = any>({
     [_axiosParams, _options.withState]
   );
 
+  const clearError = () => setError(undefined);
+
   useEffect(() => {
     if (!_options?.manual && !_options?.disabled) {
       fetchData();
     }
   }, [fetchData, _options?.disabled, _options?.manual]);
 
-  return { data, error, loading, fetchData };
+  return { data, error, loading, fetchData, clearError };
 };
 
 export default useAxios;

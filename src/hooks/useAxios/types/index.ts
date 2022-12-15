@@ -6,6 +6,7 @@ export interface ReturnedValuesType<DType = any, BodyType = any> {
   error: ErrorType | undefined;
   loading: boolean;
   fetchData: (body?: BodyType) => Promise<DType | undefined>;
+  clearError: () => void;
 }
 
 export interface OptionsType {
