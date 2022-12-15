@@ -1,7 +1,7 @@
 import { URL_PATHS } from "data";
-import type { VerificationMethodsList } from "../../types";
+import type { VerificationMethodsListType } from "../../types";
 
-export const VERIFICATION_METHODS: VerificationMethodsList = [
+export const VERIFICATION_METHODS: VerificationMethodsListType = [
   {
     id: 1,
     title: "Email Address",
