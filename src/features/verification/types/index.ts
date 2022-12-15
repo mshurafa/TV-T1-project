@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from "react";
 import type { CardProps } from "components/types";
-// import type { UserType, APIResponseType } from "types";
+import type { UserType, APIResponseType } from "types";
 
 interface VerificationCardProps extends CardProps {
   title: string;
@@ -10,10 +10,16 @@ interface VerificationCardProps extends CardProps {
 }
 export type VerificationCardType = FC<VerificationCardProps>;
 
-export type VerificationMethodsList = {
+export type VerificationMethodsUrlType =
+  | "/verification/email"
+  | "/verification/phone"
+  | "/verification/identity"
+  | "/verification/address";
+
+export type VerificationMethodsListType = {
   id: number;
   title: string;
   caption: string;
   status: "Verified" | "Not verified";
-  url: string;
+  url: VerificationMethodsUrlType;
 }[];
