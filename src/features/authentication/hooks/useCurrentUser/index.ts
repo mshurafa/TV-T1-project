@@ -1,17 +1,28 @@
-import { useRef } from "react";
-import { getCookie } from "lib/js-cookie";
+import { useState, useEffect } from "react";
+import { getCookie, setCookie } from "lib/js-cookie";
 import { COOKIES_KEYS } from "data";
 import type { UserType } from "types";
 
 export const useCurrentUser = () => {
-  const userRef = useRef<UserType>();
+  const [user, setUser] = useState<UserType | null>(
+    getCookie(COOKIES_KEYS.currentUser).user
+  );
 
-  const currentUser = getCookie(COOKIES_KEYS.currentUser);
-  if (currentUser) {
-    userRef.current = currentUser?.user;
-  }
+  const refetchUser = async (userId: string) => {
+    // const currentUser = getCookie(COOKIES_KEYS.currentUser);
+    // const userInfo = await authService.getMe(userId);
+    // if (userInfo && currentUser) {
+    //   const newUser = {
+    //     ...JSON.parse(currentUser),
+    //     username: userInfo.username,
+    //     avatar: userInfo.avatar,
+    //   };
+    //   setCookie(COOKIES_KEYS.currentUser, newUser)
+    //   setUser(newUser);
+    // }
+  };
 
-  return userRef.current;
+  return { user, refetchUser };
 };
 
 export default useCurrentUser;
