@@ -8,6 +8,7 @@ export const VERIFICATION_METHODS: VerificationMethodsListType = [
     caption: "",
     status: "Not verified",
     url: URL_PATHS.VERIFICATION.EMAIL,
+    loading: false,
   },
   {
     id: 2,
@@ -15,6 +16,7 @@ export const VERIFICATION_METHODS: VerificationMethodsListType = [
     caption: "",
     status: "Not verified",
     url: URL_PATHS.VERIFICATION.PHONE,
+    loading: false,
   },
   {
     id: 3,
