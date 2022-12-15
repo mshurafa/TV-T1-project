@@ -13,6 +13,7 @@ import type {
 
 export const VerifyEmailForm = () => {
   const [otpCode, setOtpCode] = useState("");
+  const [otpError, setOtpError] = useState("");
   const router = useRouter();
   const { user } = useCurrentUser();
   const { sendCodeRequest, loading: emailCodeLoading } = useEmailCode();
@@ -20,6 +21,7 @@ export const VerifyEmailForm = () => {
     fetchData: verifyCode,
     error,
     loading,
+    clearError,
   } = useAxios<VerifyEmailResponseType, VerifyEmailFormPayloadType>({
     config: {
       url: API_SERVICES_URLS.VERIFICATION.EMAIL,
@@ -29,11 +31,7 @@ export const VerifyEmailForm = () => {
       manual: true,
       withAuthHeader: true,
     },
-    onSuccess: (data) => {
-      // push back to /verification and update user data
-      console.log("🚀 ~ file: index.tsx:40 ~ VerifyEmailForm ~ data", data);
-      //   router.push(URL_PATHS.VERIFICATION.INDEX)
-    },
+    onSuccess: () => router.push(URL_PATHS.VERIFICATION.INDEX),
   });
 
   if (user?.verifiedEmail) {
@@ -44,11 +42,19 @@ export const VerifyEmailForm = () => {
     );
   }
 
-  const otpChangeHandler = (value: string) => setOtpCode(value);
+  const otpChangeHandler = (value: string) => {
+    setOtpCode(value);
+    setOtpError("");
+    clearError();
+  };
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (loading) return;
+    if (!otpCode || otpCode.length !== 6) {
+      setOtpError("Please write the code to continue.");
+      return;
+    }
     verifyCode({ verificationCode: otpCode });
   };
 
@@ -58,15 +64,18 @@ export const VerifyEmailForm = () => {
         {`We have sent you a verification code to your email ${user?.email}`}
       </p>
       <form onSubmit={onSubmit}>
-        <OtpInput onOtpChange={otpChangeHandler} />
+        <OtpInput
+          onOtpChange={otpChangeHandler}
+          error={!!error || !!otpError}
+        />
         <HelperText
-          showContent={!!error}
+          showContent={!!error || !!otpError}
           className="text-red w-full text-xs justify-center min-h-[20px]"
           startIcon={<ErrorIconMini className="w-5 h5" />}
-          text={error?.message}
+          text={error?.message || otpError}
         />
         <Button type="submit" buttonSize="small" fullWidth>
-          Continue
+          {loading ? "Loading.." : "Continue"}
         </Button>
       </form>
       <p className="text-sm text-center mt-8">
