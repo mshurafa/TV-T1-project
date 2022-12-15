@@ -2,7 +2,7 @@ import Input from "../Input";
 import { useOtp } from "hooks";
 import type { OtpInputType } from "../types";
 
-export const OtpInput: OtpInputType = ({ onOtpChange }) => {
+export const OtpInput: OtpInputType = ({ onOtpChange, error = false }) => {
   const { otpFields, activeInputRef, onChange, onKeyDown, onFocus, onPaste } =
     useOtp(onOtpChange);
 
@@ -33,6 +33,7 @@ export const OtpInput: OtpInputType = ({ onOtpChange }) => {
             inputSize="small"
             inputClassName="text-center"
             withoutHelperText
+            error={error}
           />
         );
       })}

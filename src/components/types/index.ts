@@ -103,6 +103,7 @@ export type OnOtpChange = (value: string) => void;
 
 interface OtpInputProps {
   onOtpChange: OnOtpChange;
+  error?: boolean;
 }
 
 export type OtpInputType = FC<OtpInputProps>;
