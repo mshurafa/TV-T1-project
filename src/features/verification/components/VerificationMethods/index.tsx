@@ -1,11 +1,10 @@
 import { Fragment } from "react";
-import { useRouter } from "next/router";
 import { Card, Button, Image } from "components";
 import { useVerificationMethods } from "../../hooks";
 
 export const VerificationMethods = () => {
-  const router = useRouter();
-  const { verificationMethods, canContinue } = useVerificationMethods();
+  const { verificationMethods, onMethodClick, canContinue } =
+    useVerificationMethods();
 
   const classNames = {
     methodCard:
@@ -42,7 +41,7 @@ export const VerificationMethods = () => {
             height={36}
           />
         ) : (
-          <Button buttonSize="small" onClick={() => router.push(method.url)}>
+          <Button buttonSize="small" onClick={() => onMethodClick(method.url)}>
             Verify
           </Button>
         )}
