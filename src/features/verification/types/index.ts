@@ -22,6 +22,7 @@ export type VerificationMethodsListType = {
   caption: string;
   status: "Verified" | "Not verified";
   url: VerificationMethodsUrlType;
+  loading?: boolean;
 }[];
 
 export type VerifyEmailFormPayloadType = {
@@ -29,3 +30,13 @@ export type VerifyEmailFormPayloadType = {
 };
 
 export type VerifyEmailResponseType = APIResponseType;
+
+export type SendEmailCodeResponseType = APIResponseType<{
+  _id: string;
+  email: string;
+}>;
+
+export type SendMobileCodeResponseType = APIResponseType<{
+  _id: string;
+  mobile: string;
+}>;
