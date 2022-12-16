@@ -15,10 +15,10 @@ const EmailVerification: NextPageWithLayout = () => {
   const { sendCodeRequest, loading } = useEmailCode();
 
   const onVerify = () => {
-    setIsVerified(true);
     if (user) {
       updateUser({ ...user, verifiedEmail: true });
     }
+    setIsVerified(true);
   };
 
   let imgSrc = "/assets/img/email.png";
