@@ -9,15 +9,23 @@ export const useCurrentUser = () => {
   );
 
   const updateUser = (newUser: UserType, refetch: boolean = false) => {
-    const currentUser: UserType | null = getCookie(COOKIES_KEYS.currentUser);
-    if (user && currentUser) {
+    const currentUser: {
+      accessToken: string;
+      refreshToken: string;
+      user: UserType;
+    } | null = getCookie(COOKIES_KEYS.currentUser);
+    if (currentUser) {
       // if refetch is true then call the API and update the user
       const updatedUser = {
         ...currentUser,
-        ...newUser,
+        user: {
+          ...currentUser.user,
+          ...newUser,
+        },
       };
+
       setCookie(COOKIES_KEYS.currentUser, updatedUser);
-      setUser(updatedUser);
+      setUser(updatedUser.user);
     }
   };
 
