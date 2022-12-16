@@ -5,9 +5,10 @@ export const API_SERVICES_URLS = {
   VERIFY_CODE: "/user/password/verify-code",
   RECOVER_PASSWORD: "/user/password/recover",
   VERIFICATION: {
-    EMAIL: "/user/verify/email",
     SEND_EMAIL_CODE: "/user/send-code-email",
     SEND_MOBILE_CODE: "/user/send-code-mobile",
+    EMAIL: "/user/verify/email",
+    MOBILE: "/user/verify/mobile",
   },
 } as const;
 
