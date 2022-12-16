@@ -6,6 +6,7 @@ interface VerificationCardProps extends CardProps {
   title: string;
   description?: string;
   imgSrc?: string;
+  caption?: ReactNode;
 }
 export type VerificationCardType = FC<VerificationCardProps>;
 

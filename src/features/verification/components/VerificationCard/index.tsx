@@ -7,6 +7,7 @@ export const VerificationCard: VerificationCardType = ({
   title,
   description,
   imgSrc,
+  caption,
   ...rest
 }) => {
   const cardClassName = `w-full max-w-[470px] relative py-8 px-6 min-[440px]:px-12 ${
@@ -31,6 +32,7 @@ export const VerificationCard: VerificationCardType = ({
         {description && <p className="text-base my-4">{description}</p>}
         {children}
       </div>
+      {caption && <p className="text-sm text-center mt-8">{caption}</p>}
     </Card>
   );
 };
