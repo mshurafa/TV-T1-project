@@ -10,9 +10,16 @@ import { NoSsr } from "components";
 import type { NextPageWithLayout } from "types";
 
 const EmailVerification: NextPageWithLayout = () => {
-  const { user } = useCurrentUser();
+  const { user, updateUser } = useCurrentUser();
   const [isVerified, setIsVerified] = useState(user?.verifiedEmail);
   const { sendCodeRequest, loading } = useEmailCode();
+
+  const onVerify = () => {
+    setIsVerified(true);
+    if (user) {
+      updateUser({ ...user, verifiedEmail: true });
+    }
+  };
 
   let imgSrc = "/assets/img/email.png";
   let caption: React.ReactNode = (
@@ -31,7 +38,7 @@ const EmailVerification: NextPageWithLayout = () => {
       <p className="text-sm text-gray-dark mb-4">
         {`We have sent you a verification code to your email ${user?.email}`}
       </p>
-      <VerifyEmailForm onVerify={() => setIsVerified(true)} />
+      <VerifyEmailForm onVerify={onVerify} />
     </>
   );
 
