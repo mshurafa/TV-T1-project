@@ -8,21 +8,20 @@ export const useCurrentUser = () => {
     getCookie(COOKIES_KEYS.currentUser).user
   );
 
-  const refetchUser = async (userId: string) => {
-    // const currentUser = getCookie(COOKIES_KEYS.currentUser);
-    // const userInfo = await authService.getMe(userId);
-    // if (userInfo && currentUser) {
-    //   const newUser = {
-    //     ...JSON.parse(currentUser),
-    //     username: userInfo.username,
-    //     avatar: userInfo.avatar,
-    //   };
-    //   setCookie(COOKIES_KEYS.currentUser, newUser)
-    //   setUser(newUser);
-    // }
+  const updateUser = (newUser: UserType, refetch: boolean = false) => {
+    const currentUser: UserType | null = getCookie(COOKIES_KEYS.currentUser);
+    if (user && currentUser) {
+      // if refetch is true then call the API and update the user
+      const updatedUser = {
+        ...currentUser,
+        ...newUser,
+      };
+      setCookie(COOKIES_KEYS.currentUser, updatedUser);
+      setUser(updatedUser);
+    }
   };
 
-  return { user, refetchUser };
+  return { user, updateUser };
 };
 
 export default useCurrentUser;
