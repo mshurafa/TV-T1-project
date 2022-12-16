@@ -45,3 +45,7 @@ interface VerifiedSuccessProps {
   description: string;
 }
 export type VerifiedSuccessType = FC<VerifiedSuccessProps>;
+
+export type VerifyMobileFormPayloadType = VerifyEmailFormPayloadType;
+
+export type VerifyMobileResponseType = APIResponseType;
