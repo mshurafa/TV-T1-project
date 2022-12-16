@@ -43,11 +43,10 @@ export const useVerificationMethods = () => {
   }
 
   const onMethodClick = (url: VerificationMethodsUrlType) => {
-    console.log("🚀 ~ file: index.tsx:41 ~ onMethodClick ~ url", url);
     if (url === "/verification/email") {
-      sendEmailCodeRequest();
+      sendEmailCodeRequest().then(() => router.push(url));
     } else if (url === "/verification/phone") {
-      sendMobileCodeRequest();
+      sendMobileCodeRequest().then(() => router.push(url));
     } else {
       router.push(url);
     }
