@@ -39,3 +39,8 @@ export type SendMobileCodeResponseType = APIResponseType<{
   _id: string;
   mobile: string;
 }>;
+
+interface VerifiedSuccessProps {
+  description: string;
+}
+export type VerifiedSuccessType = FC<VerifiedSuccessProps>;
