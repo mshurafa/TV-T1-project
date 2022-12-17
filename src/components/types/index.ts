@@ -114,5 +114,3 @@ export interface FileInputProps
   extends Omit<InputProps, "type" | "startIcon" | "endIcon"> {
   id: string;
 }
-
-export type FileInputType = FC<FileInputProps>;
