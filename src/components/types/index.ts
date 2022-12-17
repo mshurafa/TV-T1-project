@@ -7,7 +7,7 @@ import type { DivElementType, ChildrenProp } from "types";
 //@TODO: Create custom type for the duplicated properties like: helperText etc...
 
 type CommonFormElementsType = {
-  label?: string;
+  label?: ReactNode;
   helperText?: ReactNode;
   error?: boolean;
   withoutHelperText?: boolean;
@@ -29,6 +29,8 @@ export interface InputProps
     IconsVariantsType {
   inputClassName?: string;
   inputSize?: SizeVariantsType;
+  labelClassName?: string;
+  focusableLabel?: boolean;
 }
 
 export interface LogoProps extends Omit<NextImageProps, "src" | "alt"> {
@@ -45,7 +47,7 @@ export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
 export type ButtonType = FC<ButtonProps>;
 
 export interface SelectProps
-  extends HTMLProps<HTMLSelectElement>,
+  extends Omit<HTMLProps<HTMLSelectElement>, "label">,
     CommonFormElementsType {
   selectClassName?: string;
   selectSize?: SizeVariantsType;
@@ -107,3 +109,10 @@ interface OtpInputProps {
 }
 
 export type OtpInputType = FC<OtpInputProps>;
+
+export interface FileInputProps
+  extends Omit<InputProps, "type" | "startIcon" | "endIcon"> {
+  id: string;
+}
+
+export type FileInputType = FC<FileInputProps>;
