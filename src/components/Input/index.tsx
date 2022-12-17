@@ -16,6 +16,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       type = "text",
       error = false,
       withoutHelperText = false,
+      labelClassName,
+      focusableLabel = false,
       ...rest
     },
     ref
@@ -25,7 +27,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const classNames = useMemo(() => {
       const classes = {
         inputContainer: `mb-1 relative text-gray-dark ${className ?? ""}`,
-        label: "block mb-1",
+        label: `block mb-1 ${labelClassName ?? ""}`,
         icon: "absolute text-gray-400 select-none top-1/2 -translate-y-2/4",
         startIcon: "left-4",
         endIcon: "right-4",
@@ -51,7 +53,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       }
 
       return classes;
-    }, [className, inputClassName, inputSize, error]);
+    }, [className, inputClassName, inputSize, error, labelClassName]);
 
     const inputType = type === "password" ? passwordInputType : type;
     const inputEndIcon = type === "password" ? passwordInputIcon : endIcon;
@@ -59,7 +61,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={classNames.inputContainer}>
         {label && (
-          <label htmlFor={id} className={classNames.label}>
+          <label
+            htmlFor={id}
+            tabIndex={focusableLabel ? 0 : undefined}
+            className={classNames.label}
+          >
             {label}
           </label>
         )}
