@@ -4,6 +4,7 @@ import {
   EyeIcon as EyeIconMini,
   EyeSlashIcon as EyeSlashIconMini,
   ChevronLeftIcon as ChevronLeftIconMini,
+  ArrowUpTrayIcon as ArrowUpTrayIconMini,
 } from "@heroicons/react/20/solid";
 
 export {
@@ -12,4 +13,5 @@ export {
   EyeIconMini,
   EyeSlashIconMini,
   ChevronLeftIconMini,
+  ArrowUpTrayIconMini,
 };
