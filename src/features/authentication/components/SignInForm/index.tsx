@@ -5,7 +5,7 @@ import { useAxios } from "hooks";
 import { API_SERVICES_URLS, URL_PATHS, COOKIES_KEYS } from "data";
 import { ErrorIconMini } from "lib/@heroicons";
 import { setCookie } from "lib/js-cookie";
-import { getFieldHelperText } from "../../utils";
+import { getFieldHelperText } from "utils";
 import { formValidation } from "../../data";
 import type { SignInFormInputsType, SignInResponseType } from "../../types";
 

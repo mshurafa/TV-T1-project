@@ -1,7 +1,7 @@
 import useForm from "lib/react-hook-form";
 import { Input, Button } from "components";
 import { useVerifyPasswordCode } from "../../hooks";
-import { getFieldHelperText } from "../../utils";
+import { getFieldHelperText } from "utils";
 import { formValidation } from "../../data";
 import type { ForgotPasswordFormInputType } from "../../types";
 
