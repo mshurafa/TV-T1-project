@@ -10,6 +10,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       inputSize = "medium",
       children,
       className,
+      error = false,
       ...rest
     },
     ref
@@ -27,8 +28,12 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
         labelClassName += " py-3 px-4 text-base";
       }
 
+      if (error) {
+        labelClassName += " border-red focus:border-red";
+      }
+
       return { labelClassName };
-    }, [className, inputSize]);
+    }, [className, inputSize, error]);
 
     return (
       <Input
