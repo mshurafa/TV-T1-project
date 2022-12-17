@@ -14,6 +14,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       placeholder,
       error = false,
       withoutHelperText = false,
+      defaultValue = "",
       ...rest
     },
     ref
@@ -54,7 +55,13 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             {label}
           </label>
         )}
-        <select id={id} className={classNames.select} ref={ref} {...rest}>
+        <select
+          id={id}
+          className={classNames.select}
+          ref={ref}
+          defaultValue={defaultValue}
+          {...rest}
+        >
           {placeholder && (
             <option className={classNames.placeholder} value="">
               {placeholder}
