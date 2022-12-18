@@ -1,6 +1,7 @@
 import { useMemo, forwardRef } from "react";
 import Input from "../Input";
-import { ArrowUpTrayIconMini } from "lib/@heroicons";
+import InputLabel from "./InputLabel";
+import useFileInput from "./useFileInput";
 import type { FileInputProps } from "components/types";
 
 export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
@@ -11,10 +12,13 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       children,
       className,
       error = false,
+      onChange,
       ...rest
     },
     ref
   ) => {
+    const { fileList, fileInputKey, changeHandler, resetFileInput } =
+      useFileInput(onChange);
     const classNames = useMemo(() => {
       let labelClassName = `mb-0 border border-gray text-black text-center outline-none focus:border-blue hover:bg-gray-light transition-colors rounded-md ${
         className ?? ""
@@ -32,17 +36,22 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
         labelClassName += " border-red focus:border-red";
       }
 
+      if (fileList?.length) {
+        labelClassName += " bg-gray-200 hover:bg-gray-300";
+      }
+
       return { labelClassName };
-    }, [className, inputSize, error]);
+    }, [className, inputSize, error, fileList]);
 
     return (
       <Input
         type="file"
         label={
-          <span className="flex justify-center items-center">
-            <ArrowUpTrayIconMini className="w-5 h-5 mr-2" />
-            {label}
-          </span>
+          <InputLabel
+            label={label}
+            fileList={fileList}
+            resetFileInput={resetFileInput}
+          />
         }
         labelClassName={classNames.labelClassName}
         focusableLabel
@@ -50,6 +59,8 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
         className="mb-0"
         ref={ref}
         {...rest}
+        key={fileInputKey}
+        onChange={changeHandler}
       />
     );
   }
