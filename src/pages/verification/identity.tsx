@@ -1,9 +1,12 @@
+import { useRouter } from "next/router";
 import { VerificationCard, VerifyIdentityForm } from "features/verification";
 import { useCurrentUser } from "features/authentication";
 import { NoSsr } from "components";
+import { URL_PATHS } from "data";
 import type { NextPageWithLayout } from "types";
 
 const IdentityVerification: NextPageWithLayout = () => {
+  const router = useRouter();
   const { user, updateUser } = useCurrentUser();
 
   const onVerify = () => {
@@ -15,6 +18,7 @@ const IdentityVerification: NextPageWithLayout = () => {
           status: "pending",
         },
       });
+      router.push(URL_PATHS.VERIFICATION.INDEX);
     }
   };
 

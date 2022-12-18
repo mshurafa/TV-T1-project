@@ -30,20 +30,18 @@ export const VerifyIdentityForm = ({ onVerify }: { onVerify: () => void }) => {
       manual: true,
       withAuthHeader: true,
     },
-    onSuccess: (data) => {
-      console.log("🚀 ~ file: index.tsx:38 ~ VerifyIdentityForm ~ data", data);
+    onSuccess: () => {
       onVerify();
     },
   });
 
   const onSubmit = handleSubmit((data) => {
-    console.log("🚀 ~ file: index.tsx:44 ~ onSubmit ~ data", data);
     if (loading) return;
     const formData = new FormData();
     formData.append("file", data.file[0]);
     formData.append("idNumber", data.idNumber);
     formData.append("idDocumentType", data.idDocumentType);
-    console.log("🚀 ~ file: index.tsx:43 ~ onSubmit ~ formData", formData);
+
     verifyIdentity(formData);
   });
 
