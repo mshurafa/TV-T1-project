@@ -33,3 +33,18 @@ export const VERIFICATION_METHODS: VerificationMethodsListType = [
     url: URL_PATHS.VERIFICATION.ADDRESS,
   },
 ];
+
+export const IDENTITY_DOCUMENT_OPTIONS = [
+  {
+    label: "Passport",
+    value: "passport",
+  },
+  {
+    label: "Driving License",
+    value: "driving_license",
+  },
+  {
+    label: "National Id",
+    value: "national_id",
+  },
+];
