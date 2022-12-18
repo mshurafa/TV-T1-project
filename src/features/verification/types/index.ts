@@ -49,3 +49,11 @@ export type VerifiedSuccessType = FC<VerifiedSuccessProps>;
 export type VerifyMobileFormPayloadType = VerifyEmailFormPayloadType;
 
 export type VerifyMobileResponseType = APIResponseType;
+
+export type VerifyIdentityFormInputsType = {
+  file: FileList;
+  idNumber: string;
+  idDocumentType: string;
+};
+
+export type VerifyIdentityResponseType = APIResponseType<null>;
