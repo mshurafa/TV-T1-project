@@ -5,6 +5,7 @@ import {
   EyeSlashIcon as EyeSlashIconMini,
   ChevronLeftIcon as ChevronLeftIconMini,
   ArrowUpTrayIcon as ArrowUpTrayIconMini,
+  XMarkIcon as XMarkIconMini,
 } from "@heroicons/react/20/solid";
 
 export {
@@ -14,4 +15,5 @@ export {
   EyeSlashIconMini,
   ChevronLeftIconMini,
   ArrowUpTrayIconMini,
+  XMarkIconMini,
 };
