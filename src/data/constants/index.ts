@@ -9,6 +9,7 @@ export const API_SERVICES_URLS = {
     SEND_MOBILE_CODE: "/user/send-code-mobile",
     EMAIL: "/user/verify/email",
     MOBILE: "/user/verify/mobile",
+    IDENTITY: "/user/verify/id",
   },
 } as const;
 
