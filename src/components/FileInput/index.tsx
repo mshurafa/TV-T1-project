@@ -48,6 +48,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
         focusableLabel
         inputClassName="hidden"
         className="mb-0"
+        ref={ref}
         {...rest}
       />
     );
