@@ -114,3 +114,10 @@ export interface FileInputProps
   extends Omit<InputProps, "type" | "startIcon" | "endIcon"> {
   id: string;
 }
+export interface FileInputLabelProps {
+  label: React.ReactNode;
+  fileList: FileList | null;
+  resetFileInput: () => void;
+}
+
+export type FileInputLabelType = FC<FileInputLabelProps>;
