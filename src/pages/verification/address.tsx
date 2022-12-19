@@ -8,7 +8,7 @@ import type { NextPageWithLayout } from "types";
 const AddressVerification: NextPageWithLayout = () => {
   const router = useRouter();
   const { user, updateUser } = useCurrentUser();
-  const verifyIdStatus = user?.verifiedId.status;
+  const verifyAddressStatus = user?.verifiedAddress.status;
   let pageDescription: string | undefined;
   let content = (
     <p className="text-base text-center my-4">
@@ -29,10 +29,19 @@ const AddressVerification: NextPageWithLayout = () => {
     }
   };
 
-  if (verifyIdStatus === "not_uploaded") {
+  if (
+    verifyAddressStatus === "not_uploaded" ||
+    verifyAddressStatus === "rejected"
+  ) {
     pageDescription =
       "Upload Document That Proof Your Address Such As: Bill Phone, Electricity, Water, Bank Statement";
     content = <VerifyAddressForm onVerify={onVerify} />;
+  } else if (verifyAddressStatus === "pending") {
+    content = (
+      <p className="text-base text-center my-4">
+        We are verifying your address and your details will be updated shortly
+      </p>
+    );
   }
 
   return (
