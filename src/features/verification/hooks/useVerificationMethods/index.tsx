@@ -18,15 +18,26 @@ export const useVerificationMethods = () => {
 
   if (user) {
     const [email, mobile, identity, address] = verificationMethods;
+    const { verifiedEmail, verifiedMobile, verifiedId, verifiedAddress } = user;
 
-    email.status = user.verifiedEmail ? "Verified" : "Not verified";
-    mobile.status = user.verifiedMobile ? "Verified" : "Not verified";
-    identity.status =
-      user?.verifiedId.status === "not_uploaded" ? "Not verified" : "Verified";
-    address.status =
-      user?.verifiedAddress.status === "not_uploaded"
-        ? "Not verified"
-        : "Verified";
+    email.status = verifiedEmail ? "Verified" : "Not verified";
+    mobile.status = verifiedMobile ? "Verified" : "Not verified";
+
+    if (verifiedId.status === "not_uploaded") {
+      identity.status = "Not verified";
+    } else if (verifiedId.status === "pending") {
+      identity.status = "Pending";
+    } else {
+      identity.status = "Verified";
+    }
+
+    if (verifiedAddress.status === "not_uploaded") {
+      address.status = "Not verified";
+    } else if (verifiedAddress.status === "pending") {
+      address.status = "Pending";
+    } else {
+      address.status = "Verified";
+    }
 
     const formattedMobile =
       user.mobile.slice(0, 4) +
