@@ -57,3 +57,14 @@ export type VerifyIdentityFormInputsType = {
 };
 
 export type VerifyIdentityResponseType = APIResponseType<null>;
+
+export type VerifyAddressFormInputsType = {
+  file: FileList;
+  address1: string;
+  address2: string;
+  city: string;
+  addressDocumentType: string;
+  country: string;
+};
+
+export type VerifyAddressResponseType = APIResponseType<null>;
