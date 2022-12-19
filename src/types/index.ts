@@ -37,7 +37,7 @@ export type UserType = {
   verifiedMobile: boolean;
   verifiedAddress: {
     disapproveReason: {};
-    status: "not_uploaded" | "pending";
+    status: "not_uploaded" | "pending" | "rejected";
     addressDocumentType?:
       | "water_bill"
       | "phone_bill"
@@ -49,7 +49,7 @@ export type UserType = {
   };
   verifiedId: {
     disapproveReason: {};
-    status: "not_uploaded" | "pending";
+    status: "not_uploaded" | "pending" | "rejected";
     idDocumentType?: "national_id" | "passport" | "driving_license";
     idFile?: string;
     idNumber?: string;
