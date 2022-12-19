@@ -49,12 +49,12 @@ export const VerifyIdentityForm = ({ onVerify }: { onVerify: () => void }) => {
     <form onSubmit={onSubmit}>
       <Select
         options={IDENTITY_DOCUMENT_OPTIONS}
-        id="country-select"
+        id="document-select"
         label="Document Type"
         placeholder="Choose your document type"
         selectSize="small"
         {...register("idDocumentType", {
-          ...formValidation.idDocumentType,
+          ...formValidation.documentType,
           onChange: () => clearErrorOnChange("idDocumentType"),
         })}
         error={!!errors.idDocumentType}
@@ -73,7 +73,7 @@ export const VerifyIdentityForm = ({ onVerify }: { onVerify: () => void }) => {
         helperText={getFieldHelperText("error", errors.idNumber?.message)}
       />
       <FileInput
-        id="id-file"
+        id="document-file"
         inputSize="small"
         {...register("file", {
           ...formValidation.file,
