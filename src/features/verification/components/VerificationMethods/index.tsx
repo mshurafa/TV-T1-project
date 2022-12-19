@@ -16,6 +16,11 @@ export const VerificationMethods = () => {
   };
 
   const methods = verificationMethods.map((method) => {
+    const buttonText = method.loading ? "Loading.." : "Verify";
+    const isPending = method.status === "Pending";
+    const buttonClassName = isPending
+      ? "bg-gray-400 disabled:hover:bg-gray-400 min-w-[77px]"
+      : "min-w-[77px]";
     const methodCard = (
       <Card key={method.id} className={classNames.methodCard}>
         <div>
@@ -41,8 +46,13 @@ export const VerificationMethods = () => {
             height={36}
           />
         ) : (
-          <Button buttonSize="small" onClick={() => onMethodClick(method.url)}>
-            {method.loading ? "Loading.." : "Verify"}
+          <Button
+            buttonSize="small"
+            className={buttonClassName}
+            disabled={isPending}
+            onClick={() => onMethodClick(method.url)}
+          >
+            {isPending ? method.status : buttonText}
           </Button>
         )}
       </Card>
