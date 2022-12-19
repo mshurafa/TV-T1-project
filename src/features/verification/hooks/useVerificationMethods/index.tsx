@@ -28,6 +28,8 @@ export const useVerificationMethods = () => {
       identity.status = "Not verified";
     } else if (verifiedId.status === "pending") {
       identity.status = "Pending";
+    } else if (verifiedId.status === "rejected") {
+      identity.status = "Rejected";
     } else {
       identity.status = "Verified";
     }
@@ -36,6 +38,8 @@ export const useVerificationMethods = () => {
       address.status = "Not verified";
     } else if (verifiedAddress.status === "pending") {
       address.status = "Pending";
+    } else if (verifiedAddress.status === "rejected") {
+      address.status = "Rejected";
     } else {
       address.status = "Verified";
     }
