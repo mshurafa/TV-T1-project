@@ -10,6 +10,7 @@ export const API_SERVICES_URLS = {
     EMAIL: "/user/verify/email",
     MOBILE: "/user/verify/mobile",
     IDENTITY: "/user/verify/id",
+    ADDRESS: "/user/verify/address",
   },
 } as const;
 
