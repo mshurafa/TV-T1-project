@@ -13,6 +13,7 @@ export const VerificationMethods = () => {
     caption: "text-xs",
     verified: "text-xs text-green-600",
     unverified: "text-xs text-red",
+    pending: "text-xs text-gray-dark",
   };
 
   const methods = verificationMethods.map((method) => {
@@ -21,20 +22,19 @@ export const VerificationMethods = () => {
     const buttonClassName = isPending
       ? "bg-gray-400 disabled:hover:bg-gray-400 min-w-[77px]"
       : "min-w-[77px]";
+    let statusClassName = classNames.verified;
+    if (isPending) {
+      statusClassName = classNames.pending;
+    } else if (method.status === "Not verified") {
+      statusClassName = classNames.unverified;
+    }
+
     const methodCard = (
       <Card key={method.id} className={classNames.methodCard}>
         <div>
           <p className={classNames.title}>
             {method.title}{" "}
-            <span
-              className={
-                method.status === "Verified"
-                  ? classNames.verified
-                  : classNames.unverified
-              }
-            >
-              ({method.status})
-            </span>
+            <span className={statusClassName}>({method.status})</span>
           </p>
           <span className={classNames.caption}>{method.caption}</span>
         </div>
