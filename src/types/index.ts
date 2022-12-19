@@ -37,11 +37,11 @@ export type UserType = {
   verifiedMobile: boolean;
   verifiedAddress: {
     disapproveReason: {};
-    status: "not_uploaded";
+    status: "not_uploaded" | "pending";
   };
   verifiedId: {
     disapproveReason: {};
-    status: "not_uploaded";
+    status: "not_uploaded" | "pending";
   };
   role: number;
   address: {
