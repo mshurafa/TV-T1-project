@@ -42,6 +42,9 @@ export type UserType = {
   verifiedId: {
     disapproveReason: {};
     status: "not_uploaded" | "pending";
+    idDocumentType?: "national_id" | "passport" | "driving_license";
+    idFile?: string;
+    idNumber?: string;
   };
   role: number;
   address: {
