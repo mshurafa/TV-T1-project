@@ -27,10 +27,16 @@ const IdentityVerification: NextPageWithLayout = () => {
     }
   };
 
-  if (verifyIdStatus === "not_uploaded") {
+  if (verifyIdStatus === "not_uploaded" || verifyIdStatus === "rejected") {
     pageDescription =
       "Upload Document that Proof your Identity such as: Identity Card, Passport, Driver License";
     content = <VerifyIdentityForm onVerify={onVerify} />;
+  } else if (verifyIdStatus === "pending") {
+    content = (
+      <p className="text-base text-center my-4">
+        We are verifying your identity and your details will be updated shortly
+      </p>
+    );
   }
 
   return (
