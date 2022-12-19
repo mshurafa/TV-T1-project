@@ -8,17 +8,15 @@ export const HelperText: HelperTextType = ({
   endIcon,
   showContent = true,
 }) => {
-  const textClassName = `inline-flex items-center text-black ${
-    className ?? ""
-  }`;
-  const iconClassName = "mx-1";
+  const textClassName = `inline-flex items-center ${className ?? ""}`;
+
   return (
     <span className={textClassName}>
       {showContent ? (
         <>
-          {startIcon && <span className={iconClassName}>{startIcon}</span>}
+          {startIcon && <span className="mr-1">{startIcon}</span>}
           {children || text}
-          {endIcon && <span className={iconClassName}>{endIcon}</span>}
+          {endIcon && <span className="ml-1">{endIcon}</span>}
         </>
       ) : null}
     </span>
