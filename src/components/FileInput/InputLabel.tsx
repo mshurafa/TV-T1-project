@@ -21,7 +21,7 @@ export const FileInputLabel: FileInputLabelType = ({
           </span>
         </span>
       </span>
-      <IconButton onClick={resetFileInput} className="p-0 hover:bg-gray">
+      <IconButton onClick={resetFileInput} className="!p-0 hover:!bg-gray">
         <XMarkIconMini />
       </IconButton>
     </span>
