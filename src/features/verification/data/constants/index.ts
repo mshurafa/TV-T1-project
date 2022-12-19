@@ -48,3 +48,26 @@ export const IDENTITY_DOCUMENT_OPTIONS = [
     value: "national_id",
   },
 ];
+
+export const ADDRESS_DOCUMENT_OPTIONS = [
+  {
+    label: "Water Bill",
+    value: "water_bill",
+  },
+  {
+    label: "Phone Bill",
+    value: "phone_bill",
+  },
+  {
+    label: "Bank Statement",
+    value: "bank_statement",
+  },
+  {
+    label: "Electricity Bill",
+    value: "electricity_bill",
+  },
+  {
+    label: "Other",
+    value: "other",
+  },
+];
