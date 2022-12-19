@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useRouter } from "next/router";
 import { useCurrentUser } from "features/authentication";
+import { URL_PATHS } from "data";
 import { VERIFICATION_METHODS } from "../../data";
 import { useEmailCode, useMobileCode } from "../../hooks";
 import type { VerificationMethodsUrlType } from "../../types";
@@ -63,7 +64,9 @@ export const useVerificationMethods = () => {
     }
   };
 
-  return { verificationMethods, onMethodClick, canContinue };
+  const onContinue = () => router.push(URL_PATHS.HOME);
+
+  return { verificationMethods, onMethodClick, canContinue, onContinue };
 };
 
 export default useVerificationMethods;

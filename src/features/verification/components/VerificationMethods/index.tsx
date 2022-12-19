@@ -3,7 +3,7 @@ import { Card, Button, Image } from "components";
 import { useVerificationMethods } from "../../hooks";
 
 export const VerificationMethods = () => {
-  const { verificationMethods, onMethodClick, canContinue } =
+  const { verificationMethods, onMethodClick, canContinue, onContinue } =
     useVerificationMethods();
 
   const classNames = {
@@ -79,9 +79,7 @@ export const VerificationMethods = () => {
         fullWidth
         className="mt-4"
         disabled={!canContinue}
-        onClick={() => {
-          //push to the next page
-        }}
+        onClick={onContinue}
       >
         Continue
       </Button>
