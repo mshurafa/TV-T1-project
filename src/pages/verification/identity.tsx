@@ -8,6 +8,11 @@ import type { NextPageWithLayout } from "types";
 const IdentityVerification: NextPageWithLayout = () => {
   const router = useRouter();
   const { user, updateUser } = useCurrentUser();
+  const verifyIdStatus = user?.verifiedId.status;
+  let pageDescription: string | undefined;
+  let content = (
+    <p className="text-base text-center my-4">Your ID is already verified.</p>
+  );
 
   const onVerify = () => {
     if (user) {
@@ -22,14 +27,20 @@ const IdentityVerification: NextPageWithLayout = () => {
     }
   };
 
+  if (verifyIdStatus === "not_uploaded") {
+    pageDescription =
+      "Upload Document that Proof your Identity such as: Identity Card, Passport, Driver License";
+    content = <VerifyIdentityForm onVerify={onVerify} />;
+  }
+
   return (
     <NoSsr>
       <VerificationCard
         title="ID Verification"
         imgSrc="/assets/img/identity.png"
-        description="Upload Document that Proof your Identity such as: Identity Card, Passport, Driver License"
+        description={pageDescription}
       >
-        <VerifyIdentityForm onVerify={onVerify} />
+        {content}
       </VerificationCard>
     </NoSsr>
   );
