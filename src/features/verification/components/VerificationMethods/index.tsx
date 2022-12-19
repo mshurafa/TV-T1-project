@@ -17,16 +17,20 @@ export const VerificationMethods = () => {
   };
 
   const methods = verificationMethods.map((method) => {
-    const buttonText = method.loading ? "Loading.." : "Verify";
-    const isPending = method.status === "Pending";
-    const buttonClassName = isPending
-      ? "bg-gray-400 disabled:hover:bg-gray-400 min-w-[77px]"
-      : "min-w-[77px]";
+    const methodStatus = method.status;
+    let methodButtonText = "Verify";
+    let buttonClassName = "min-w-[85px]";
     let statusClassName = classNames.verified;
-    if (isPending) {
+
+    if (methodStatus === "Pending") {
       statusClassName = classNames.pending;
-    } else if (method.status === "Not verified") {
+      buttonClassName = "bg-gray-400 disabled:hover:bg-gray-400 min-w-[85px]";
+      methodButtonText = method.status;
+    } else if (methodStatus === "Not verified") {
       statusClassName = classNames.unverified;
+    } else if (methodStatus === "Rejected") {
+      statusClassName = classNames.unverified;
+      methodButtonText = "Try Again";
     }
 
     const methodCard = (
@@ -49,10 +53,11 @@ export const VerificationMethods = () => {
           <Button
             buttonSize="small"
             className={buttonClassName}
-            disabled={isPending}
+            disabled={method.status === "Pending"}
             onClick={() => onMethodClick(method.url)}
+            loading={method.loading}
           >
-            {isPending ? method.status : buttonText}
+            {methodButtonText}
           </Button>
         )}
       </Card>
