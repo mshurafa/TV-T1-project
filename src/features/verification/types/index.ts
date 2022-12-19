@@ -20,7 +20,7 @@ export type VerificationMethodsListType = {
   id: number;
   title: string;
   caption: string;
-  status: "Verified" | "Not verified" | "Pending";
+  status: "Verified" | "Not verified" | "Pending" | "Rejected";
   url: VerificationMethodsUrlType;
   loading?: boolean;
 }[];
