@@ -1,7 +1,7 @@
 import { VALIDATION_RULES } from "data";
 
 export const formValidation = {
-  idDocumentType: {
+  documentType: {
     required: "Document type is required",
   },
   idNumber: {
@@ -17,5 +17,17 @@ export const formValidation = {
       const is2MBMax = value[0].size <= 2000000;
       return is2MBMax || "Your file is too big must be 2 MP maximum";
     },
+  },
+  address1: {
+    required: "Address 1 is required",
+  },
+  address2: {
+    required: "Address 2 is required",
+  },
+  city: {
+    required: "City is required",
+  },
+  country: {
+    required: "Country is required",
   },
 } as const;
