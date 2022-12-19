@@ -10,7 +10,7 @@ export const VerificationCard: VerificationCardType = ({
   caption,
   ...rest
 }) => {
-  const cardClassName = `w-full max-w-[470px] relative py-8 px-6 min-[440px]:px-12 ${
+  const cardClassName = `w-full max-w-[480px] relative py-8 px-6 min-[440px]:px-12 ${
     className || ""
   }`;
 
