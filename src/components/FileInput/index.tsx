@@ -20,7 +20,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     const { fileList, fileInputKey, changeHandler, resetFileInput } =
       useFileInput(onChange);
     const classNames = useMemo(() => {
-      let labelClassName = `mb-0 border border-gray text-black text-center outline-none focus:border-blue hover:bg-gray-light transition-colors rounded-md ${
+      let labelClassName = `!mb-0 border border-gray text-black text-center outline-none focus:border-blue hover:bg-gray-light transition-colors rounded-md ${
         className ?? ""
       }`;
 
@@ -56,7 +56,6 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
         labelClassName={classNames.labelClassName}
         focusableLabel
         inputClassName="hidden"
-        className="mb-0"
         ref={ref}
         {...rest}
         key={fileInputKey}
