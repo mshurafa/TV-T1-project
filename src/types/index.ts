@@ -38,6 +38,14 @@ export type UserType = {
   verifiedAddress: {
     disapproveReason: {};
     status: "not_uploaded" | "pending";
+    addressDocumentType?:
+      | "water_bill"
+      | "phone_bill"
+      | "bank_statement"
+      | "electricity_bill"
+      | "other";
+    addressFile?: string;
+    otherDocumentType?: string | null;
   };
   verifiedId: {
     disapproveReason: {};
