@@ -43,6 +43,7 @@ export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
   type?: "button" | "submit" | "reset";
   buttonSize?: SizeVariantsType;
   fullWidth?: boolean;
+  loading?: boolean;
 }
 export type ButtonType = FC<ButtonProps>;
 

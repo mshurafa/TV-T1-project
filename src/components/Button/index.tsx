@@ -7,6 +7,7 @@ export const Button: ButtonType = ({
   type = "button",
   buttonSize = "medium",
   fullWidth = false,
+  loading = false,
   ...rest
 }) => {
   const classNames = useMemo(() => {
@@ -31,7 +32,7 @@ export const Button: ButtonType = ({
 
   return (
     <button className={classNames.buttonClassName} type={type} {...rest}>
-      {children}
+      {loading ? "Loading.." : children}
     </button>
   );
 };
