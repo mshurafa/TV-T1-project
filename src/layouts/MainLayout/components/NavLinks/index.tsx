@@ -3,7 +3,7 @@ import { URL_PATHS } from "data";
 
 const NavLinks = () => {
   return (
-    <div className="px-6">
+    <div>
       <Link
         href={URL_PATHS.HOME}
         className="px-6 transition-colors hover:text-blue"

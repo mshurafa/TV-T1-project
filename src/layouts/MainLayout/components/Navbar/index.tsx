@@ -4,15 +4,15 @@ import NavLinks from "../NavLinks";
 
 export const Navbar = () => {
   return (
-    <nav className="flex justify-between items-center bg-white p-1 shadow-md">
-      <div className="inline-flex items-center">
-        <Link href={URL_PATHS.HOME}>
+    <nav className="flex justify-between items-center bg-white py-2 px-6 shadow-md">
+      <Link href={URL_PATHS.HOME}>
+        <div className="inline-flex items-center">
           <Logo className="cursor-pointer" />
-        </Link>
-        <span className="text-base font-medium tracking-wider text-center">
-          Talents Valley
-        </span>
-      </div>
+          <span className="text-base font-medium tracking-wider text-center ml-2">
+            Talents Valley
+          </span>
+        </div>
+      </Link>
       <NavLinks />
     </nav>
   );
