@@ -4,7 +4,7 @@ import type { VerificationMethodsListType } from "../../types";
 export const VERIFICATION_METHODS: VerificationMethodsListType = [
   {
     id: 1,
-    title: "Email Address",
+    title: "Email Address *",
     caption: "",
     status: "Not verified",
     url: URL_PATHS.VERIFICATION.EMAIL,
@@ -12,7 +12,7 @@ export const VERIFICATION_METHODS: VerificationMethodsListType = [
   },
   {
     id: 2,
-    title: "Phone Number",
+    title: "Phone Number *",
     caption: "",
     status: "Not verified",
     url: URL_PATHS.VERIFICATION.PHONE,
@@ -20,15 +20,15 @@ export const VERIFICATION_METHODS: VerificationMethodsListType = [
   },
   {
     id: 3,
-    title: "ID Verification",
+    title: "ID",
     caption: "Identity card - Driver license - Passport",
     status: "Not verified",
     url: URL_PATHS.VERIFICATION.IDENTITY,
   },
   {
     id: 4,
-    title: "Address Verification",
-    caption: "Phone, Electricity, Water Bill - Bank statement",
+    title: "Address",
+    caption: "Utility Bill - Bank statement",
     status: "Not verified",
     url: URL_PATHS.VERIFICATION.ADDRESS,
   },
