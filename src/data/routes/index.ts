@@ -9,7 +9,7 @@ export const URL_PATHS = {
   },
   INVOICES: {
     INDEX: "/invoices",
-    CREATE: "invoices/new",
+    CREATE: "/invoices/new",
   },
   VERIFICATION: {
     INDEX: "/verification",
