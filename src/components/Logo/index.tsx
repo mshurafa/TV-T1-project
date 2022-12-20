@@ -7,7 +7,7 @@ export const Logo: LogoType = ({
   ...rest
 }) => {
   return (
-    <Image priority alt={alt} src={src} width={120} height={60} {...rest} />
+    <Image priority alt={alt} src={src} width={70} height={40} {...rest} />
   );
 };
 
