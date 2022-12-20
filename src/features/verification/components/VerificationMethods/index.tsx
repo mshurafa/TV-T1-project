@@ -1,6 +1,8 @@
 import { Fragment } from "react";
-import { Card, Button, Image } from "components";
+import { Card, Button } from "components";
+import { Completed } from "components/svg";
 import { useVerificationMethods } from "../../hooks";
+import { InformationCircleIcon } from "lib/@heroicons";
 
 export const VerificationMethods = () => {
   const { verificationMethods, onMethodClick, canContinue, onContinue } =
@@ -8,29 +10,24 @@ export const VerificationMethods = () => {
 
   const classNames = {
     methodCard:
-      "flex justify-between items-center my-2 shadow-none bg-gray-light border border-gray-200",
-    title: "text-sm",
-    caption: "text-xs",
-    verified: "text-xs text-green-600",
-    unverified: "text-xs text-red",
-    pending: "text-xs text-gray-dark",
+      "flex justify-between items-center my-2 shadow-none border border-gray-200 bg-[#FBFBFB]",
+    title: "text-sm font-medium leading-4",
   };
 
   const methods = verificationMethods.map((method) => {
     const methodStatus = method.status;
     let methodButtonText = "Verify";
-    let buttonClassName = "min-w-[85px]";
-    let statusClassName = classNames.verified;
-
+    const disabledButton =
+      methodStatus === "Pending" || methodStatus === "Verified";
+    let buttonClassName = "min-w-[113px] border leading-4";
     if (methodStatus === "Pending") {
-      statusClassName = classNames.pending;
-      buttonClassName = "bg-gray-400 disabled:hover:bg-gray-400 min-w-[85px]";
-      methodButtonText = method.status;
-    } else if (methodStatus === "Not verified") {
-      statusClassName = classNames.unverified;
-    } else if (methodStatus === "Rejected") {
-      statusClassName = classNames.unverified;
-      methodButtonText = "Try Again";
+      buttonClassName +=
+        " bg-white disabled:hover:bg-white !text-gray-dark border-gray disabled:opacity-100";
+      methodButtonText = "Pending";
+    } else if (methodStatus === "Verified") {
+      buttonClassName +=
+        " bg-white disabled:hover:bg-white !text-green-600 border-gray disabled:opacity-100";
+      methodButtonText = "Verified";
     }
 
     const methodCard = (
@@ -38,37 +35,36 @@ export const VerificationMethods = () => {
         <div>
           <p className={classNames.title}>
             {method.title}{" "}
-            <span className={statusClassName}>({method.status})</span>
+            {methodStatus === "Rejected" && (
+              <span className="text-xs text-red inline-flex items-center">
+                ({methodStatus}) <InformationCircleIcon className="w-5 h-5" />
+              </span>
+            )}
           </p>
-          <span className={classNames.caption}>{method.caption}</span>
+          <span className="text-xs">{method.caption}</span>
         </div>
-        {method.status === "Verified" ? (
-          <Image
-            alt={`${method.title} ${method.status}`}
-            src="/assets/img/check-mark.png"
-            width={36}
-            height={36}
-          />
-        ) : (
-          <Button
-            buttonSize="small"
-            className={buttonClassName}
-            disabled={method.status === "Pending"}
-            onClick={() => onMethodClick(method.url)}
-            loading={method.loading}
-          >
+        <Button
+          buttonSize="small"
+          className={buttonClassName}
+          disabled={disabledButton}
+          onClick={() => onMethodClick(method.url)}
+          loading={method.loading}
+        >
+          <span className="inline-flex justify-center items-center gap-1">
+            {methodStatus === "Verified" && <Completed />}
             {methodButtonText}
-          </Button>
-        )}
+          </span>
+        </Button>
       </Card>
     );
 
     if (method.id === 3) {
       return (
         <Fragment key={method.id}>
-          <span className={classNames.caption}>
+          <p className="text-xs mt-6 flex justify-between items-center">
             You can complete the 2 following tasks later
-          </span>
+            <InformationCircleIcon className="w-5 h-5" title="Mohammed Jaber" />
+          </p>
           {methodCard}
         </Fragment>
       );
@@ -82,7 +78,7 @@ export const VerificationMethods = () => {
       {methods}
       <Button
         fullWidth
-        className="mt-4"
+        className="mt-8"
         disabled={!canContinue}
         onClick={onContinue}
       >
