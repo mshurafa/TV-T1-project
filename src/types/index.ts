@@ -60,3 +60,9 @@ export type UserType = {
   };
   isBlocked: boolean;
 };
+
+export type CurrentUserType = {
+  accessToken: string;
+  refreshToken: string;
+  user: UserType;
+};

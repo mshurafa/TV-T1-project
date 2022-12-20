@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getCookie, setCookie } from "lib/js-cookie";
 import { COOKIES_KEYS } from "data";
-import type { UserType } from "types";
+import type { UserType, CurrentUserType } from "types";
 
 export const useCurrentUser = () => {
   const [user, setUser] = useState<UserType | null>(
@@ -9,11 +9,9 @@ export const useCurrentUser = () => {
   );
 
   const updateUser = (newUser: UserType, refetch: boolean = false) => {
-    const currentUser: {
-      accessToken: string;
-      refreshToken: string;
-      user: UserType;
-    } | null = getCookie(COOKIES_KEYS.currentUser);
+    const currentUser: CurrentUserType | null = getCookie(
+      COOKIES_KEYS.currentUser
+    );
     if (currentUser) {
       // if refetch is true then call the API and update the user
       const updatedUser = {
