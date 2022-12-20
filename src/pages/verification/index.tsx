@@ -7,7 +7,7 @@ const Verification: NextPageWithLayout = () => {
     <NoSsr>
       <VerificationCard
         title="Verification"
-        description="To use our services, We need to verify your account"
+        description="To use our services, we need to verify:"
       >
         <VerificationMethods />
       </VerificationCard>
