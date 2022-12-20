@@ -122,3 +122,7 @@ export interface FileInputLabelProps {
 }
 
 export type FileInputLabelType = FC<FileInputLabelProps>;
+
+export interface SvgProps extends React.SVGProps<SVGSVGElement> {}
+
+export type SvgType = FC<SvgProps>;
