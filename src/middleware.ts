@@ -1,26 +1,20 @@
-import { NextResponse, type NextRequest } from "next/server";
-import { APP_ROUTES, URL_PATHS, COOKIES_KEYS } from "data";
+import type { NextRequest } from "next/server";
+import { COOKIES_KEYS } from "data";
+import { routesMiddleware } from "utils";
+import type { CurrentUserType } from "types";
 
 export function middleware(request: NextRequest) {
   const currentUser = request.cookies.get(COOKIES_KEYS.currentUser);
-
-  if (
-    APP_ROUTES.PROTECTED_ROUTES.includes(request.nextUrl.pathname) &&
-    !currentUser
-  ) {
-    request.cookies.delete(COOKIES_KEYS.currentUser);
-    const response = NextResponse.redirect(
-      new URL(URL_PATHS.AUTH.SIGN_IN, request.url)
-    );
-    response.cookies.delete(COOKIES_KEYS.currentUser);
-
-    return response;
+  let currentUserJson: CurrentUserType | null = null;
+  if (currentUser) {
+    currentUserJson = JSON.parse(currentUser || '""');
   }
+  let userDate = currentUserJson?.user;
+  const isLoggedIn = !!(
+    currentUserJson?.accessToken &&
+    currentUserJson.refreshToken &&
+    userDate
+  );
 
-  if (
-    APP_ROUTES.AUTH_ROUTES.includes(request.nextUrl.pathname) &&
-    currentUser
-  ) {
-    return NextResponse.redirect(new URL(URL_PATHS.HOME, request.url));
-  }
+  return routesMiddleware(request, isLoggedIn);
 }
