@@ -6,5 +6,6 @@ export interface MainLayoutProps extends HTMLProps<HTMLDivElement> {
   title: string;
   pageDescription?: string;
   withoutNavbar?: boolean;
+  contentClassName?: string;
 }
 export type MainLayoutType = FC<MainLayoutProps>;

@@ -7,6 +7,7 @@ export const MainLayout: MainLayoutType = ({
   title,
   pageDescription = "Talents Valley platform",
   withoutNavbar = false,
+  contentClassName = "",
 }) => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -20,7 +21,9 @@ export const MainLayout: MainLayoutType = ({
           <Navbar />
         </header>
       )}
-      <main className="flex-1 flex justify-center items-center min-h-fit p-5">
+      <main
+        className={`flex-1 flex justify-center items-center min-h-fit p-5 ${contentClassName}`}
+      >
         {children}
       </main>
       <Footer />
