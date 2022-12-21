@@ -8,7 +8,7 @@ import {
   XMarkIcon as XMarkIconMini,
   InformationCircleIcon as InformationCircleIconMini,
 } from "@heroicons/react/20/solid";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { InformationCircleIcon, CheckIcon } from "@heroicons/react/24/outline";
 
 export {
   ErrorIconMini,
@@ -20,4 +20,5 @@ export {
   XMarkIconMini,
   InformationCircleIconMini,
   InformationCircleIcon,
+  CheckIcon,
 };
