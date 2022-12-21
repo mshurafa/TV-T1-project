@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { APP_ROUTES, URL_PATHS, COOKIES_KEYS } from "data";
 import type { CurrentUserType } from "types";
 
-export const middlewareHandler = (
+const middlewareHandler = (
   request: NextRequest,
   currentUser: string | undefined
 ) => {
