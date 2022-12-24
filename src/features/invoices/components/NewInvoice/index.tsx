@@ -6,11 +6,7 @@ import Confirmation from "./Confirmation";
 import { NEW_INVOICE_STEPS } from "../../constants";
 import type { NewInvoiceType } from "../../types";
 
-export const NewInvoice: NewInvoiceType = ({
-  className,
-  cardClassName,
-  ...rest
-}) => {
+export const NewInvoice: NewInvoiceType = ({ className, cardClassName }) => {
   //create custom hook to manage new invoice state
   const classNames = useMemo(() => {
     const classes = {
@@ -26,7 +22,7 @@ export const NewInvoice: NewInvoiceType = ({
   return (
     <div className={classNames.mainContent}>
       <Stepper steps={NEW_INVOICE_STEPS} />
-      <Card {...rest} className={classNames.card}>
+      <Card className={classNames.card}>
         {/* <ConfirmDetails /> */}
         {/* <Preview /> */}
         <Confirmation />
