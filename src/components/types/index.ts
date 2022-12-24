@@ -126,3 +126,29 @@ export type FileInputLabelType = FC<FileInputLabelProps>;
 export interface SvgProps extends React.SVGProps<SVGSVGElement> {}
 
 export type SvgType = FC<SvgProps>;
+
+type Step = {
+  title: string;
+  id: string;
+  active: boolean;
+  completed: boolean;
+};
+
+export interface StepperProps {
+  steps: Step[];
+  className?: string;
+  barClassName?: string;
+}
+
+export type StepperType = FC<StepperProps>;
+
+export interface StepProps {
+  step: Step;
+  className?: string;
+  bulletClassName?: string;
+  withArrow?: boolean;
+  isLastBullet: boolean;
+  lastStep: Step;
+}
+
+export type StepType = FC<StepProps>;

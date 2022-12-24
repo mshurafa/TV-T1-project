@@ -14,3 +14,4 @@ export * from "./Spinner";
 export * from "./Image";
 export * from "./OtpInput";
 export * from "./FileInput";
+export * from "./Stepper";
