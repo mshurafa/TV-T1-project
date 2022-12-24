@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { formValidation } from "../../features/authentication/data";
+import { FORM_VALIDATION } from "data";
 import type { OnOtpChange } from "components/types";
 
 const getInitialOtpFieldsState = () => {
@@ -16,7 +16,7 @@ export const useOtp = (onOtpChange: OnOtpChange) => {
     (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
       const target = event.target;
       const value = target.value;
-      if (value !== "" && !formValidation.otp.pattern.test(value)) return;
+      if (value !== "" && !FORM_VALIDATION.otp.pattern.test(value)) return;
 
       const newValue = otpFields.value.map((fieldValue, fieldValueIndex) =>
         fieldValueIndex === index ? value : fieldValue
@@ -59,7 +59,7 @@ export const useOtp = (onOtpChange: OnOtpChange) => {
     const data = event.clipboardData.getData("text");
     if (
       data.length !== otpFields.value.length ||
-      !formValidation.otp.pattern.test(data)
+      !FORM_VALIDATION.otp.pattern.test(data)
     )
       return;
 
