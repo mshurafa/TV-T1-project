@@ -2,10 +2,9 @@ import { useRouter } from "next/router";
 import useForm from "lib/react-hook-form";
 import { Input, Button, HelperText } from "components";
 import { useAxios } from "hooks";
-import { API_SERVICES_URLS, URL_PATHS } from "data";
+import { API_SERVICES_URLS, URL_PATHS, FORM_VALIDATION } from "data";
 import { ErrorIconMini } from "lib/@heroicons";
 import { getFieldHelperText } from "utils";
-import { formValidation } from "../../data";
 import type {
   NewPasswordFormInputsType,
   NewPasswordResponseType,
@@ -60,7 +59,7 @@ export const NewPasswordForm: NewPasswordFormType = ({ onSuccess }) => {
         label="New Password"
         placeholder="Enter New Password"
         inputSize="small"
-        {...register("password", formValidation.password)}
+        {...register("password", FORM_VALIDATION.password)}
         error={!!errors.password}
         helperText={getFieldHelperText("error", errors.password?.message)}
       />

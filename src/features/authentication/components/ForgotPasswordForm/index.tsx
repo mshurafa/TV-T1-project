@@ -2,7 +2,7 @@ import useForm from "lib/react-hook-form";
 import { Input, Button } from "components";
 import { useVerifyPasswordCode } from "../../hooks";
 import { getFieldHelperText } from "utils";
-import { formValidation } from "../../data";
+import { FORM_VALIDATION } from "data";
 import type { ForgotPasswordFormInputType } from "../../types";
 
 export const ForgotPasswordForm = () => {
@@ -28,7 +28,7 @@ export const ForgotPasswordForm = () => {
         label="Email"
         placeholder="Enter Email"
         inputSize="small"
-        {...register("email", formValidation.email)}
+        {...register("email", FORM_VALIDATION.email)}
         error={!!errorMessage}
         helperText={getFieldHelperText("error", errorMessage)}
       />

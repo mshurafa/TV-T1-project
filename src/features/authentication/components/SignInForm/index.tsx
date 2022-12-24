@@ -2,11 +2,15 @@ import { useRouter } from "next/router";
 import useForm from "lib/react-hook-form";
 import { Input, Button, HelperText, Link } from "components";
 import { useAxios } from "hooks";
-import { API_SERVICES_URLS, URL_PATHS, COOKIES_KEYS } from "data";
+import {
+  API_SERVICES_URLS,
+  URL_PATHS,
+  COOKIES_KEYS,
+  FORM_VALIDATION,
+} from "data";
 import { ErrorIconMini } from "lib/@heroicons";
 import { setCookie } from "lib/js-cookie";
 import { getFieldHelperText } from "utils";
-import { formValidation } from "../../data";
 import type { SignInFormInputsType, SignInResponseType } from "../../types";
 
 export const SignInForm = () => {
@@ -48,7 +52,7 @@ export const SignInForm = () => {
         label="Email"
         placeholder="Enter Email"
         inputSize="small"
-        {...register("email", formValidation.email)}
+        {...register("email", FORM_VALIDATION.email)}
         error={!!errors.email}
         helperText={getFieldHelperText("error", errors.email?.message)}
       />

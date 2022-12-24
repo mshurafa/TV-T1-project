@@ -2,10 +2,14 @@ import { useRouter } from "next/router";
 import useForm, { Controller } from "lib/react-hook-form";
 import { Input, Button, Select, PhoneInput, HelperText } from "components";
 import { useAxios } from "hooks";
-import { countriesList, API_SERVICES_URLS, URL_PATHS } from "data";
+import {
+  countriesList,
+  API_SERVICES_URLS,
+  URL_PATHS,
+  FORM_VALIDATION,
+} from "data";
 import { ErrorIconMini } from "lib/@heroicons";
 import { getFieldHelperText } from "utils";
-import { formValidation } from "../../data";
 import type { SignUpFormInputsType, SignUpResponseType } from "../../types";
 
 export const SignUpForm = () => {
@@ -49,7 +53,7 @@ export const SignUpForm = () => {
           className="flex-1 basis-full"
           inputSize="small"
           {...register("firstName", {
-            ...formValidation.fullName,
+            ...FORM_VALIDATION.fullName,
             onChange: () => clearErrorOnChange("firstName"),
           })}
           error={!!errors.firstName}
@@ -62,7 +66,7 @@ export const SignUpForm = () => {
           className="flex-1 basis-full"
           inputSize="small"
           {...register("lastName", {
-            ...formValidation.fullName,
+            ...FORM_VALIDATION.fullName,
             onChange: () => clearErrorOnChange("lastName"),
           })}
           error={!!errors.lastName}
@@ -81,7 +85,7 @@ export const SignUpForm = () => {
         placeholder="Enter Email"
         inputSize="small"
         {...register("email", {
-          ...formValidation.email,
+          ...FORM_VALIDATION.email,
           onChange: () => clearErrorOnChange("email"),
         })}
         error={!!errors.email}
@@ -94,7 +98,7 @@ export const SignUpForm = () => {
         placeholder="Enter Password"
         inputSize="small"
         {...register("password", {
-          ...formValidation.password,
+          ...FORM_VALIDATION.password,
           onChange: () => clearErrorOnChange("password"),
         })}
         error={!!errors.password}
@@ -104,7 +108,7 @@ export const SignUpForm = () => {
         control={control}
         name="mobile"
         rules={{
-          ...formValidation.mobile,
+          ...FORM_VALIDATION.mobile,
           onChange: () => clearErrorOnChange("mobile"),
         }}
         render={({ field: { ref, onChange, ...field } }) => (
@@ -130,7 +134,7 @@ export const SignUpForm = () => {
         placeholder="Enter Country"
         selectSize="small"
         {...register("country", {
-          ...formValidation.country,
+          ...FORM_VALIDATION.country,
           onChange: () => clearErrorOnChange("country"),
         })}
         error={!!errors.country}
