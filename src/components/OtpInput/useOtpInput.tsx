@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { FORM_VALIDATION } from "data";
-import type { OnOtpChange } from "components/types";
+import type { OnOtpChange } from "../types";
 
 const getInitialOtpFieldsState = () => {
   return {
@@ -9,7 +9,7 @@ const getInitialOtpFieldsState = () => {
   };
 };
 
-export const useOtp = (onOtpChange: OnOtpChange) => {
+const useOtpInput = (onOtpChange: OnOtpChange) => {
   const [otpFields, setOtpFields] = useState(getInitialOtpFieldsState());
 
   const onChange =
@@ -81,4 +81,4 @@ export const useOtp = (onOtpChange: OnOtpChange) => {
   return { otpFields, activeInputRef, onChange, onKeyDown, onFocus, onPaste };
 };
 
-export default useOtp;
+export default useOtpInput;
