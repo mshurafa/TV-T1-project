@@ -6,7 +6,7 @@ import { ErrorIconMini } from "lib/@heroicons";
 import { getFieldHelperText } from "utils";
 import type { ConfirmDetailsType, ConfirmDetailsInputsType } from "../../types";
 
-const ConfirmDetails: ConfirmDetailsType = ({ onNextClick }) => {
+const ConfirmDetails: ConfirmDetailsType = ({ onSubmit }) => {
   const {
     register,
     handleSubmit,
@@ -15,15 +15,15 @@ const ConfirmDetails: ConfirmDetailsType = ({ onNextClick }) => {
     clearErrorOnChange,
   } = useForm<ConfirmDetailsInputsType>();
 
-  const onSubmit = handleSubmit((data) => {
-    console.log("🚀 ~ file: ConfirmDetails.tsx:51 ~ onSubmit ~ data", data);
+  const onSubmitHandler = handleSubmit((data) => {
+    onSubmit(data);
   });
 
   return (
     <>
       <InvoiceDetails />
       <h2 className="mt-8 mb-6">Confirm Details</h2>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmitHandler}>
         <div className="flex flex-wrap sm:flex-nowrap sm:gap-3">
           <Input
             id="first-name-input"
