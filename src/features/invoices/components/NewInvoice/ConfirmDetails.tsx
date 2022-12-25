@@ -1,27 +1,12 @@
-import { useRouter } from "next/router";
 import useForm, { Controller } from "lib/react-hook-form";
-import {
-  Input,
-  Button,
-  Select,
-  PhoneInput,
-  HelperText,
-  Logo,
-} from "components";
-import { useAxios } from "hooks";
-import {
-  countriesList,
-  API_SERVICES_URLS,
-  URL_PATHS,
-  FORM_VALIDATION,
-} from "data";
+import { Input, Select, PhoneInput, HelperText } from "components";
+import InvoiceDetails from "./InvoiceDetails";
+import { countriesList, FORM_VALIDATION } from "data";
 import { ErrorIconMini } from "lib/@heroicons";
 import { getFieldHelperText } from "utils";
-// import type { SignUpFormInputsType, SignUpResponseType } from "../../types";
-import type { ConfirmDetailsInputsType } from "../../types";
+import type { ConfirmDetailsType, ConfirmDetailsInputsType } from "../../types";
 
-const ConfirmDetails = () => {
-  const router = useRouter();
+const ConfirmDetails: ConfirmDetailsType = ({ onNextClick }) => {
   const {
     register,
     handleSubmit,
@@ -29,51 +14,14 @@ const ConfirmDetails = () => {
     control,
     clearErrorOnChange,
   } = useForm<ConfirmDetailsInputsType>();
-  // const {
-  //   fetchData: signUp,
-  //   error,
-  //   loading,
-  // } = useAxios<SignUpResponseType, SignUpFormInputsType>({
-  //   config: {
-  //     url: API_SERVICES_URLS.SIGN_UP,
-  //     method: "POST",
-  //   },
-  //   options: {
-  //     manual: true,
-  //   },
-  //   onSuccess: () => {
-  //     router.push(URL_PATHS.AUTH.SIGN_IN);
-  //   },
-  // });
 
   const onSubmit = handleSubmit((data) => {
-    // if (loading) return;
-    // signUp(data);
+    console.log("🚀 ~ file: ConfirmDetails.tsx:51 ~ onSubmit ~ data", data);
   });
 
   return (
     <>
-      <div className="flex justify-between items-center">
-        <h2 className="text-lg font-medium">Payment Request</h2>
-        <div className="inline-flex items-center">
-          <Logo className="cursor-pointer" />
-          <span className="text-base font-medium tracking-wider text-center ml-2">
-            Talents Valley
-          </span>
-        </div>
-      </div>
-
-      <div className="h-px my-3 bg-gray" />
-
-      <div className="flex justify-between mb-3">
-        <p className="font-medium">
-          React native mobile app developments
-          <span className="block text-xs leading-3 font-normal">
-            by Omar Ziara
-          </span>
-        </p>
-        <span className="text-base font-medium">$500</span>
-      </div>
+      <InvoiceDetails />
       <h2 className="mt-8 mb-6">Confirm Details</h2>
       <form onSubmit={onSubmit}>
         <div className="flex flex-wrap sm:flex-nowrap sm:gap-3">
