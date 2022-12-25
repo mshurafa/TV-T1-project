@@ -134,13 +134,15 @@ type Step = {
   completed: boolean;
 };
 
-export interface StepperProps {
+export interface StepperProps extends ChildrenProp {
   steps: Step[];
-  className?: string;
-  barClassName?: string;
+  activeStep: number;
+  onChange: (
+    action: "next" | "back",
+    steps: Step[],
+    activeStep: number
+  ) => void;
 }
-
-export type StepperType = FC<StepperProps>;
 
 export interface StepProps {
   step: Step;
@@ -152,3 +154,24 @@ export interface StepProps {
 }
 
 export type StepType = FC<StepProps>;
+
+export type StepperContextType = {
+  activeStep: number;
+  steps: Step[];
+  onChange: (
+    action: "next" | "back",
+    steps: Step[],
+    activeStep: number
+  ) => void;
+};
+
+export interface StepperContentProps extends ChildrenProp {
+  className?: string;
+}
+export type StepperContentType = FC<StepperContentProps>;
+
+export interface StepperProgressBarProps {
+  className?: string;
+  barClassName?: string;
+}
+export type StepperProgressBarType = FC<StepperProgressBarProps>;
