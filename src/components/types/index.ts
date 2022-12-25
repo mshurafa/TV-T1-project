@@ -134,14 +134,12 @@ type Step = {
   completed: boolean;
 };
 
+export type StepperOnChangeType = (action: "next" | "back") => void;
+
 export interface StepperProps extends ChildrenProp {
   steps: Step[];
   activeStep: number;
-  onChange: (
-    action: "next" | "back",
-    steps: Step[],
-    activeStep: number
-  ) => void;
+  onChange: StepperOnChangeType;
 }
 
 export interface StepProps {
@@ -158,11 +156,7 @@ export type StepType = FC<StepProps>;
 export type StepperContextType = {
   activeStep: number;
   steps: Step[];
-  onChange: (
-    action: "next" | "back",
-    steps: Step[],
-    activeStep: number
-  ) => void;
+  onChange: StepperOnChangeType;
 };
 
 export interface StepperContentProps extends ChildrenProp {
