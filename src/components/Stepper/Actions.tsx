@@ -2,11 +2,11 @@ import Button from "../Button";
 import { useStepperContext } from "./index";
 
 export const Actions = () => {
-  const { steps, activeStep, onChange } = useStepperContext();
+  const { activeStep, onChange } = useStepperContext();
 
-  const onBackClick = () => onChange("back", steps, activeStep);
+  const onBackClick = () => onChange("back");
 
-  const onNextClick = () => onChange("next", steps, activeStep);
+  const onNextClick = () => onChange("next");
 
   return (
     <div className="flex gap-4 justify-end">
