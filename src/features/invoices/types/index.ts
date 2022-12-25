@@ -9,6 +9,12 @@ interface NewInvoiceProps {
 
 export type NewInvoiceType = FC<NewInvoiceProps>;
 
+interface ConfirmDetailsProps {
+  onNextClick: () => void;
+}
+
+export type ConfirmDetailsType = FC<ConfirmDetailsProps>;
+
 export type ConfirmDetailsInputsType = {
   firstName: string;
   lastName: string;
