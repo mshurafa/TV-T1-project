@@ -23,3 +23,12 @@ export type ConfirmDetailsInputsType = {
   country: string;
   zip: string;
 };
+
+export type PayInvoiceStepType = {
+  title: string;
+  id: "step1" | "step2" | "step3" | "step4";
+  active: boolean;
+  completed: boolean;
+};
+
+export type PayInvoiceStepsType = PayInvoiceStepType[];
