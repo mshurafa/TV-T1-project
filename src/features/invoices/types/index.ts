@@ -9,11 +9,9 @@ interface NewInvoiceProps {
 
 export type NewInvoiceType = FC<NewInvoiceProps>;
 
-interface ConfirmDetailsProps {
+export interface ConfirmDetailsProps {
   onSubmit: (data: ConfirmDetailsInputsType) => void;
 }
-
-export type ConfirmDetailsType = FC<ConfirmDetailsProps>;
 
 export type ConfirmDetailsInputsType = {
   firstName: string;
