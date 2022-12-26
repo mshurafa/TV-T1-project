@@ -45,8 +45,6 @@ export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
   fullWidth?: boolean;
   loading?: boolean;
 }
-export type ButtonType = FC<ButtonProps>;
-
 export interface SelectProps
   extends Omit<HTMLProps<HTMLSelectElement>, "label">,
     CommonFormElementsType {
