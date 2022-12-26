@@ -1,4 +1,6 @@
-export const PAY_INVOICE_STEPS = [
+import type { PayInvoiceStepsType } from "../../types";
+
+export const PAY_INVOICE_STEPS: PayInvoiceStepsType = [
   {
     title: "1. Confirm Details",
     id: "step1",
