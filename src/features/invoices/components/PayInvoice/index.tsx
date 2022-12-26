@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 import { Stepper } from "components";
-import { useNewInvoice } from "../../hooks";
-import type { NewInvoiceType } from "../../types";
+import { usePayInvoice } from "../../hooks";
+import type { PayInvoiceType } from "../../types";
 
-export const NewInvoice: NewInvoiceType = ({ className, cardClassName }) => {
-  const { steps, activeStep, stepContent, onStepperChange } = useNewInvoice();
+export const PayInvoice: PayInvoiceType = ({ className, cardClassName }) => {
+  const { steps, activeStep, stepContent, onStepperChange } = usePayInvoice();
 
   const classNames = useMemo(() => {
     const classes = {
@@ -30,4 +30,4 @@ export const NewInvoice: NewInvoiceType = ({ className, cardClassName }) => {
   );
 };
 
-export default NewInvoice;
+export default PayInvoice;

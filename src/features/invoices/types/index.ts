@@ -2,12 +2,12 @@ import type { FC, ReactNode } from "react";
 import type { CardProps } from "components/types";
 // import type { UserType, APIResponseType } from "types";
 
-interface NewInvoiceProps {
+interface PayInvoiceProps {
   className?: string;
   cardClassName?: string;
 }
 
-export type NewInvoiceType = FC<NewInvoiceProps>;
+export type PayInvoiceType = FC<PayInvoiceProps>;
 
 export interface ConfirmDetailsProps {
   onSubmit: (data: ConfirmDetailsInputsType) => void;

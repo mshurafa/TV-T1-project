@@ -1,13 +1,13 @@
 import { useState, useMemo, useEffect, useRef } from "react";
-import ConfirmDetails from "../../components/NewInvoice/ConfirmDetails";
-import Preview from "../../components/NewInvoice/Preview";
-import Confirmation from "../../components/NewInvoice/Confirmation";
-import { NEW_INVOICE_STEPS } from "../../constants";
+import ConfirmDetails from "../../components/PayInvoice/ConfirmDetails";
+import Preview from "../../components/PayInvoice/Preview";
+import Confirmation from "../../components/PayInvoice/Confirmation";
+import { PAY_INVOICE_STEPS } from "../../data";
 import type { StepperOnChangeType } from "components/types";
 import type { ConfirmDetailsInputsType } from "../../types";
 
-export const useNewInvoice = () => {
-  const [steps, setSteps] = useState(NEW_INVOICE_STEPS);
+export const usePayInvoice = () => {
+  const [steps, setSteps] = useState(PAY_INVOICE_STEPS);
   const activeStep = steps.findIndex((step) => step.active);
   const confirmDetailsFormRef = useRef<HTMLButtonElement>(null);
 
@@ -73,4 +73,4 @@ export const useNewInvoice = () => {
   return { steps, activeStep, stepContent, onStepperChange };
 };
 
-export default useNewInvoice;
+export default usePayInvoice;

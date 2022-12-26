@@ -1,4 +1,4 @@
-export const NEW_INVOICE_STEPS = [
+export const PAY_INVOICE_STEPS = [
   {
     title: "1. Confirm Details",
     id: "step1",
