@@ -15,6 +15,7 @@ export const usePayInvoice = () => {
   const currentStep = steps[activeStep];
   const nextStep = steps[activeStep + 1];
   const previousStep = steps[activeStep - 1];
+  const isLastStep = steps[steps.length - 1].id === currentStep.id;
 
   const nextActionHandler = () => {
     const updatedCurrentStep: PayInvoiceStepType = {
@@ -104,7 +105,14 @@ export const usePayInvoice = () => {
     };
   }, []);
 
-  return { steps, activeStep, stepContent, onStepperChange, payButtonText };
+  return {
+    steps,
+    activeStep,
+    stepContent,
+    onStepperChange,
+    payButtonText,
+    isLastStep,
+  };
 };
 
 export default usePayInvoice;
