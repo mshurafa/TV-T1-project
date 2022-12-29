@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import ConfirmDetails from "../../components/PayInvoice/ConfirmDetails";
 import Preview from "../../components/PayInvoice/Preview";
+import Payment from "../../components/PayInvoice/Payment";
 import Confirmation from "../../components/PayInvoice/Confirmation";
 import { PAY_INVOICE_STEPS } from "../../data";
 import type { StepperOnChangeType } from "components/types";
@@ -8,6 +9,7 @@ import type { ConfirmDetailsInputsType, PayInvoiceStepType } from "../../types";
 
 export const usePayInvoice = () => {
   const [steps, setSteps] = useState(PAY_INVOICE_STEPS);
+  const [payButtonText, setPayButtonText] = useState<string>();
   const confirmDetailsFormRef = useRef<HTMLButtonElement>(null);
   const activeStep = steps.findIndex((step) => step.active);
   const currentStep = steps[activeStep];
@@ -34,6 +36,11 @@ export const usePayInvoice = () => {
       }
     });
     setSteps(updatedSteps);
+    if (nextStep.id === "step3") {
+      setPayButtonText("Pay $520");
+    } else {
+      setPayButtonText(undefined);
+    }
   };
 
   const backActionHandler = () => {
@@ -83,7 +90,7 @@ export const usePayInvoice = () => {
         onSubmit={onSubmitConfirmDetails}
       />,
       <Preview key="step2" />,
-      <div key="step3">Payment</div>,
+      <Payment key="step3" />,
       <Confirmation key="step4" />,
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -97,7 +104,7 @@ export const usePayInvoice = () => {
     };
   }, []);
 
-  return { steps, activeStep, stepContent, onStepperChange };
+  return { steps, activeStep, stepContent, onStepperChange, payButtonText };
 };
 
 export default usePayInvoice;
