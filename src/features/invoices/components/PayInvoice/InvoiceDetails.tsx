@@ -1,4 +1,4 @@
-import { Logo } from "components";
+import { Logo, Divider } from "components";
 
 const InvoiceDetails = () => {
   return (
@@ -13,7 +13,7 @@ const InvoiceDetails = () => {
         </div>
       </div>
 
-      <div className="h-px my-3 bg-gray" />
+      <Divider />
 
       <div className="flex justify-between mb-3">
         <p className="font-medium">
