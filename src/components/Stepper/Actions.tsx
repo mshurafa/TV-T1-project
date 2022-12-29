@@ -6,7 +6,8 @@ export const Actions = ({
 }: {
   nextButtonText?: string;
 }) => {
-  const { activeStep, onChange } = useStepperContext();
+  const { steps, activeStep, onChange } = useStepperContext();
+  const isLastStep = steps.length - 1 === activeStep;
 
   const onBackClick = () => onChange("back");
 
@@ -24,14 +25,16 @@ export const Actions = ({
           Back
         </Button>
       )}
-      <Button
-        buttonSize="small"
-        className="max-w-[150px] border"
-        fullWidth
-        onClick={onNextClick}
-      >
-        {nextButtonText}
-      </Button>
+      {!isLastStep && (
+        <Button
+          buttonSize="small"
+          className="max-w-[150px] border"
+          fullWidth
+          onClick={onNextClick}
+        >
+          {nextButtonText}
+        </Button>
+      )}
     </div>
   );
 };
