@@ -7,8 +7,9 @@ import {
   ArrowUpTrayIcon as ArrowUpTrayIconMini,
   XMarkIcon as XMarkIconMini,
   InformationCircleIcon as InformationCircleIconMini,
+  CheckIcon as CheckIconMini,
 } from "@heroicons/react/20/solid";
-import { InformationCircleIcon, CheckIcon } from "@heroicons/react/24/outline";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 export {
   ErrorIconMini,
@@ -20,5 +21,5 @@ export {
   XMarkIconMini,
   InformationCircleIconMini,
   InformationCircleIcon,
-  CheckIcon,
+  CheckIconMini,
 };

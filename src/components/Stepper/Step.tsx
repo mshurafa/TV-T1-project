@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { CheckIcon } from "lib/@heroicons";
+import { CheckIconMini } from "lib/@heroicons";
 import Triangle from "../svg/Triangle";
 import type { StepType } from "../types";
 
@@ -54,7 +54,7 @@ export const Step: StepType = ({
       classNames.bullet += " bg-white";
     } else {
       if (step.completed) {
-        stepBulletContent = <CheckIcon className="w-5 h-5 stroke-white" />;
+        stepBulletContent = <CheckIconMini className="w-4 h-4 text-white" />;
         classNames.step += " bg-indigo-700";
         classNames.bullet += " bg-indigo-700";
       }
