@@ -5,7 +5,7 @@ import Payment from "../../components/PayInvoice/Payment";
 import Confirmation from "../../components/PayInvoice/Confirmation";
 import { PAY_INVOICE_STEPS } from "../../data";
 import type { StepperOnChangeType } from "components/types";
-import type { ConfirmDetailsInputsType, PayInvoiceStepType } from "../../types";
+import type { PayInvoiceStepType } from "../../types";
 
 export const usePayInvoice = () => {
   const [steps, setSteps] = useState(PAY_INVOICE_STEPS);
@@ -65,8 +65,7 @@ export const usePayInvoice = () => {
     setSteps(updatedSteps);
   };
 
-  const onSubmitConfirmDetails = (data: ConfirmDetailsInputsType) => {
-    // maybe call API to send the data then store it inside the local storage to save the user progress
+  const onSubmitConfirmDetails = () => {
     nextActionHandler();
   };
 

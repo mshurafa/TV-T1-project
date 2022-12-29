@@ -21,7 +21,7 @@ const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
     } = useForm<ConfirmDetailsInputsType>();
 
     const onSubmitHandler = handleSubmit((data) => {
-      onSubmit(data);
+      onSubmit();
     });
 
     return (

@@ -10,7 +10,7 @@ interface PayInvoiceProps {
 export type PayInvoiceType = FC<PayInvoiceProps>;
 
 export interface ConfirmDetailsProps {
-  onSubmit: (data: ConfirmDetailsInputsType) => void;
+  onSubmit: () => void;
 }
 
 export type ConfirmDetailsInputsType = {
