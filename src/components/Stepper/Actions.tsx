@@ -1,7 +1,11 @@
 import Button from "../Button";
 import { useStepperContext } from "./index";
 
-export const Actions = () => {
+export const Actions = ({
+  nextButtonText = "Next",
+}: {
+  nextButtonText?: string;
+}) => {
   const { activeStep, onChange } = useStepperContext();
 
   const onBackClick = () => onChange("back");
@@ -26,7 +30,7 @@ export const Actions = () => {
         fullWidth
         onClick={onNextClick}
       >
-        Next
+        {nextButtonText}
       </Button>
     </div>
   );
