@@ -15,3 +15,4 @@ export * from "./Image";
 export * from "./OtpInput";
 export * from "./FileInput";
 export * from "./Stepper";
+export * from "./Divider";
