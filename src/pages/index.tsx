@@ -5,7 +5,7 @@ import { Button } from "components";
 const Home = () => {
   const { user } = useCurrentUser();
   const logout = useLogout();
-  console.log("🚀 ~ file: index.tsx ~ line 7 ~ Home ~ user", user);
+
   return (
     <Card>
       <h1 className="text-3xl font-bold underline text-blue">Hello world!</h1>
