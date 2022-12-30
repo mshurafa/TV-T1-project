@@ -17,7 +17,7 @@ import type { PayInvoiceContextType, PayInvoiceStateType } from "../../types";
 import type { StepperOnChangeType } from "components/types";
 
 const PayInvoiceContext = createContext<PayInvoiceContextType>({
-  invoiceId: "",
+  invoiceId: undefined,
   stepsData: {
     steps: [],
     activeStepIndex: 0,

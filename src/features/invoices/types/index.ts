@@ -56,7 +56,7 @@ export interface PayInvoiceStateProps {
 export type PayInvoiceStateType = FC<PayInvoiceStateProps>;
 
 export type PayInvoiceContextType = {
-  invoiceId: string;
+  invoiceId: string | undefined;
   stepsData: {
     steps: PayInvoiceStepsType;
     activeStepIndex: number;
