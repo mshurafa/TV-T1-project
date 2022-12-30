@@ -13,7 +13,8 @@ export const API_SERVICES_URLS = {
     ADDRESS: "/user/verify/address",
   },
   CLIENT: {
-    INVOICE: (id: string) => `/invoice/client/${id}`,
+    INVOICE_DETAILS: (id: string) => `/invoice/client/${id}`,
+    INVOICE_PREVIEW: (id: string) => `/invoice/client/preview/${id}`,
   },
 } as const;
 
