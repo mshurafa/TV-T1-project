@@ -12,6 +12,9 @@ export const API_SERVICES_URLS = {
     IDENTITY: "/user/verify/id",
     ADDRESS: "/user/verify/address",
   },
+  CLIENT: {
+    INVOICE: (id: string) => `/invoice/client/${id}`,
+  },
 } as const;
 
 export const COOKIES_KEYS = {
