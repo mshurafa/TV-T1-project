@@ -1,6 +1,6 @@
-import type { FC, ReactNode } from "react";
+import type { FC } from "react";
 import type { StepperOnChangeType } from "components/types";
-import type { UserType, APIResponseType, Children } from "types";
+import type { APIResponseType, Children } from "types";
 
 interface PayInvoiceProps {
   className?: string;
@@ -106,3 +106,10 @@ export type InvoiceType = {
   hashCode: string;
   status: "unpaid" | "paid";
 };
+
+export type InvoiceDetailsData = {
+  invoice: InvoiceType;
+  type: "invoice" | "service";
+};
+
+export type InvoiceDetailsResponse = APIResponseType<InvoiceDetailsData>;
