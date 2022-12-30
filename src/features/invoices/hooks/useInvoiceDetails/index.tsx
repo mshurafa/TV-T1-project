@@ -8,7 +8,7 @@ const invoiceDetailsFetcher: Fetcher<InvoiceDetailsResponse, string> = (url) =>
 
 export const useInvoiceDetails = (id: string | undefined) => {
   const { data, error, isLoading } = useSWR(
-    id ? API_SERVICES_URLS.CLIENT.INVOICE(id) : null,
+    id ? API_SERVICES_URLS.CLIENT.INVOICE_DETAILS(id) : null,
     invoiceDetailsFetcher
   );
   return { invoice: data, error, isLoading };
