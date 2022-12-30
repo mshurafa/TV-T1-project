@@ -69,3 +69,40 @@ export type PayInvoiceContextType = {
   };
   onStepperChange: StepperOnChangeType;
 };
+
+export type ClientType = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  address: {
+    country: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  };
+};
+
+export type FreelancerType = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+};
+
+export type InvoiceItemType = {
+  _id: string;
+  itemName: string;
+  description: string;
+  price: number;
+};
+
+export type InvoiceType = {
+  _id: string;
+  client: ClientType;
+  fixed: InvoiceItemType[];
+  freelancer: FreelancerType;
+  subTotal: number;
+  hashCode: string;
+  status: "unpaid" | "paid";
+};
