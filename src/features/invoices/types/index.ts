@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from "react";
-import type { CardProps } from "components/types";
-// import type { UserType, APIResponseType } from "types";
+import type { StepperOnChangeType } from "components/types";
+import type { UserType, APIResponseType, Children } from "types";
 
 interface PayInvoiceProps {
   className?: string;
@@ -47,4 +47,25 @@ export type PaymentMethodType = {
 
 export type ClientFeesType = Omit<PaymentMethodType, "value"> & {
   value: ClientFeesValue;
+};
+
+export interface PayInvoiceStateProps {
+  children: Children;
+}
+
+export type PayInvoiceStateType = FC<PayInvoiceStateProps>;
+
+export type PayInvoiceContextType = {
+  invoiceId: string;
+  stepsData: {
+    steps: PayInvoiceStepsType;
+    activeStepIndex: number;
+    stepContent: JSX.Element;
+    currentStep: PayInvoiceStepType;
+    nextStep: PayInvoiceStepType | undefined;
+    previousStep: PayInvoiceStepType | undefined;
+    isLastStep: boolean;
+    nextButtonText: string;
+  };
+  onStepperChange: StepperOnChangeType;
 };
