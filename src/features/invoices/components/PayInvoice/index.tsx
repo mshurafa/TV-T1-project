@@ -1,16 +1,18 @@
 import { useMemo } from "react";
 import { Stepper } from "components";
-import { usePayInvoice } from "../../hooks";
+import { usePayInvoice } from "../../contexts/PayInvoice";
 import type { PayInvoiceType } from "../../types";
 
 export const PayInvoice: PayInvoiceType = ({ className, cardClassName }) => {
   const {
-    steps,
-    activeStep,
-    stepContent,
+    stepsData: {
+      steps,
+      activeStepIndex,
+      stepContent,
+      isLastStep,
+      nextButtonText,
+    },
     onStepperChange,
-    payButtonText,
-    isLastStep,
   } = usePayInvoice();
 
   const classNames = useMemo(() => {
@@ -26,13 +28,15 @@ export const PayInvoice: PayInvoiceType = ({ className, cardClassName }) => {
 
   return (
     <div className={classNames.mainContent}>
-      <Stepper steps={steps} activeStep={activeStep} onChange={onStepperChange}>
+      <Stepper
+        steps={steps}
+        activeStep={activeStepIndex}
+        onChange={onStepperChange}
+      >
         <Stepper.ProgressBar className="mt-6 mb-20" />
         <Stepper.Content className={classNames.card}>
           {stepContent}
-          {!isLastStep && (
-            <Stepper.Actions nextButtonText={payButtonText || undefined} />
-          )}
+          {!isLastStep && <Stepper.Actions nextButtonText={nextButtonText} />}
         </Stepper.Content>
       </Stepper>
     </div>
