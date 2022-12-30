@@ -1,6 +1,11 @@
 import { Logo, Divider } from "components";
+import { usePayInvoice } from "../../contexts/PayInvoice";
+import { useInvoiceDetails } from "../../hooks";
 
 const InvoiceDetails = () => {
+  const { invoiceId } = usePayInvoice();
+  const { invoice, isLoading, error } = useInvoiceDetails(invoiceId);
+
   return (
     <>
       <div className="flex justify-between items-center">
