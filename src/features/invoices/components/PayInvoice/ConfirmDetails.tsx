@@ -1,9 +1,8 @@
 import { forwardRef } from "react";
 import useForm, { Controller } from "lib/react-hook-form";
-import { Input, Select, PhoneInput, HelperText, Button } from "components";
+import { Input, Select, PhoneInput, Button } from "components";
 import InvoiceDetails from "./InvoiceDetails";
 import { countriesList, FORM_VALIDATION } from "data";
-import { ErrorIconMini } from "lib/@heroicons";
 import { getFieldHelperText } from "utils";
 import type {
   ConfirmDetailsProps,
@@ -21,6 +20,7 @@ const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
     } = useForm<ConfirmDetailsInputsType>();
 
     const onSubmitHandler = handleSubmit((data) => {
+      // maybe call API to send the data then store it inside the local storage to save the user progress
       onSubmit();
     });
 
@@ -37,11 +37,14 @@ const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
               className="flex-1 basis-full"
               inputSize="small"
               {...register("firstName", {
-                ...FORM_VALIDATION.fullName,
+                ...FORM_VALIDATION.firstName,
                 onChange: () => clearErrorOnChange("firstName"),
               })}
               error={!!errors.firstName}
-              withoutHelperText
+              helperText={getFieldHelperText(
+                "error",
+                errors.firstName?.message
+              )}
             />
             <Input
               id="last-name-input"
@@ -50,19 +53,13 @@ const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
               className="flex-1 basis-full"
               inputSize="small"
               {...register("lastName", {
-                ...FORM_VALIDATION.fullName,
+                ...FORM_VALIDATION.lastName,
                 onChange: () => clearErrorOnChange("lastName"),
               })}
               error={!!errors.lastName}
-              withoutHelperText
+              helperText={getFieldHelperText("error", errors.lastName?.message)}
             />
           </div>
-          <HelperText
-            showContent={!!errors.firstName || !!errors.lastName}
-            className="text-red w-full text-xs justify-center min-h-[20px]"
-            startIcon={<ErrorIconMini className="w-5 h5" />}
-            text={errors.firstName?.message || errors.lastName?.message}
-          />
           <div className="flex flex-wrap sm:flex-nowrap sm:gap-3">
             <Input
               id="email-input"
@@ -113,7 +110,7 @@ const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
               className="flex-1 basis-full"
               inputSize="small"
               {...register("city", {
-                // ...FORM_VALIDATION.password,
+                ...FORM_VALIDATION.city,
                 onChange: () => clearErrorOnChange("city"),
               })}
               error={!!errors.city}
@@ -126,7 +123,7 @@ const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
               className="flex-1 basis-full"
               inputSize="small"
               {...register("state", {
-                // ...FORM_VALIDATION.password,
+                ...FORM_VALIDATION.state,
                 onChange: () => clearErrorOnChange("state"),
               })}
               error={!!errors.state}
@@ -155,7 +152,7 @@ const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
               className="flex-1 basis-full"
               inputSize="small"
               {...register("zip", {
-                // ...FORM_VALIDATION.password,
+                ...FORM_VALIDATION.zipCode,
                 onChange: () => clearErrorOnChange("zip"),
               })}
               error={!!errors.zip}
