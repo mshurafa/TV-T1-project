@@ -3,6 +3,7 @@ export const VALIDATION_RULES = {
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
   password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*$/,
   isNumber: /^\d+$/,
+  isCharacters: /^[a-zA-Zء-ي]+$/, // event arabic characters allowed
 } as const;
 
 export const FORM_VALIDATION = {
@@ -35,5 +36,39 @@ export const FORM_VALIDATION = {
   },
   otp: {
     pattern: VALIDATION_RULES.isNumber,
+  },
+  firstName: {
+    required: "First Name is required",
+    pattern: {
+      value: VALIDATION_RULES.isCharacters,
+      message: "Should be characters",
+    },
+  },
+  lastName: {
+    required: "Last Name is required",
+    pattern: {
+      value: VALIDATION_RULES.isCharacters,
+      message: "Should be characters",
+    },
+  },
+  city: {
+    required: "City is required",
+    pattern: {
+      value: VALIDATION_RULES.isCharacters,
+      message: "Should be characters",
+    },
+  },
+  state: {
+    pattern: {
+      value: VALIDATION_RULES.isCharacters,
+      message: "Should be characters",
+    },
+  },
+  zipCode: {
+    required: "Zip Code is required",
+    pattern: {
+      value: VALIDATION_RULES.isNumber,
+      message: "Should be numbers",
+    },
   },
 } as const;
