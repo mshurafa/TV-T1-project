@@ -1,17 +1,8 @@
 import { Logo, Divider } from "components";
-import { usePayInvoice } from "../../contexts/PayInvoice";
-import { useInvoiceDetails } from "../../hooks";
 import { getFullName } from "utils";
+import type { InvoiceDetailsType } from "../../types";
 
-const InvoiceDetails = () => {
-  const { invoiceId } = usePayInvoice();
-  const { invoice, isLoading, error } = useInvoiceDetails(invoiceId);
-
-  if (isLoading || !invoice) return <>Loading...</>;
-  if (error) <>Something went wrong {error.message}</>;
-
-  const { fixed, freelancer } = invoice.invoice;
-
+const InvoiceDetails: InvoiceDetailsType = ({ details, loading }) => {
   return (
     <>
       <div className="flex justify-between items-center">
@@ -25,19 +16,27 @@ const InvoiceDetails = () => {
       </div>
 
       <Divider />
-
-      {fixed.map((item) => (
-        <div key={item._id} className="flex justify-between">
-          <p className="font-medium">{item.itemName}</p>
-          <span className="text-base font-medium">${item.price}</span>
-        </div>
-      ))}
-      <span className="block text-xs leading-3 font-normal">
-        by{" "}
-        {freelancer
-          ? getFullName(freelancer?.firstName, freelancer?.lastName)
-          : ""}
-      </span>
+      {loading || !details ? (
+        <p className="mt-4 text-sm text-gray-500">Loading...</p>
+      ) : (
+        <>
+          {details.fixed.map((item) => (
+            <div key={item._id} className="flex justify-between">
+              <p className="font-medium">{item.itemName}</p>
+              <span className="text-base font-medium">${item.price}</span>
+            </div>
+          ))}
+          <span className="block text-xs leading-3 font-normal">
+            by{" "}
+            {details.freelancer
+              ? getFullName(
+                  details.freelancer?.firstName,
+                  details.freelancer?.lastName
+                )
+              : ""}
+          </span>
+        </>
+      )}
     </>
   );
 };
