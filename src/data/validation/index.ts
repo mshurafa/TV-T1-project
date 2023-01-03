@@ -3,7 +3,7 @@ export const VALIDATION_RULES = {
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
   password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*$/,
   isNumber: /^\d+$/,
-  isCharacters: /^[a-zA-Zء-ي]+$/, // event arabic characters allowed
+  isCharacters: /^[a-z A-Z ء-ي]+$/, // event arabic characters allowed
 } as const;
 
 export const FORM_VALIDATION = {
