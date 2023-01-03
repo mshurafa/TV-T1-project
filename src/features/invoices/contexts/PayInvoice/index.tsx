@@ -55,7 +55,7 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
       }
     });
     setSteps(updatedSteps);
-  }, [currentStep.id, nextStep.id, steps]);
+  }, [currentStep.id, nextStep?.id, steps]);
 
   const backActionHandler = useCallback(() => {
     const updatedSteps = steps.map((step) => {
