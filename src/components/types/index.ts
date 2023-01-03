@@ -170,3 +170,10 @@ export type StepperProgressBarType = FC<StepperProgressBarProps>;
 
 export interface DividerProps extends DivElementType {}
 export type DividerType = FC<DividerProps>;
+
+interface StepperActionsProps {
+  nextButtonText?: string;
+  nexButtonLoading?: boolean;
+}
+
+export type StepperActionsType = FC<StepperActionsProps>;

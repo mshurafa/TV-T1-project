@@ -1,10 +1,10 @@
 import Button from "../Button";
 import { useStepperContext } from "./index";
+import type { StepperActionsType } from "../types";
 
-export const Actions = ({
+export const Actions: StepperActionsType = ({
   nextButtonText = "Next",
-}: {
-  nextButtonText?: string;
+  nexButtonLoading = false,
 }) => {
   const { steps, activeStep, onChange } = useStepperContext();
   const isLastStep = steps.length - 1 === activeStep;
@@ -31,6 +31,7 @@ export const Actions = ({
           className="max-w-[150px] border"
           fullWidth
           onClick={onNextClick}
+          loading={nexButtonLoading}
         >
           {nextButtonText}
         </Button>
