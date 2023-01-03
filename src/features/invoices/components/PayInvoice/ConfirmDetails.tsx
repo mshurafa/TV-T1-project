@@ -1,9 +1,11 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 import useForm, { Controller } from "lib/react-hook-form";
 import { Input, Select, PhoneInput, Button } from "components";
 import InvoiceDetails from "./InvoiceDetails";
 import { countriesList, FORM_VALIDATION } from "data";
 import { getFieldHelperText } from "utils";
+import { usePayInvoice } from "../../contexts/PayInvoice";
+import { useInvoiceDetails } from "../../hooks";
 import type {
   ConfirmDetailsProps,
   ConfirmDetailsInputsType,
@@ -11,12 +13,15 @@ import type {
 
 const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
   ({ onSubmit }, ref) => {
+    const { invoiceId } = usePayInvoice();
+    const { data, isLoading } = useInvoiceDetails(invoiceId);
     const {
       register,
       handleSubmit,
       formState: { errors },
       control,
       clearErrorOnChange,
+      setValue,
     } = useForm<ConfirmDetailsInputsType>();
 
     const onSubmitHandler = handleSubmit((data) => {
@@ -24,9 +29,24 @@ const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
       onSubmit();
     });
 
+    useEffect(() => {
+      if (data) {
+        const {
+          client: { firstName, lastName, email, address },
+        } = data.invoice;
+        setValue("firstName", firstName);
+        setValue("lastName", lastName);
+        setValue("email", email);
+        setValue("city", address.city);
+        setValue("state", address.state);
+        setValue("country", address.country);
+        setValue("zip", address.zipCode);
+      }
+    }, [data, setValue]);
+
     return (
       <>
-        <InvoiceDetails />
+        <InvoiceDetails details={data?.invoice} loading={isLoading} />
         <h2 className="mt-8 mb-6">Confirm Details</h2>
         <form onSubmit={onSubmitHandler}>
           <div className="flex flex-wrap sm:flex-nowrap sm:gap-3">
