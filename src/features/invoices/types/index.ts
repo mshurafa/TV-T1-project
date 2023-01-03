@@ -101,7 +101,7 @@ export type InvoiceType = {
   _id: string;
   client: ClientType;
   fixed: InvoiceItemType[];
-  freelancer: FreelancerType;
+  freelancer?: FreelancerType;
   subTotal: number;
   hashCode: string;
   status: "unpaid" | "paid";
