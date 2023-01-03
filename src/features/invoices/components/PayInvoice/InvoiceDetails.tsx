@@ -1,10 +1,16 @@
 import { Logo, Divider } from "components";
 import { usePayInvoice } from "../../contexts/PayInvoice";
 import { useInvoiceDetails } from "../../hooks";
+import { getFullName } from "utils";
 
 const InvoiceDetails = () => {
   const { invoiceId } = usePayInvoice();
   const { invoice, isLoading, error } = useInvoiceDetails(invoiceId);
+
+  if (isLoading || !invoice) return <>Loading...</>;
+  if (error) <>Something went wrong {error.message}</>;
+
+  const { fixed, freelancer } = invoice.invoice;
 
   return (
     <>
@@ -20,15 +26,18 @@ const InvoiceDetails = () => {
 
       <Divider />
 
-      <div className="flex justify-between mb-3">
-        <p className="font-medium">
-          React native mobile app developments
-          <span className="block text-xs leading-3 font-normal">
-            by Omar Ziara
-          </span>
-        </p>
-        <span className="text-base font-medium">$500</span>
-      </div>
+      {fixed.map((item) => (
+        <div key={item._id} className="flex justify-between">
+          <p className="font-medium">{item.itemName}</p>
+          <span className="text-base font-medium">${item.price}</span>
+        </div>
+      ))}
+      <span className="block text-xs leading-3 font-normal">
+        by{" "}
+        {freelancer
+          ? getFullName(freelancer?.firstName, freelancer?.lastName)
+          : ""}
+      </span>
     </>
   );
 };
