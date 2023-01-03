@@ -11,7 +11,7 @@ export const useInvoiceDetails = (id: string | undefined) => {
     id ? API_SERVICES_URLS.CLIENT.INVOICE_DETAILS(id) : null,
     invoiceDetailsFetcher
   );
-  return { invoice: data?.data, error, isLoading };
+  return { data: data?.data, error, isLoading };
 };
 
 export default useInvoiceDetails;
