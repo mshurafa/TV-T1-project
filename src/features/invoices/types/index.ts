@@ -113,3 +113,10 @@ export type InvoiceDetailsData = {
 };
 
 export type InvoiceDetailsResponse = APIResponseType<InvoiceDetailsData>;
+
+interface InvoiceDetailsProps {
+  details?: InvoiceType;
+  loading: boolean;
+}
+
+export type InvoiceDetailsType = FC<InvoiceDetailsProps>;
