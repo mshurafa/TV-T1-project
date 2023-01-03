@@ -61,7 +61,11 @@ export const Step: StepType = ({
 
       if (step.active) {
         stepBulletContent = (
-          <div className="h-3 w-3 bg-indigo-700 rounded-full" />
+          <div
+            className={`h-3 w-3 rounded-full ${
+              step.active && step.completed ? "bg-white" : "bg-indigo-700"
+            }`}
+          />
         );
       }
       classNames.bullet += " bg-white";
