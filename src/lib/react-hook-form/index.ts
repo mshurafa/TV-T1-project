@@ -7,7 +7,9 @@ const useCustomForm = <
 >(
   props?: UseFormProps<TFieldValues, TContext>
 ) => {
-  const defaultProps = props ?? { reValidateMode: "onSubmit" };
+  const defaultProps: UseFormProps<TFieldValues, TContext> = props
+    ? { ...props, reValidateMode: props.reValidateMode || "onSubmit" }
+    : { reValidateMode: "onSubmit" };
 
   const formData = useForm<TFieldValues, TContext>(defaultProps);
 
