@@ -13,7 +13,12 @@ import Preview from "../../components/PayInvoice/Preview";
 import Payment from "../../components/PayInvoice/Payment";
 import Confirmation from "../../components/PayInvoice/Confirmation";
 import { PAY_INVOICE_STEPS } from "../../data";
-import type { PayInvoiceContextType, PayInvoiceStateType } from "../../types";
+import { useInvoiceDetails } from "../../hooks";
+import type {
+  PayInvoiceContextType,
+  PayInvoiceStateType,
+  ConfirmDetailsInputsType,
+} from "../../types";
 import type { StepperOnChangeType } from "components/types";
 
 const PayInvoiceContext = createContext<PayInvoiceContextType>({
@@ -29,6 +34,10 @@ const PayInvoiceContext = createContext<PayInvoiceContextType>({
     nextButtonText: "",
   },
   onStepperChange: () => {},
+  invoiceData: {
+    data: undefined,
+    isLoading: true,
+  },
 });
 
 export const usePayInvoice = () => useContext(PayInvoiceContext);
@@ -37,6 +46,9 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
   const [steps, setSteps] = useState(PAY_INVOICE_STEPS);
   const confirmDetailsFormRef = useRef<HTMLButtonElement>(null);
   const { query } = useRouter();
+  const invoiceId = (query.invoiceId as string) || undefined;
+  const { data: invoice, isLoading: invoiceLoading } =
+    useInvoiceDetails(invoiceId);
   const activeStepIndex = steps.findIndex((step) => step.active);
   const currentStep = steps[activeStepIndex];
   const nextStep = steps[activeStepIndex + 1];
@@ -71,7 +83,11 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
   }, [currentStep.id, previousStep?.id, steps]);
 
   const onSubmitConfirmDetails = useCallback(
-    () => nextActionHandler(),
+    (data: ConfirmDetailsInputsType) => {
+      console.log("🚀 ~ file: index.tsx:155 ~ data", data);
+      //call mutate API here
+      nextActionHandler();
+    },
     [nextActionHandler]
   );
 
@@ -107,7 +123,7 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
 
   const value: PayInvoiceContextType = useMemo(
     () => ({
-      invoiceId: query.invoiceId as string,
+      invoiceId,
       stepsData: {
         steps,
         activeStepIndex,
@@ -118,10 +134,14 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
         isLastStep,
         nextButtonText,
       },
+      invoiceData: {
+        data: invoice,
+        isLoading: invoiceLoading,
+      },
       onStepperChange,
     }),
     [
-      query.invoiceId,
+      invoiceId,
       steps,
       activeStepIndex,
       stepContent,
@@ -131,6 +151,8 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
       isLastStep,
       nextButtonText,
       onStepperChange,
+      invoice,
+      invoiceLoading,
     ]
   );
 
