@@ -27,7 +27,7 @@ Start the dev server
 ```bash
   npm run dev
   # or
-  npm dev
+  npm run dev
   # or
   yarn dev
 ```
