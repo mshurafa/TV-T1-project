@@ -101,6 +101,8 @@ export type InvoiceItemType = {
   price: number;
 };
 
+type InvoiceStatusType = "unpaid" | "paid";
+
 export type InvoiceType = {
   _id: string;
   client: ClientType;
@@ -108,12 +110,14 @@ export type InvoiceType = {
   freelancer?: FreelancerType;
   subTotal: number;
   hashCode: string;
-  status: "unpaid" | "paid";
+  status: InvoiceStatusType;
 };
+
+type InvoiceVariantType = "invoice" | "service";
 
 export type InvoiceDetailsData = {
   invoice: InvoiceType;
-  type: "invoice" | "service";
+  type: InvoiceVariantType;
 };
 
 export type InvoiceDetailsResponse = APIResponseType<InvoiceDetailsData>;
@@ -124,3 +128,9 @@ interface InvoiceDetailsProps {
 }
 
 export type InvoiceDetailsType = FC<InvoiceDetailsProps>;
+
+export type CompleteClientInvoiceArgType = {
+  client: ClientType;
+  type: InvoiceVariantType;
+  hashCode: string;
+};
