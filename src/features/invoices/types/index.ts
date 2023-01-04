@@ -68,6 +68,10 @@ export type PayInvoiceContextType = {
     nextButtonText: string;
   };
   onStepperChange: StepperOnChangeType;
+  invoiceData: {
+    data: InvoiceDetailsData | undefined | null;
+    isLoading: boolean;
+  };
 };
 
 export type ClientType = {
