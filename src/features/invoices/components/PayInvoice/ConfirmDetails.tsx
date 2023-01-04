@@ -5,7 +5,6 @@ import InvoiceDetails from "./InvoiceDetails";
 import { countriesList, FORM_VALIDATION } from "data";
 import { getFieldHelperText } from "utils";
 import { usePayInvoice } from "../../contexts/PayInvoice";
-import { useInvoiceDetails } from "../../hooks";
 import type {
   ConfirmDetailsProps,
   ConfirmDetailsInputsType,
@@ -13,8 +12,9 @@ import type {
 
 const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
   ({ onSubmit }, ref) => {
-    const { invoiceId } = usePayInvoice();
-    const { data, isLoading } = useInvoiceDetails(invoiceId);
+    const {
+      invoiceData: { data, isLoading },
+    } = usePayInvoice();
     const {
       register,
       handleSubmit,
