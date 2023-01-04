@@ -65,11 +65,14 @@ export type PayInvoiceContextType = {
     nextStep: PayInvoiceStepType | undefined;
     previousStep: PayInvoiceStepType | undefined;
     isLastStep: boolean;
-    nextButtonText: string;
   };
   onStepperChange: StepperOnChangeType;
   invoiceData: {
     data: InvoiceDetailsData | undefined | null;
+    isLoading: boolean;
+  };
+  nextButton: {
+    label: string;
     isLoading: boolean;
   };
 };
