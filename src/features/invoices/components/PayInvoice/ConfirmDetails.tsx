@@ -24,10 +24,7 @@ const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
       setValue,
     } = useForm<ConfirmDetailsInputsType>();
 
-    const onSubmitHandler = handleSubmit((data) => {
-      // maybe call API to send the data then store it inside the local storage to save the user progress
-      onSubmit();
-    });
+    const onSubmitHandler = handleSubmit(onSubmit);
 
     useEffect(() => {
       if (data) {
