@@ -134,3 +134,7 @@ export type CompleteClientInvoiceArgType = {
   type: InvoiceVariantType;
   hashCode: string;
 };
+
+export type CompleteClientInvoiceResponse = APIResponseType<{
+  invoiceId: string;
+}>;
