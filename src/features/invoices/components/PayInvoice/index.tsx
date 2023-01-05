@@ -5,14 +5,9 @@ import type { PayInvoiceType } from "../../types";
 
 export const PayInvoice: PayInvoiceType = ({ className, cardClassName }) => {
   const {
-    stepsData: {
-      steps,
-      activeStepIndex,
-      stepContent,
-      isLastStep,
-      nextButtonText,
-    },
+    stepsData: { steps, activeStepIndex, stepContent, isLastStep },
     onStepperChange,
+    nextButton,
   } = usePayInvoice();
 
   const classNames = useMemo(() => {
@@ -36,7 +31,12 @@ export const PayInvoice: PayInvoiceType = ({ className, cardClassName }) => {
         <Stepper.ProgressBar className="mt-6 mb-20" />
         <Stepper.Content className={classNames.card}>
           {stepContent}
-          {!isLastStep && <Stepper.Actions nextButtonText={nextButtonText} />}
+          {!isLastStep && (
+            <Stepper.Actions
+              nextButtonText={nextButton.label}
+              nexButtonLoading={nextButton.isLoading}
+            />
+          )}
         </Stepper.Content>
       </Stepper>
     </div>
