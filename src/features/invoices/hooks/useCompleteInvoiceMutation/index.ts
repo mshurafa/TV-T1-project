@@ -14,7 +14,7 @@ const completeInvoice: MutationFetcher<
 
 export const useCompleteInvoiceMutation = (id: string | undefined) => {
   const { trigger, data, error, isMutating } = useSWRMutation(
-    API_SERVICES_URLS.CLIENT.INVOICE_DETAILS(id || ""),
+    API_SERVICES_URLS.CLIENT.COMPLETE_INVOICE(id || ""),
     completeInvoice
   );
   return { trigger, data: data?.data, error, isLoading: isMutating };
