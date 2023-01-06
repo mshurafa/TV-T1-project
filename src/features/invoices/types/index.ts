@@ -133,7 +133,7 @@ interface InvoiceDetailsProps {
 export type InvoiceDetailsType = FC<InvoiceDetailsProps>;
 
 export type CompleteClientInvoiceArgType = {
-  client: ClientType;
+  client: Omit<ClientType, "_id">;
   type: InvoiceVariantType;
   hashCode: string;
 };
