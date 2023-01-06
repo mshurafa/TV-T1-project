@@ -16,6 +16,7 @@ export const PhoneInput: PhoneInputType = ({
   country = "ps",
   preferredCountries = [],
   enableSearch = true,
+  inputProps,
   ...rest
 }) => {
   usePhoneInputMutation();
@@ -59,6 +60,7 @@ export const PhoneInput: PhoneInputType = ({
       <ReactPhoneInput
         inputProps={{
           id: id,
+          ...inputProps,
         }}
         specialLabel=""
         inputClass={classNames.input}
