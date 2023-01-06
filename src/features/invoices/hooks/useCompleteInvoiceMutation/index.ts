@@ -17,7 +17,12 @@ export const useCompleteInvoiceMutation = (id: string | undefined) => {
     API_SERVICES_URLS.CLIENT.COMPLETE_INVOICE(id || ""),
     completeInvoice
   );
-  return { trigger, data: data?.data, error, isLoading: isMutating };
+  return {
+    triggerCompleteInvoice: trigger,
+    data: data?.data,
+    error,
+    isLoading: isMutating,
+  };
 };
 
 export default useCompleteInvoiceMutation;
