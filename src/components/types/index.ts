@@ -177,3 +177,11 @@ interface StepperActionsProps {
 }
 
 export type StepperActionsType = FC<StepperActionsProps>;
+
+interface SkeletonProps extends DivElementType {
+  width?: number;
+  height?: number;
+  variant?: "circular" | "rectangular" | "rounded";
+}
+
+export type SkeletonType = FC<SkeletonProps>;
