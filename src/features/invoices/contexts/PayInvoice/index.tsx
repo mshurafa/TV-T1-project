@@ -34,7 +34,7 @@ const PayInvoiceContext = createContext<PayInvoiceContextType>({
     isLastStep: false,
   },
   onStepperChange: () => {},
-  invoiceData: {
+  invoiceDetails: {
     data: undefined,
     isLoading: true,
     error: "",
@@ -53,7 +53,7 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
   const { query, replace } = useRouter();
   const invoiceId = (query.invoiceId as string) || undefined;
   const {
-    data: invoice,
+    invoiceDetails,
     isLoading: invoiceLoading,
     error: invoiceError,
   } = useInvoiceDetails(invoiceId);
@@ -108,10 +108,10 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
               country: data.country,
             },
           },
-          type: invoice?.type || "invoice",
-          hashCode: invoice?.invoice.hashCode || "",
+          type: invoiceDetails?.type || "invoice",
+          hashCode: invoiceDetails?.invoice.hashCode || "",
         });
-        if (invoice?.type === "service") {
+        if (invoiceDetails?.type === "service") {
           replace(
             URL_PATHS.INVOICES.PAY_INVOICE(result?.data?.invoiceId as string),
             undefined,
@@ -125,7 +125,7 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
         console.log("😥 ~ triggerCompleteInvoice ~ error", error);
       }
     },
-    [nextActionHandler, triggerCompleteInvoice, invoice, replace]
+    [nextActionHandler, triggerCompleteInvoice, invoiceDetails, replace]
   );
 
   const onStepperChange: StepperOnChangeType = useCallback(
@@ -170,8 +170,8 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
         previousStep,
         isLastStep,
       },
-      invoiceData: {
-        data: invoice,
+      invoiceDetails: {
+        data: invoiceDetails,
         isLoading: invoiceLoading,
         error: invoiceError?.response?.data?.message || undefined,
       },
@@ -192,7 +192,7 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
       isLastStep,
       nextButtonText,
       onStepperChange,
-      invoice,
+      invoiceDetails,
       invoiceLoading,
       nextButtonLoading,
       invoiceError,

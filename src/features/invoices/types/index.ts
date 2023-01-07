@@ -67,7 +67,7 @@ export type PayInvoiceContextType = {
     isLastStep: boolean;
   };
   onStepperChange: StepperOnChangeType;
-  invoiceData: {
+  invoiceDetails: {
     data: InvoiceDetailsData | undefined | null;
     isLoading: boolean;
     error: string;

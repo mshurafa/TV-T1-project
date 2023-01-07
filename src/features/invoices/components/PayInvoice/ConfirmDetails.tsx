@@ -13,7 +13,7 @@ import type {
 const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
   ({ onSubmit }, ref) => {
     const {
-      invoiceData: { data, isLoading, error },
+      invoiceDetails: { data, isLoading, error },
     } = usePayInvoice();
     const {
       register,
