@@ -143,3 +143,24 @@ export type CompleteClientInvoiceArgType = {
 export type CompleteClientInvoiceResponse = APIResponseType<{
   invoiceId: string;
 }>;
+
+type JobType = "fixed" | "hourly";
+
+export type InvoicePreviewData = {
+  _id: string;
+  client: ClientType;
+  jobType: JobType;
+  currency: string;
+  fixed: InvoiceItemType[];
+  subTotal: number;
+  hashCode: string;
+  invoiceNo: string;
+  status: InvoiceStatusType;
+  createdAt: string;
+  updatedAt: string;
+  paymentDetails: string;
+  otherPaymentMethod: null; // for now
+  paymentMethod: null; // for now
+};
+
+export type InvoicePreviewResponse = APIResponseType<InvoicePreviewData>;
