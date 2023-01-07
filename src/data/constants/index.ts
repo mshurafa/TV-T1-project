@@ -16,6 +16,7 @@ export const API_SERVICES_URLS = {
     INVOICE_DETAILS: (id: string) => `/invoice/client/${id}`,
     COMPLETE_INVOICE: (id: string) => `/invoice/client/complete-invoice/${id}`,
     INVOICE_PREVIEW: (id: string) => `/invoice/client/preview/${id}`,
+    PAYMENT_OPTIONS: (id: string) => `/invoice/client/payment-options/${id}`,
   },
 } as const;
 
