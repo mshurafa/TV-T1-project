@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Divider, Button, Image } from "components";
-import { UserIcon, BuildingOfficeIcon } from "@heroicons/react/24/outline";
 import { PAYMENT_METHODS, CLIENT_FEES } from "../../data";
 import { PaymentMethodValue, ClientFeesValue } from "../../types";
 
