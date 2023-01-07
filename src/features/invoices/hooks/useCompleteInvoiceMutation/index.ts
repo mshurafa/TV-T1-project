@@ -6,7 +6,7 @@ import type {
   CompleteClientInvoiceArgType,
 } from "../../types";
 
-const completeInvoice: MutationFetcher<
+const completeInvoiceFetcher: MutationFetcher<
   CompleteClientInvoiceResponse,
   CompleteClientInvoiceArgType,
   string
@@ -15,7 +15,7 @@ const completeInvoice: MutationFetcher<
 export const useCompleteInvoiceMutation = (id: string | undefined) => {
   const { trigger, data, error, isMutating } = useSWRMutation(
     API_SERVICES_URLS.CLIENT.COMPLETE_INVOICE(id || ""),
-    completeInvoice
+    completeInvoiceFetcher
   );
   return {
     triggerCompleteInvoice: trigger,
