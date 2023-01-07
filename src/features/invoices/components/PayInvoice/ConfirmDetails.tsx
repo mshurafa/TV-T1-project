@@ -13,7 +13,7 @@ import type {
 const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
   ({ onSubmit }, ref) => {
     const {
-      invoiceData: { data, isLoading },
+      invoiceData: { data, isLoading, error },
     } = usePayInvoice();
     const {
       register,
@@ -43,7 +43,11 @@ const ConfirmDetails = forwardRef<HTMLButtonElement, ConfirmDetailsProps>(
 
     return (
       <>
-        <InvoiceDetails details={data?.invoice} loading={isLoading} />
+        <InvoiceDetails
+          details={data?.invoice}
+          loading={isLoading}
+          error={error}
+        />
         <h2 className="mt-8 mb-6">Confirm Details</h2>
         <form onSubmit={onSubmitHandler}>
           <div className="flex flex-wrap sm:flex-nowrap sm:gap-3">

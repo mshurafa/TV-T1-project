@@ -2,7 +2,37 @@ import { Logo, Divider } from "components";
 import { getFullName } from "utils";
 import type { InvoiceDetailsType } from "../../types";
 
-const InvoiceDetails: InvoiceDetailsType = ({ details, loading }) => {
+const InvoiceDetails: InvoiceDetailsType = ({ details, loading, error }) => {
+  let invoiceItems = <p className="text-sm text-gray-500">Loading...</p>;
+
+  if (!loading && details) {
+    invoiceItems = (
+      <>
+        {details.fixed.map((item) => (
+          <div key={item._id} className="flex justify-between">
+            <p className="font-medium">{item.itemName}</p>
+            <span className="text-base font-medium">${item.price}</span>
+          </div>
+        ))}
+        <span className="block text-xs leading-3 font-normal">
+          by{" "}
+          {details.freelancer
+            ? getFullName(
+                details.freelancer?.firstName,
+                details.freelancer?.lastName
+              )
+            : ""}
+        </span>
+      </>
+    );
+  }
+
+  if (error) {
+    invoiceItems = (
+      <p className="text-sm text-red capitalize">Error: {error}</p>
+    );
+  }
+
   return (
     <>
       <div className="flex justify-between items-center">
@@ -16,27 +46,7 @@ const InvoiceDetails: InvoiceDetailsType = ({ details, loading }) => {
       </div>
 
       <Divider />
-      {loading || !details ? (
-        <p className="mt-4 text-sm text-gray-500">Loading...</p>
-      ) : (
-        <>
-          {details.fixed.map((item) => (
-            <div key={item._id} className="flex justify-between">
-              <p className="font-medium">{item.itemName}</p>
-              <span className="text-base font-medium">${item.price}</span>
-            </div>
-          ))}
-          <span className="block text-xs leading-3 font-normal">
-            by{" "}
-            {details.freelancer
-              ? getFullName(
-                  details.freelancer?.firstName,
-                  details.freelancer?.lastName
-                )
-              : ""}
-          </span>
-        </>
-      )}
+      {invoiceItems}
     </>
   );
 };

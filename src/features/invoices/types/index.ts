@@ -70,6 +70,7 @@ export type PayInvoiceContextType = {
   invoiceData: {
     data: InvoiceDetailsData | undefined | null;
     isLoading: boolean;
+    error: string;
   };
   nextButton: {
     label: string;
@@ -126,8 +127,9 @@ export type InvoiceDetailsData = {
 export type InvoiceDetailsResponse = APIResponseType<InvoiceDetailsData>;
 
 interface InvoiceDetailsProps {
-  details?: InvoiceType;
+  details: InvoiceType | undefined;
   loading: boolean;
+  error: string;
 }
 
 export type InvoiceDetailsType = FC<InvoiceDetailsProps>;
