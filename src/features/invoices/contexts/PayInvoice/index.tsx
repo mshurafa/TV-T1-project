@@ -12,6 +12,7 @@ import ConfirmDetails from "../../components/PayInvoice/ConfirmDetails";
 import Preview from "../../components/PayInvoice/Preview";
 import Payment from "../../components/PayInvoice/Payment";
 import Confirmation from "../../components/PayInvoice/Confirmation";
+import { URL_PATHS } from "data";
 import { PAY_INVOICE_STEPS } from "../../data";
 import { useInvoiceDetails, useCompleteInvoiceMutation } from "../../hooks";
 import type {
@@ -36,6 +37,7 @@ const PayInvoiceContext = createContext<PayInvoiceContextType>({
   invoiceData: {
     data: undefined,
     isLoading: true,
+    error: "",
   },
   nextButton: {
     label: "",
@@ -48,11 +50,14 @@ export const usePayInvoice = () => useContext(PayInvoiceContext);
 const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
   const [steps, setSteps] = useState(PAY_INVOICE_STEPS);
   const confirmDetailsFormRef = useRef<HTMLButtonElement>(null);
-  const { query } = useRouter();
+  const { query, replace } = useRouter();
   const invoiceId = (query.invoiceId as string) || undefined;
-  const { data: invoice, isLoading: invoiceLoading } =
-    useInvoiceDetails(invoiceId);
-  const { trigger, isLoading: confirmDetailsLoading } =
+  const {
+    data: invoice,
+    isLoading: invoiceLoading,
+    error: invoiceError,
+  } = useInvoiceDetails(invoiceId);
+  const { triggerCompleteInvoice, isLoading: confirmDetailsLoading } =
     useCompleteInvoiceMutation(invoiceId);
   const activeStepIndex = steps.findIndex((step) => step.active);
   const currentStep = steps[activeStepIndex];
@@ -89,12 +94,38 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
   }, [currentStep.id, previousStep?.id, steps]);
 
   const onSubmitConfirmDetails = useCallback(
-    (data: ConfirmDetailsInputsType) => {
-      console.log("🚀 ~ file: index.tsx:155 ~ data", data);
-      //call mutate API here
-      nextActionHandler();
+    async (data: ConfirmDetailsInputsType) => {
+      try {
+        const result = await triggerCompleteInvoice({
+          client: {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            address: {
+              city: data.city,
+              state: data.state,
+              zipCode: data.zip,
+              country: data.country,
+            },
+          },
+          type: invoice?.type || "invoice",
+          hashCode: invoice?.invoice.hashCode || "",
+        });
+        if (invoice?.type === "service") {
+          replace(
+            URL_PATHS.INVOICES.PAY_INVOICE(result?.data?.invoiceId as string),
+            undefined,
+            {
+              shallow: true,
+            }
+          );
+        }
+        nextActionHandler();
+      } catch (error) {
+        console.log("😥 ~ triggerCompleteInvoice ~ error", error);
+      }
     },
-    [nextActionHandler]
+    [nextActionHandler, triggerCompleteInvoice, invoice, replace]
   );
 
   const onStepperChange: StepperOnChangeType = useCallback(
@@ -142,6 +173,7 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
       invoiceData: {
         data: invoice,
         isLoading: invoiceLoading,
+        error: invoiceError?.response?.data?.message || undefined,
       },
       onStepperChange,
       nextButton: {
@@ -163,6 +195,7 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
       invoice,
       invoiceLoading,
       nextButtonLoading,
+      invoiceError,
     ]
   );
 
