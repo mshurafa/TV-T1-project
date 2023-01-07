@@ -129,7 +129,7 @@ export type InvoiceDetailsResponse = APIResponseType<InvoiceDetailsData>;
 interface InvoiceDetailsProps {
   details: InvoiceType | undefined;
   loading: boolean;
-  error: string;
+  error: string | undefined;
 }
 
 export type InvoiceDetailsType = FC<InvoiceDetailsProps>;
