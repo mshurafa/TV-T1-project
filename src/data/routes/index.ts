@@ -10,6 +10,7 @@ export const URL_PATHS = {
   INVOICES: {
     INDEX: "/invoices",
     CREATE: "/invoices/new",
+    PAY_INVOICE: (id: string) => `/invoices/pay-invoice/${id}`,
   },
   VERIFICATION: {
     INDEX: "/verification",
