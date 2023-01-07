@@ -2,7 +2,7 @@ import type { HTMLProps, FC, ReactNode, RefAttributes } from "react";
 import type { ImageProps as NextImageProps } from "next/image";
 import type { LinkProps as NextLinkProps } from "next/link";
 import type { PhoneInputProps as ReactPhoneInputProps } from "react-phone-input-2";
-import type { DivElementType, ChildrenProp } from "types";
+import type { DivElementType, SpanElementType, ChildrenProp } from "types";
 
 //@TODO: Create custom type for the duplicated properties like: helperText etc...
 
@@ -178,7 +178,7 @@ interface StepperActionsProps {
 
 export type StepperActionsType = FC<StepperActionsProps>;
 
-interface SkeletonProps extends DivElementType {
+interface SkeletonProps extends SpanElementType {
   width?: number;
   height?: number;
   variant?: "circular" | "rectangular" | "rounded";
