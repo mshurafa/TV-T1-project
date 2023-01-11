@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Divider, Image, ToggleButtons } from "components";
 import { PAYMENT_METHODS, CLIENT_FEES } from "../../data";
+import { usePayInvoice } from "../../contexts/PayInvoice";
+import { usePaymentOptions } from "../../hooks";
 import type { PaymentMethodValue, ClientFeesValue } from "../../types";
 
 const Payment = () => {
@@ -8,6 +10,16 @@ const Payment = () => {
     ""
   );
   const [clientFee, setClientFee] = useState<ClientFeesValue>();
+  const { invoiceId } = usePayInvoice();
+  const { paymentOptions } = usePaymentOptions(invoiceId);
+  console.log(
+    "🚀 ~ file: Payment.tsx:15 ~ Payment ~ paymentOptions",
+    paymentOptions
+  );
+
+  const getFeeValue = (value: ClientFeesValue) => {
+    // if (value === 0) return paymentOptions?.stripeOptionFee.none;
+  };
 
   return (
     <>
@@ -60,7 +72,10 @@ const Payment = () => {
                 <span className="flex items-center">
                   <span className="flex-1 text-left pl-5 text-sm">
                     {fee.label}
-                    <span className="block text-xs">{fee.caption}</span>
+                    <span className="block text-xs">
+                      {paymentOptions?.currency}
+                      {getFeeValue(fee.value)}
+                    </span>
                   </span>
                   <Image
                     alt={fee.label}
