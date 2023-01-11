@@ -45,7 +45,7 @@ export type PaymentMethodType = {
   icon: string;
 };
 
-export type ClientFeesType = Omit<PaymentMethodType, "value"> & {
+export type ClientFeesType = Omit<PaymentMethodType, "value" | "caption"> & {
   value: ClientFeesValue;
 };
 
