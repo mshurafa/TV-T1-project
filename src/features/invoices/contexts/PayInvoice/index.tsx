@@ -4,7 +4,6 @@ import {
   useState,
   useMemo,
   useRef,
-  useEffect,
   useCallback,
 } from "react";
 import { useRouter } from "next/router";
@@ -198,12 +197,6 @@ const PayInvoiceState: PayInvoiceStateType = ({ children }) => {
       invoiceError,
     ]
   );
-
-  useEffect(() => {
-    () => {
-      // clean storage data
-    };
-  }, []);
 
   return (
     <PayInvoiceContext.Provider value={value}>
