@@ -165,18 +165,16 @@ export type InvoicePreviewData = {
 
 export type InvoicePreviewResponse = APIResponseType<InvoicePreviewData>;
 
+export type PaymentOptionFee = {
+  fullFee: number;
+  halfFee: number;
+  none: number;
+};
+
 export type PaymentOptionsData = {
   currency: string;
-  stripeOptionFee: {
-    fullFee: number;
-    halfFee: number;
-    none: number;
-  };
-  paypalOptionFee: {
-    fullFee: number;
-    halfFee: number;
-    none: number;
-  };
+  stripeOptionFee: PaymentOptionFee;
+  paypalOptionFee: PaymentOptionFee;
 };
 
 export type PaymentOptionsResponse = APIResponseType<PaymentOptionsData>;
