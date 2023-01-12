@@ -35,7 +35,7 @@ export type PayInvoiceStepsType = PayInvoiceStepType[];
 
 export type PaymentMethodValue = "creditCard" | "paypal" | "bankTransfer";
 
-export type ClientFeesValue = 100 | 50 | 0;
+export type ClientFeesValue = "fullFee" | "halfFee" | "none";
 
 export type PaymentMethodType = {
   id: number;

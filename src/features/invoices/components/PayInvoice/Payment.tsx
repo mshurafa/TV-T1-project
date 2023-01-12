@@ -56,8 +56,8 @@ const Payment = () => {
         <Divider />
         <div className="my-6 flex p-1 gap-3">
           <ToggleButtons
-            value={`${clientFee}`}
-            onChange={(value) => setClientFee(+value as ClientFeesValue)}
+            value={clientFee}
+            onChange={(value) => setClientFee(value as ClientFeesValue)}
           >
             {CLIENT_FEES.map((fee) => (
               <ToggleButtons.Button key={fee.id} value={`${fee.value}`}>

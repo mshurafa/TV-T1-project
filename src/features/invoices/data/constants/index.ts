@@ -59,19 +59,19 @@ export const CLIENT_FEES: ClientFeesType[] = [
   {
     id: 1,
     label: "%100 of Fees",
-    value: 100,
+    value: "fullFee",
     icon: "/assets/img/happy.png",
   },
   {
     id: 2,
     label: "%50 of Fees",
-    value: 50,
+    value: "halfFee",
     icon: "/assets/img/happy-face.png",
   },
   {
     id: 3,
     label: "%0 of Fees",
-    value: 0,
+    value: "none",
     icon: "/assets/img/sad-face.png",
   },
 ];
