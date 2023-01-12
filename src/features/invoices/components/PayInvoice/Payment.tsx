@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { Divider, Image, ToggleButtons } from "components";
 import { PAYMENT_METHODS, CLIENT_FEES } from "../../data";
+import { usePayInvoice } from "../../contexts/PayInvoice";
+import { usePaymentOptions } from "../../hooks";
+import { calcFeeValue, getPaymentOption } from "../../utils";
 import type { PaymentMethodValue, ClientFeesValue } from "../../types";
 
 const Payment = () => {
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethodValue | "">(
-    ""
-  );
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethodValue>();
   const [clientFee, setClientFee] = useState<ClientFeesValue>();
+  const { invoiceId } = usePayInvoice();
+  const { paymentOptions } = usePaymentOptions(invoiceId);
+  const selectedPaymentOption = getPaymentOption(paymentMethod, paymentOptions);
 
   return (
     <>
@@ -60,7 +64,10 @@ const Payment = () => {
                 <span className="flex items-center">
                   <span className="flex-1 text-left pl-5 text-sm">
                     {fee.label}
-                    <span className="block text-xs">{fee.caption}</span>
+                    <span className="block text-xs">
+                      {paymentOptions?.currency}{" "}
+                      {calcFeeValue(fee.value, selectedPaymentOption)}
+                    </span>
                   </span>
                   <Image
                     alt={fee.label}
