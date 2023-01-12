@@ -3,7 +3,7 @@ import ToggleButton from "./ToggleButton";
 import type { ToggleButtonsProps, ToggleButtonsContextType } from "../types";
 
 const ToggleButtonsContext = createContext<ToggleButtonsContextType>({
-  value: "",
+  value: undefined,
   onChange: () => {},
 });
 

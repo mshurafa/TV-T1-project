@@ -187,7 +187,7 @@ interface SkeletonProps extends SpanElementType {
 export type SkeletonType = FC<SkeletonProps>;
 
 export interface ToggleButtonsProps extends ChildrenProp {
-  value: string;
+  value: string | undefined;
   onChange: (value: string) => void;
 }
 
@@ -198,6 +198,6 @@ interface ToggleButtonProps extends ButtonProps {
 export type ToggleButtonType = FC<ToggleButtonProps>;
 
 export type ToggleButtonsContextType = {
-  value: string;
+  value: string | undefined;
   onChange: (value: string) => void;
 };
