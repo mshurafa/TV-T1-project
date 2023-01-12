@@ -81,28 +81,6 @@ const Preview = () => {
       <div className="h-px my-3 bg-gray" />
       <div className="ml-auto max-w-max min-w-[160px] text-gray-dark text-sm">
         <p className="flex">
-          Sub Total
-          <span className="ml-auto">
-            {preview ? (
-              `${preview?.currency} ${preview.subTotal}`
-            ) : (
-              <Skeleton width={60} />
-            )}
-          </span>
-        </p>
-        <p className="flex">
-          Fees
-          <span className="ml-auto">
-            {preview ? (
-              `${preview?.currency} ${preview?.subTotal
-                .toString()
-                .replaceAll(/[0-9]/g, "0")}`
-            ) : (
-              <Skeleton width={60} />
-            )}
-          </span>
-        </p>
-        <p className="flex">
           Total
           <span className="ml-auto">
             {preview ? (
