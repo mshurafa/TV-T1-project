@@ -2,16 +2,19 @@ import Button from "../Button";
 import { useStepperContext } from "./index";
 import type { StepperActionsType } from "../types";
 
-export const Actions: StepperActionsType = ({
-  nextButtonText = "Next",
-  nexButtonLoading = false,
-}) => {
+export const Actions: StepperActionsType = ({ nextProps, backProps }) => {
   const { steps, activeStep, onChange } = useStepperContext();
   const isLastStep = steps.length - 1 === activeStep;
 
-  const onBackClick = () => onChange("back");
+  const onBackClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    onChange("back");
+    backProps?.onClick?.(event);
+  };
 
-  const onNextClick = () => onChange("next");
+  const onNextClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    onChange("next");
+    nextProps?.onClick?.(event);
+  };
 
   return (
     <div className="flex gap-4 justify-end">
@@ -20,9 +23,10 @@ export const Actions: StepperActionsType = ({
           buttonSize="small"
           className="max-w-[150px] bg-white text-black border hover:bg-gray-light"
           fullWidth
+          {...backProps}
           onClick={onBackClick}
         >
-          Back
+          {backProps?.children || "Back"}
         </Button>
       )}
       {!isLastStep && (
@@ -30,10 +34,10 @@ export const Actions: StepperActionsType = ({
           buttonSize="small"
           className="max-w-[150px] border"
           fullWidth
+          {...nextProps}
           onClick={onNextClick}
-          loading={nexButtonLoading}
         >
-          {nextButtonText}
+          {nextProps?.children || "Next"}
         </Button>
       )}
     </div>

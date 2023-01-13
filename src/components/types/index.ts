@@ -44,6 +44,7 @@ export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
   buttonSize?: SizeVariantsType;
   fullWidth?: boolean;
   loading?: boolean;
+  ref?: React.Ref<HTMLButtonElement>;
 }
 export interface SelectProps
   extends Omit<HTMLProps<HTMLSelectElement>, "label">,
@@ -172,8 +173,8 @@ export interface DividerProps extends DivElementType {}
 export type DividerType = FC<DividerProps>;
 
 interface StepperActionsProps {
-  nextButtonText?: string;
-  nexButtonLoading?: boolean;
+  nextProps?: ButtonProps;
+  backProps?: ButtonProps;
 }
 
 export type StepperActionsType = FC<StepperActionsProps>;
