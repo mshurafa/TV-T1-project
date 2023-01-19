@@ -3,7 +3,7 @@ import { getFullName } from "utils";
 import { usePayInvoice } from "../../contexts/PayInvoice";
 import { useInvoicePreview } from "../../hooks";
 
-const Preview = () => {
+export const Preview = () => {
   const { invoiceId } = usePayInvoice();
   const { preview } = useInvoicePreview(invoiceId);
   const clientFullName = preview
