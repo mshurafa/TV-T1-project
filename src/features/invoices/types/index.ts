@@ -1,16 +1,20 @@
 import type { FC } from "react";
-import type { StepperOnChangeType } from "components/types";
+import type {
+  StepperOnChangeType,
+  StepperActionsProps,
+} from "components/types";
 import type { APIResponseType, Children } from "types";
 
-interface PayInvoiceProps {
+interface PayInvoiceLayoutProps extends StepperActionsProps {
   className?: string;
   cardClassName?: string;
+  children: Children;
 }
 
-export type PayInvoiceType = FC<PayInvoiceProps>;
+export type PayInvoiceLayoutType = FC<PayInvoiceLayoutProps>;
 
 export interface ConfirmDetailsProps {
-  onSubmit: (data: ConfirmDetailsInputsType) => void;
+  onSubmit: (data: CompleteClientInvoiceArgType) => void;
 }
 
 export type ConfirmDetailsInputsType = {
@@ -60,7 +64,6 @@ export type PayInvoiceContextType = {
   stepsData: {
     steps: PayInvoiceStepsType;
     activeStepIndex: number;
-    stepContent: JSX.Element;
     currentStep: PayInvoiceStepType;
     nextStep: PayInvoiceStepType | undefined;
     previousStep: PayInvoiceStepType | undefined;
@@ -72,10 +75,6 @@ export type PayInvoiceContextType = {
     isLoading: boolean;
     error: string;
   };
-  nextButton: {
-    label: string;
-    isLoading: boolean;
-  };
 };
 
 export type ClientType = {
@@ -83,6 +82,7 @@ export type ClientType = {
   firstName: string;
   lastName: string;
   email: string;
+  mobile: string;
   address: {
     country: string;
     city: string;
