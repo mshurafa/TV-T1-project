@@ -1,1 +1,2 @@
-export * from "./PayInvoice";
+export * from "./PayInvoice/ConfirmDetails";
+export * from "./PayInvoice/Preview";
