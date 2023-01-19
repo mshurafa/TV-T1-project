@@ -1,2 +1,8 @@
 export * from "./components";
-export { default as PayInvoiceState } from "./contexts/PayInvoice";
+export * from "./layouts";
+export * from "./hooks";
+export {
+  default as PayInvoiceState,
+  usePayInvoice,
+} from "./contexts/PayInvoice";
+export type { CompleteClientInvoiceArgType } from "./types";
