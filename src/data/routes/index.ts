@@ -13,6 +13,8 @@ export const URL_PATHS = {
     PAY_INVOICE: {
       CONFIRM_DETAILS: "/invoices/pay-invoice/[invoiceId]/confirm-details",
       PREVIEW_INVOICE: "/invoices/pay-invoice/[invoiceId]/preview-invoice",
+      PAY_INVOICE: "/invoices/pay-invoice/[invoiceId]/pay-invoice",
+      CONFIRMATION: "/invoices/pay-invoice/[invoiceId]/confirmation",
     },
   },
   VERIFICATION: {
