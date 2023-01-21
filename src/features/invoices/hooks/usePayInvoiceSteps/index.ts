@@ -36,7 +36,7 @@ export const usePayInvoiceSteps = (invoiceId: string | undefined) => {
         if (activeStepIndex === index) {
           return { ...step, active: false };
         } else if (activeStepIndex - 1 === index) {
-          return { ...step, active: true };
+          return { ...step, completed: false, active: true };
         }
         return step;
       });
