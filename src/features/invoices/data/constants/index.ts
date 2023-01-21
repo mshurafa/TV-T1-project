@@ -1,3 +1,4 @@
+import { URL_PATHS } from "data";
 import type {
   PayInvoiceStepsType,
   PaymentMethodType,
@@ -7,25 +8,25 @@ import type {
 export const PAY_INVOICE_STEPS: PayInvoiceStepsType = [
   {
     title: "1. Confirm Details",
-    id: "step1",
-    active: true,
+    id: URL_PATHS.INVOICES.PAY_INVOICE.CONFIRM_DETAILS,
+    active: false,
     completed: false,
   },
   {
     title: "2. Preview",
-    id: "step2",
+    id: URL_PATHS.INVOICES.PAY_INVOICE.PREVIEW_INVOICE,
     active: false,
     completed: false,
   },
   {
     title: "3. Pay",
-    id: "step3",
+    id: URL_PATHS.INVOICES.PAY_INVOICE.PAY_INVOICE,
     active: false,
     completed: false,
   },
   {
     title: "4. Confirmation",
-    id: "step4",
+    id: URL_PATHS.INVOICES.PAY_INVOICE.CONFIRMATION,
     active: false,
     completed: false,
   },
