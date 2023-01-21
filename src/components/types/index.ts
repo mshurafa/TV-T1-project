@@ -126,19 +126,19 @@ export interface SvgProps extends React.SVGProps<SVGSVGElement> {}
 
 export type SvgType = FC<SvgProps>;
 
-type Step = {
+export type Step = {
   title: string;
   id: string;
   active: boolean;
   completed: boolean;
 };
 
-export type StepperOnChangeType = (action: "next" | "back") => void;
+export type StepperOnChangeType = (index: number) => void;
 
 export interface StepperProps extends ChildrenProp {
   steps: Step[];
   activeStep: number;
-  onChange: StepperOnChangeType;
+  onChange?: StepperOnChangeType;
 }
 
 export interface StepProps {
@@ -155,7 +155,6 @@ export type StepType = FC<StepProps>;
 export type StepperContextType = {
   activeStep: number;
   steps: Step[];
-  onChange: StepperOnChangeType;
 };
 
 export interface StepperContentProps extends ChildrenProp {
