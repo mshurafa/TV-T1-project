@@ -3,21 +3,19 @@ import { useStepperContext } from "./index";
 import type { StepperActionsType } from "../types";
 
 export const Actions: StepperActionsType = ({ nextProps, backProps }) => {
-  const { steps, activeStep, onChange } = useStepperContext();
+  const { steps, activeStep } = useStepperContext();
   const isLastStep = steps.length - 1 === activeStep;
 
   const onBackClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    onChange("back");
     backProps?.onClick?.(event);
   };
 
   const onNextClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    onChange("next");
     nextProps?.onClick?.(event);
   };
 
   return (
-    <div className="flex gap-4 justify-end">
+    <div className="flex justify-end gap-4">
       {activeStep > 0 && (
         <Button
           buttonSize="small"
