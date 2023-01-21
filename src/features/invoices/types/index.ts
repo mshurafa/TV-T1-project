@@ -1,8 +1,5 @@
 import type { FC } from "react";
-import type {
-  StepperOnChangeType,
-  StepperActionsProps,
-} from "components/types";
+import type { StepperActionsProps, Step } from "components/types";
 import type { APIResponseType, Children } from "types";
 
 interface PayInvoiceLayoutProps extends StepperActionsProps {
@@ -28,14 +25,7 @@ export type ConfirmDetailsInputsType = {
   zip: string;
 };
 
-export type PayInvoiceStepType = {
-  title: string;
-  id: "step1" | "step2" | "step3" | "step4";
-  active: boolean;
-  completed: boolean;
-};
-
-export type PayInvoiceStepsType = PayInvoiceStepType[];
+export type PayInvoiceStepsType = Step[];
 
 export type PaymentMethodValue = "creditCard" | "paypal" | "bankTransfer";
 
@@ -59,17 +49,16 @@ export interface PayInvoiceStateProps {
 
 export type PayInvoiceStateType = FC<PayInvoiceStateProps>;
 
+export type UpdateInvoiceHandler = (intent: "next" | "back") => void;
+
 export type PayInvoiceContextType = {
   invoiceId: string | undefined;
   stepsData: {
     steps: PayInvoiceStepsType;
+    updateStepsHandler: UpdateInvoiceHandler;
     activeStepIndex: number;
-    currentStep: PayInvoiceStepType;
-    nextStep: PayInvoiceStepType | undefined;
-    previousStep: PayInvoiceStepType | undefined;
     isLastStep: boolean;
   };
-  onStepperChange: StepperOnChangeType;
   invoiceDetails: {
     data: InvoiceDetailsData | undefined | null;
     isLoading: boolean;
