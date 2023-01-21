@@ -1,7 +1,16 @@
-import { useMemo } from "react";
 import { CheckIconMini } from "lib/@heroicons";
+import { classNames } from "utils";
 import Triangle from "../svg/Triangle";
-import type { StepType } from "../types";
+import type { StepType, Step as StepT } from "../types";
+
+const completedBulletContent = <CheckIconMini className="w-4 h-4 text-white" />;
+const getActiveBulletContent = (step: StepT) => (
+  <div
+    className={`h-3 w-3 rounded-full ${
+      step.active && step.completed ? "bg-white" : "bg-indigo-700"
+    }`}
+  />
+);
 
 export const Step: StepType = ({
   step,
@@ -11,83 +20,67 @@ export const Step: StepType = ({
   isLastBullet = false,
   lastStep,
 }) => {
-  const { classNames, stepBulletContent } = useMemo(() => {
-    const classNames = {
-      step: `flex-1 h-1 flex items-center ${className ?? ""}`,
-      bullet: `h-6 w-6 rounded-full shadow flex items-center justify-center relative ${
-        bulletClassName ?? ""
-      }`,
-      lastBullet:
-        "h-6 w-6 rounded-full shadow flex items-center justify-center relative",
-      stepInfo:
-        "absolute top-8 shadow-[1px_1px_1px_0px_rgba(0,0,0,0.1),0px_2px_4px_-2px_rgba(0,0,0,0.1)] px-2 py-1 rounded w-max max-w-[125px] text-xs font-medium text-center",
-      arrow: "absolute top-0 -mt-1 w-full right-0 left-0",
-    };
+  let stepBulletContent = null;
+  let lastStepBulletContent = null;
 
-    let stepBulletContent = null;
+  if (step.completed) {
+    stepBulletContent = completedBulletContent;
+  }
 
-    if (step.active) {
-      classNames.stepInfo += " bg-white";
-      classNames.arrow += " text-white";
-    } else {
-      classNames.stepInfo += " bg-gray-50";
-      classNames.arrow += " text-gray-50";
-    }
+  if (step.active) {
+    stepBulletContent = getActiveBulletContent(step);
+  }
 
-    if (isLastBullet) {
-      classNames.lastBullet += " ml-auto -mr-6";
-      if (step.completed || step.active) {
-        classNames.stepInfo += " text-indigo-700";
-      } else {
-        classNames.stepInfo += " text-gray-400";
-        classNames.lastBullet += " bg-white";
-      }
-    } else {
-      if (!step.completed && step.active) {
-        classNames.stepInfo += " text-indigo-700";
-      } else {
-        classNames.stepInfo += " text-gray-400";
-      }
-    }
+  if (lastStep.completed) {
+    lastStepBulletContent = completedBulletContent;
+  }
+  if (lastStep.active) {
+    lastStepBulletContent = getActiveBulletContent(lastStep);
+  }
 
-    if (!step.completed && !step.active) {
-      classNames.bullet += " bg-white";
-    } else {
-      if (step.completed) {
-        stepBulletContent = <CheckIconMini className="w-4 h-4 text-white" />;
-        classNames.step += " bg-indigo-700";
-        classNames.bullet += " bg-indigo-700";
-      }
-
-      if (step.active) {
-        stepBulletContent = (
-          <div
-            className={`h-3 w-3 rounded-full ${
-              step.active && step.completed ? "bg-white" : "bg-indigo-700"
-            }`}
-          />
-        );
-      }
-      classNames.bullet += " bg-white";
-    }
-
-    return { classNames, stepBulletContent };
-  }, [step, className, bulletClassName, isLastBullet]);
+  const classes = {
+    step: classNames(
+      "flex-1 h-1 flex items-center",
+      className,
+      step.completed ? "bg-indigo-700" : ""
+    ),
+    bullet: classNames(
+      "h-6 w-6 rounded-full shadow flex items-center justify-center relative",
+      bulletClassName,
+      step.completed ? "bg-indigo-700" : "bg-white"
+    ),
+    lastBullet: classNames(
+      "h-6 w-6 rounded-full shadow flex items-center justify-center relative ml-auto -mr-6",
+      lastStep.completed ? "bg-indigo-700" : "bg-white"
+    ),
+    stepInfo: classNames(
+      "absolute top-8 shadow-[1px_1px_1px_0px_rgba(0,0,0,0.1),0px_2px_4px_-2px_rgba(0,0,0,0.1)] px-2 py-1 rounded w-max max-w-[125px] text-xs font-medium text-center",
+      step.active ? "bg-white text-indigo-700" : "bg-gray-50 text-gray-400"
+    ),
+    lastStepInfo: classNames(
+      "absolute top-8 shadow-[1px_1px_1px_0px_rgba(0,0,0,0.1),0px_2px_4px_-2px_rgba(0,0,0,0.1)] px-2 py-1 rounded w-max max-w-[125px] text-xs font-medium text-center",
+      lastStep.active ? "bg-white text-indigo-700" : "bg-gray-50 text-gray-400"
+    ),
+    arrow: classNames(
+      "absolute top-0 -mt-1 w-full right-0 left-0",
+      step.active ? "text-white" : "text-gray-50"
+    ),
+  };
 
   return (
-    <div className={classNames.step}>
-      <div className={classNames.bullet}>
+    <div className={classes.step}>
+      <div className={classes.bullet}>
         {stepBulletContent}
-        <div className={classNames.stepInfo}>
-          {withArrow && <Triangle className={classNames.arrow} />}
+        <div className={classes.stepInfo}>
+          {withArrow && <Triangle className={classes.arrow} />}
           <p>{step.title}</p>
         </div>
       </div>
       {isLastBullet && (
-        <div className={classNames.lastBullet}>
-          {stepBulletContent}
-          <div className={classNames.stepInfo}>
-            {withArrow && <Triangle className={classNames.arrow} />}
+        <div className={classes.lastBullet}>
+          {lastStepBulletContent}
+          <div className={classes.lastStepInfo}>
+            {withArrow && <Triangle className={classes.arrow} />}
             <p>{lastStep.title}</p>
           </div>
         </div>
