@@ -57,6 +57,26 @@ export const usePayInvoiceSteps = (invoiceId: string | undefined) => {
     // }
   }, [previousStep, invoiceId, replace]);
 
+  useEffect(() => {
+    setSteps((prevSteps) => {
+      const activeStepIndex = prevSteps.findIndex(
+        (step) => step.id === pathname
+      );
+      const updatedSteps = prevSteps.map((step, index) => {
+        if (activeStepIndex === index) {
+          return { ...step, active: true, completed: false };
+        } else if (activeStepIndex > index) {
+          return { ...step, active: false, completed: true };
+        } else if (activeStepIndex < index) {
+          return { ...step, active: false, completed: false };
+        } else {
+          return step;
+        }
+      });
+      return updatedSteps;
+    });
+  }, [pathname, activeStepIndex]);
+
   return {
     steps,
     updateStepsHandler,
