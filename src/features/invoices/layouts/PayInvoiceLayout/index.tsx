@@ -13,8 +13,7 @@ export const PayInvoiceLayout: PayInvoiceLayoutType = ({
 }) => {
   const { back } = useRouter();
   const {
-    stepsData: { steps, activeStepIndex, isLastStep },
-    onStepperChange,
+    stepsData: { steps, updateStepsHandler, activeStepIndex, isLastStep },
   } = usePayInvoice();
 
   const classNames = useMemo(() => {
@@ -29,17 +28,14 @@ export const PayInvoiceLayout: PayInvoiceLayoutType = ({
   }, [className, cardClassName]);
 
   const onBackClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    updateStepsHandler("back");
     back();
     backProps?.onClick?.(event);
   };
 
   return (
     <div className={classNames.mainContent}>
-      <Stepper
-        steps={steps}
-        activeStep={activeStepIndex}
-        onChange={onStepperChange}
-      >
+      <Stepper steps={steps} activeStep={activeStepIndex}>
         <Stepper.ProgressBar className="mt-6 mb-20" />
         <Stepper.Content className={classNames.card}>
           {children}
