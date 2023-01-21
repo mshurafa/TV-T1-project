@@ -1,17 +1,16 @@
-import React from "react";
+import { createContext, useContext, useMemo, useEffect } from "react";
 import ProgressBar from "./ProgressBar";
 import Content from "./Content";
 import Actions from "./Actions";
 import type { StepperProps, StepperContextType } from "../types";
 
-const StepperContext = React.createContext<StepperContextType>({
+const StepperContext = createContext<StepperContextType>({
   activeStep: 0,
   steps: [],
-  onChange: () => {},
 });
 
 export const useStepperContext = () => {
-  const context = React.useContext(StepperContext);
+  const context = useContext(StepperContext);
   if (!context) {
     throw new Error(
       `Stepper components cannot be rendered outside the StepperProvider`
@@ -26,10 +25,12 @@ export const Stepper = ({
   onChange,
   children,
 }: StepperProps) => {
-  const value = React.useMemo(
-    () => ({ steps, activeStep, onChange }),
-    [steps, activeStep, onChange]
-  );
+  const value = useMemo(() => ({ steps, activeStep }), [steps, activeStep]);
+
+  useEffect(() => {
+    onChange?.(activeStep);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeStep]);
 
   return (
     <StepperContext.Provider value={value}>{children}</StepperContext.Provider>
