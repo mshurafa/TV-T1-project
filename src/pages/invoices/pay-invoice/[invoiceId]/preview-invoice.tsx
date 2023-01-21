@@ -11,9 +11,13 @@ import type { NextPageWithLayout } from "types";
 
 const PreviewInvoicePage: NextPageWithLayout = () => {
   const { push } = useRouter();
-  const { invoiceId } = usePayInvoice();
+  const {
+    invoiceId,
+    stepsData: { updateStepsHandler },
+  } = usePayInvoice();
 
   const onNextClick = () => {
+    updateStepsHandler("next");
     push({
       pathname: URL_PATHS.INVOICES.PAY_INVOICE.PAY_INVOICE,
       query: { invoiceId: invoiceId },

@@ -15,7 +15,11 @@ import type { NextPageWithLayout } from "types";
 const ConfirmDetailsPage: NextPageWithLayout = () => {
   const formRef = useRef<HTMLButtonElement>(null);
   const { push, replace, pathname } = useRouter();
-  const { invoiceId, invoiceDetails } = usePayInvoice();
+  const {
+    invoiceId,
+    stepsData: { updateStepsHandler },
+    invoiceDetails,
+  } = usePayInvoice();
   const { triggerCompleteInvoice, isLoading } =
     useCompleteInvoiceMutation(invoiceId);
 
@@ -32,6 +36,7 @@ const ConfirmDetailsPage: NextPageWithLayout = () => {
         );
       }
 
+      updateStepsHandler("next");
       push({
         pathname: URL_PATHS.INVOICES.PAY_INVOICE.PREVIEW_INVOICE,
         query: { invoiceId: invoiceId },
