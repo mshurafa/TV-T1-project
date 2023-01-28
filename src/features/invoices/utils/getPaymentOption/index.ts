@@ -4,17 +4,17 @@ import type {
   PaymentOptionsData,
 } from "../../types";
 
-export const getPaymentOption = (
+export const getPaymentOptionFee = (
   paymentMethod: PaymentMethodValue | undefined,
   paymentOptions: PaymentOptionsData | undefined | null
 ) => {
-  let selectedPaymentOption: PaymentOptionFee | undefined;
+  let fee: PaymentOptionFee | undefined;
 
   if (paymentMethod === "creditCard") {
-    selectedPaymentOption = paymentOptions?.stripeOptionFee;
+    fee = paymentOptions?.stripeOptionFee;
   } else if (paymentMethod === "paypal") {
-    selectedPaymentOption = paymentOptions?.paypalOptionFee;
+    fee = paymentOptions?.paypalOptionFee;
   }
 
-  return selectedPaymentOption;
+  return fee;
 };
