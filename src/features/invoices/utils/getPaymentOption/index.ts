@@ -8,13 +8,13 @@ export const getPaymentOption = (
   paymentMethod: PaymentMethodValue | undefined,
   paymentOptions: PaymentOptionsData | undefined | null
 ) => {
-  let selectedPaymentOptions: PaymentOptionFee | undefined;
+  let selectedPaymentOption: PaymentOptionFee | undefined;
 
   if (paymentMethod === "creditCard") {
-    selectedPaymentOptions = paymentOptions?.stripeOptionFee;
+    selectedPaymentOption = paymentOptions?.stripeOptionFee;
   } else if (paymentMethod === "paypal") {
-    selectedPaymentOptions = paymentOptions?.paypalOptionFee;
+    selectedPaymentOption = paymentOptions?.paypalOptionFee;
   }
 
-  return selectedPaymentOptions;
+  return selectedPaymentOption;
 };
