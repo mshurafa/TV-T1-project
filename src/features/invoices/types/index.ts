@@ -167,3 +167,27 @@ export type PaymentOptionsData = {
 };
 
 export type PaymentOptionsResponse = APIResponseType<PaymentOptionsData>;
+
+export type CreateStripeSessionArgType = {
+  invoiceId: string;
+  paymentOption: ClientFeesValue;
+};
+
+export type CreateStripeSessionResponse = APIResponseType<{
+  url: string;
+}>;
+
+interface PaymentProps {
+  paymentMethod: PaymentMethodValue | undefined;
+  updatePaymentMethod: React.Dispatch<
+    React.SetStateAction<PaymentMethodValue | undefined>
+  >;
+  clientFee: ClientFeesValue | undefined;
+  updateClientFee: React.Dispatch<
+    React.SetStateAction<ClientFeesValue | undefined>
+  >;
+  currency: string | undefined;
+  paymentOptionFee: PaymentOptionFee | undefined;
+}
+
+export type PaymentType = FC<PaymentProps>;
