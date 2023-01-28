@@ -2,7 +2,7 @@ import type { ClientFeesValue, PaymentOptionFee } from "../../types";
 
 export const calcFeeValue = (
   fee: ClientFeesValue,
-  paymentOption: PaymentOptionFee | undefined
+  paymentOptionFee: PaymentOptionFee | undefined
 ) => {
-  return paymentOption?.[fee];
+  return paymentOptionFee?.[fee];
 };
