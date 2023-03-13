@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-gray-light;
-  }
+    body {
+        @apply bg-gray-light;
+    }
+}
+
+.ui-datatable tbody td {
+    white-space: normal;
 }
