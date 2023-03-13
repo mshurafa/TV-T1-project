@@ -23,6 +23,9 @@ module.exports = {
           DEFAULT: "#EE404C",
         },
       },
+      scale: {
+        '-100': '-1',
+    }
     },
   },
   plugins: [require("@tailwindcss/forms")],
