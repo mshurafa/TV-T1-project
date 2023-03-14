@@ -2,82 +2,152 @@ export const DataTableInfo = {
     getTableData() {
         return [
             {
-                Office: 'غزة - مكتب الدانا',
-                Date: 'Yesterday',
-                Amount: 240,
-                Name: 'Enas Mousa',
-                status: 'complete',
+                _id: "640f5caf78fd73b40d217e02",
+                amount: 3000,
+                office: {
+                    _id: "6342c8cb413b5bf1722e33f5",
+                    name: "مكتب حرزالله",
+                    address: "غزة-شارع الشهداء، مقابل برج فلسطين"
+                },
+                typeWithdraw: "cash",
+                status: "pending",
+                recipient: {
+                    _id: "640f135aee0733bd4a2a8d4e",
+                    name: "Heba Skhail Recipient 1",
+                    mobile: "+970597039224"
+                },
+                createdAt: "2023-03-11T17:26:07.859Z"
+            },{
+                _id: "640f5dcc78fd73b40d217eb0",
+                amount: 10,
+                office: {
+                    _id: "6310a930d74275d6cdd15be3",
+                    name: "مكتب الدانا",
+                    address: "غزة-شارع الشهداء، مقابل برج فلسطين"
+                },
+                typeWithdraw: "cash",
+                status: "pending",
+                recipient: {
+                    _id: "640f135aee0733bd4a2a8d4e",
+                    name: "Heba Skhail Recipient 1",
+                    mobile: "+970597039224"
+                },
+                createdAt: "2023-03-13T17:30:52.098Z"
             },
             {
-                Office: 'Bank of Palestine',
-                Date: 'Yesterday',
-                Amount: 240,
-                Name: 'Enas Mousa',
-                status: 'complete',
+                _id: "640f92b2a3350410c1a420e8",
+                amount: 10,
+                office: {
+                    _id: "6310a930d74275d6cdd15be3",
+                    name: "مكتب الدانا",
+                    address: "غزة-شارع الشهداء، مقابل برج فلسطين"
+                },
+                typeWithdraw: "cash",
+                status: "pending",
+                recipient: {
+                    _id: "640f135aee0733bd4a2a8d4e",
+                    name: "Heba Skhail Recipient 1",
+                    mobile: "+970597039224"
+                },
+                createdAt: "2023-03-13T21:16:34.033Z"
             },
             {
-                Office: 'Bank of Palestine',
-                Date: 'Yesterday',
-                Amount: 200,
-                Name: 'Enas Mousa',
-                status: 'Pending',
+                _id: "640f895676001ef82fbff621",
+                amount: 300,
+                bank: {
+                    _id: "640f300b6f45e615f917e8ee",
+                    accountName: "Heba Skhail",
+                    accountNumber: "2017201423132",
+                    bankName: "Bank of Palestine"
+                },
+                typeWithdraw: "bank",
+                status: "pending",
+                createdAt: "2023-03-13T20:36:38.526Z"
+            },{
+                _id: "640f5dcc78fd73b40d217eb0",
+                amount: 10,
+                office: {
+                    _id: "6310a930d74275d6cdd15be3",
+                    name: "مكتب الدانا",
+                    address: "غزة-شارع الشهداء، مقابل برج فلسطين"
+                },
+                typeWithdraw: "cash",
+                status: "pending",
+                recipient: {
+                    _id: "640f135aee0733bd4a2a8d4e",
+                    name: "Heba Skhail Recipient 1",
+                    mobile: "+970597039224"
+                },
+                createdAt: "2023-03-13T17:30:52.098Z"
             },
             {
-                Office: 'غزة - مكتب الدانا',
-                Date: 'Yesterday',
-                Amount: 240,
-                Name: 'Enas Mousa',
-                status: 'Ready',
+                _id: "640f5ceb78fd73b40d217e72",
+                amount: 10000,
+                office: {
+                    _id: "6310a930d74275d6cdd15be3",
+                    name: "مكتب الدانا",
+                    address: "غزة-شارع الشهداء، مقابل برج فلسطين"
+                },
+                typeWithdraw: "cash",
+                status: "pending",
+                recipient: {
+                    _id: "640f135aee0733bd4a2a8d4e",
+                    name: "Heba Skhail Recipient 1",
+                    mobile: "+970597039224"
+                },
+                createdAt: "2023-03-13T17:27:07.327Z"
+            },{
+                _id: "640f5cb778fd73b40d217e37",
+                amount: 6000,
+                office: {
+                    _id: "6310a930d74275d6cdd15be3",
+                    name: "مكتب الدانا",
+                    address: "غزة-شارع الشهداء، مقابل برج فلسطين"
+                },
+                typeWithdraw: "cash",
+                status: "pending",
+                recipient: {
+                    _id: "640f135aee0733bd4a2a8d4e",
+                    name: "Heba Skhail Recipient 1",
+                    mobile: "+970597039224"
+                },
+                createdAt: "2023-03-13T17:26:15.676Z"
             },
             {
-                Office: 'غزة - مكتب الدانا',
-                Date: 'Yesterday',
-                Amount: 240,
-                Name: 'Enas Mousa',
-                status: 'Sent',
+                _id: "640f5caf78fd73b40d217e02",
+                amount: 3000,
+                office: {
+                    _id: "6342c8cb413b5bf1722e33f5",
+                    name: "مكتب حرزالله",
+                    address: "غزة-شارع الشهداء، مقابل برج فلسطين"
+                },
+                typeWithdraw: "cash",
+                status: "pending",
+                recipient: {
+                    _id: "640f135aee0733bd4a2a8d4e",
+                    name: "Heba Skhail Recipient 1",
+                    mobile: "+970597039224"
+                },
+                createdAt: "2023-03-13T17:26:07.859Z"
             },
             {
-                Office: 'غزة - مكتب الدانا',
-                Date: 'Yesterday',
-                Amount: 240,
-                Name: 'Enas Mousa',
-                status: 'Completed',
-            },
-            {
-                Office: 'غزة - مكتب الدانا',
-                Date: 'Yesterday',
-                Amount: 240,
-                Name: 'Enas Mousa',
-                status: 'Canceled',
-            },
-            {
-                Office: 'غزة - مكتب الدانا',
-                Date: 'Yesterday',
-                Amount: 240,
-                Name: 'Enas Mousa',
-                status: 'complete',
-            },
-            {
-                Office: 'غزة - مكتب الدانا',
-                Date: 'Yesterday',
-                Amount: 240,
-                Name: 'Enas Mousa',
-                status: 'complete',
-            },
-            {
-                Office: 'غزة - مكتب الدانا',
-                Date: 'Yesterday',
-                Amount: 240,
-                Name: 'Enas Mousa',
-                status: 'complete',
-            },
-            {
-                Office: 'غزة - مكتب الدانا',
-                Date: 'Yesterday',
-                Amount: 240,
-                Name: 'Enas Mousa',
-                status: 'complete',
-            },
+                _id: "640f5c2fbd6b19cef572ff61",
+                amount: 10,
+                office: {
+                    _id: "6310a930d74275d6cdd15be3",
+                    name: "مكتب الدانا",
+                    address: "غزة-شارع الشهداء، مقابل برج فلسطين"
+                },
+                typeWithdraw: "cash",
+                status: "ready",
+                recipient: {
+                    _id: "640f135aee0733bd4a2a8d4e",
+                    name: "Heba Skhail Recipient 1",
+                    mobile: "+970597039224"
+                },
+                createdAt: "2023-03-13T17:23:59.526Z"
+            }
+
 
         ];
     },
@@ -936,3 +1006,41 @@ export const DataTableInfo = {
         return Promise.resolve(this.getProductsWithOrdersData());
     }
 };
+import React from 'react';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+
+function DataTableWithFormattedDate(props) {
+  function getDateStr(dateStr) {
+    const date = new Date(dateStr);
+    const today = new Date();
+    const yesterday = new Date(today.setDate(today.getDate() - 1));
+    const isToday = date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+    const isYesterday = date.getDate() === yesterday.getDate() && date.getMonth() === yesterday.getMonth() && date.getFullYear() === yesterday.getFullYear();
+    const dayStr = date.getDate().toString().padStart(2, '0');
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const monthName = monthNames[date.getMonth()];
+
+    if (isToday) {
+      return `${dayStr}-${monthName}`;
+    } else if (isYesterday) {
+      return `${dayStr}-${monthName}`;
+    } else {
+      return '';
+    }
+  }
+
+  const data = props.data.map(item => {
+    return {
+      ...item,
+      formattedDate: getDateStr(item.date)
+    }
+  });
+
+  return (
+    <DataTable value={data}>
+      <Column field="name" header="Name" />
+      <Column field="formattedDate" header="Date" />
+    </DataTable>
+  );
+}

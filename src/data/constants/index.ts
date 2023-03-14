@@ -28,3 +28,6 @@ export const COOKIES_KEYS = {
 } as const;
 
 export const LOCAL_STORAGE_KEYS = {} as const;
+export const API_WITHDRAWAL_URLS ={
+    GET_WITHDRAWAL_REQUEST_LIST:'/withdraw/list',
+}
