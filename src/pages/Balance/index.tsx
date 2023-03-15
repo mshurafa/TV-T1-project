@@ -169,22 +169,22 @@ function index({ }: Props) {
       );
       const headerDate = (
         <div className='text-gray-new font-normal'>
-          <span>Office</span>
+          <span>Date</span>
         </div>
       );
       const headerAmount = (
         <div className='text-gray-new font-normal'>
-          <span>Office</span>
+          <span>Amoun</span>
         </div>
       );
       const headerStatus = (
         <div className='text-gray-new font-normal'>
-          <span>Office</span>
+          <span>Status</span>
         </div>
       );
       const headerRecipient = (
         <div className='text-gray-new font-normal'>
-          <span>Office</span>
+          <span>Name</span>
         </div>
       );
 
