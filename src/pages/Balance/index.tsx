@@ -192,7 +192,7 @@ function balanc({ }: Props) {
 
     return (
         <div className="grid grid-cols-1 xl:grid-cols-12">
-            <div className="grid-cols-1 xl:col-span-8 ">
+            <div className="grid-cols-1 xl:col-span-8 order-2 xl:order-1">
                 <div className="p-4 rounded-sm">
                     <h2>Transactions</h2>
                     {!loading && <div className="">
@@ -226,7 +226,7 @@ function balanc({ }: Props) {
                     )}
                 </div>
             </div>
-            <div className="grid-cols-1 xl:col-span-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit inventore placeat, accusamus fugiat illum incidunt molestiae repellendus, voluptatum at saepe omnis? Dolorem laudantium dignissimos iusto corporis beatae exercitationem aut qui.</div>
+            <div className="grid-cols-1 xl:col-span-4 xl:order-2 order-1 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit inventore placeat,accusamus fugiat illum incidunt molestiae repellendus, voluptatum at saepe omnis? Dolorem laudantium dignissimos iusto corporis beatae exercitationem aut qui.</div>
 
         </div>
     )
