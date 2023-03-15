@@ -18,6 +18,7 @@ module.exports = {
           dark: "#707070",
           DEFAULT: "#00000029", // better to be hexadecimal
           light: "#F3F4F6",
+          new:"#9E9E9E"
         },
         red: {
           DEFAULT: "#EE404C",

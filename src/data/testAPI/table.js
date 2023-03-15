@@ -16,7 +16,7 @@ export const DataTableInfo = {
                     name: "Heba Skhail Recipient 1",
                     mobile: "+970597039224"
                 },
-                createdAt: "2023-03-11T17:26:07.859Z"
+                createdAt: "2023-03-12T17:26:07.859Z"
             },{
                 _id: "640f5dcc78fd73b40d217eb0",
                 amount: 10,
@@ -26,7 +26,7 @@ export const DataTableInfo = {
                     address: "غزة-شارع الشهداء، مقابل برج فلسطين"
                 },
                 typeWithdraw: "cash",
-                status: "pending",
+                status: "Sent",
                 recipient: {
                     _id: "640f135aee0733bd4a2a8d4e",
                     name: "Heba Skhail Recipient 1",
@@ -43,13 +43,13 @@ export const DataTableInfo = {
                     address: "غزة-شارع الشهداء، مقابل برج فلسطين"
                 },
                 typeWithdraw: "cash",
-                status: "pending",
+                status: "Sent",
                 recipient: {
                     _id: "640f135aee0733bd4a2a8d4e",
                     name: "Heba Skhail Recipient 1",
                     mobile: "+970597039224"
                 },
-                createdAt: "2023-03-13T21:16:34.033Z"
+                createdAt: "2023-03-14T21:16:34.033Z"
             },
             {
                 _id: "640f895676001ef82fbff621",
@@ -61,8 +61,8 @@ export const DataTableInfo = {
                     bankName: "Bank of Palestine"
                 },
                 typeWithdraw: "bank",
-                status: "pending",
-                createdAt: "2023-03-13T20:36:38.526Z"
+                status: "Sent",
+                createdAt: "2023-01-12T20:36:38.526Z"
             },{
                 _id: "640f5dcc78fd73b40d217eb0",
                 amount: 10,
@@ -72,13 +72,13 @@ export const DataTableInfo = {
                     address: "غزة-شارع الشهداء، مقابل برج فلسطين"
                 },
                 typeWithdraw: "cash",
-                status: "pending",
+                status: "Ready",
                 recipient: {
                     _id: "640f135aee0733bd4a2a8d4e",
                     name: "Heba Skhail Recipient 1",
                     mobile: "+970597039224"
                 },
-                createdAt: "2023-03-13T17:30:52.098Z"
+                createdAt: "2023-03-11T17:30:52.098Z"
             },
             {
                 _id: "640f5ceb78fd73b40d217e72",
@@ -89,7 +89,7 @@ export const DataTableInfo = {
                     address: "غزة-شارع الشهداء، مقابل برج فلسطين"
                 },
                 typeWithdraw: "cash",
-                status: "pending",
+                status: "Completed",
                 recipient: {
                     _id: "640f135aee0733bd4a2a8d4e",
                     name: "Heba Skhail Recipient 1",
@@ -105,7 +105,7 @@ export const DataTableInfo = {
                     address: "غزة-شارع الشهداء، مقابل برج فلسطين"
                 },
                 typeWithdraw: "cash",
-                status: "pending",
+                status: "Ready",
                 recipient: {
                     _id: "640f135aee0733bd4a2a8d4e",
                     name: "Heba Skhail Recipient 1",
@@ -122,7 +122,7 @@ export const DataTableInfo = {
                     address: "غزة-شارع الشهداء، مقابل برج فلسطين"
                 },
                 typeWithdraw: "cash",
-                status: "pending",
+                status: "Canceled",
                 recipient: {
                     _id: "640f135aee0733bd4a2a8d4e",
                     name: "Heba Skhail Recipient 1",
@@ -139,7 +139,7 @@ export const DataTableInfo = {
                     address: "غزة-شارع الشهداء، مقابل برج فلسطين"
                 },
                 typeWithdraw: "cash",
-                status: "ready",
+                status: "Canceled",
                 recipient: {
                     _id: "640f135aee0733bd4a2a8d4e",
                     name: "Heba Skhail Recipient 1",
@@ -147,7 +147,6 @@ export const DataTableInfo = {
                 },
                 createdAt: "2023-03-13T17:23:59.526Z"
             }
-
 
         ];
     },

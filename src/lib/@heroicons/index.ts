@@ -18,8 +18,8 @@ import {
     QuestionMarkCircleIcon as Help,
     ChatBubbleLeftRightIcon as Contacts,
     BanknotesIcon as Withdraw,
-    ClipboardDocumentCheckIcon as Invoices
-
+    ClipboardDocumentCheckIcon as Invoices,
+    MagnifyingGlassIcon as Search
 } from "@heroicons/react/24/outline";
 
 export {
@@ -33,5 +33,5 @@ export {
     InformationCircleIconMini,
     InformationCircleIcon,
     CheckIconMini,
-    Home, MenuBar, LogOut, Settings, Help, Contacts, Withdraw, Invoices
+    Home, MenuBar, LogOut, Settings, Help, Contacts, Withdraw, Invoices,Search
 };

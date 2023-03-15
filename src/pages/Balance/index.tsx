@@ -1,131 +1,241 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react'
-import { DataTable, DataTableFilterMeta } from 'primereact/datatable';
-import { FilterMatchMode, FilterOperator } from 'primereact/api';
-import { InputText } from 'primereact/inputtext';
+import { DataTable } from 'primereact/datatable';
+import { Dropdown } from 'primereact/dropdown';
+import { Skeleton } from 'primereact/skeleton';
+import { Paginator } from 'primereact/paginator';
+import { classNames } from 'primereact/utils';
 
 import { Column } from 'primereact/column';
-import { Card, Input } from 'components';
-import {DataTableInfo} from 'data/testAPI/table'
-import { ProductService } from 'data/testAPI/ProductService';
+import { Button,Input } from 'components';
 import Tag from 'components/Tag';
 import { useSWR, type Fetcher } from "lib/swr";
-import { useAxios } from "hooks";
 import axios from "lib/axios";
+import { API_WITHDRAWAL_URLS, COOKIES_KEYS } from 'data/constants'
+import { getCookie } from 'lib/js-cookie';
+import { Search } from 'lib/@heroicons';
 
-import {API_WITHDRAWAL_URLS} from 'data/constants'
+const statusOptions = [
+    { label: 'All', value: null },
+    { label: 'Pending', value: 'pending' },
+    { label: 'cancelled', value: 'cancelled' },
+    { label: 'Ready', value: 'ready' },
+    { label: 'Sent', value: 'sent' },
+    { label: 'Completed', value: 'completed' },
+];
+
 
 type Props = {}
-function index({}: Props) {
-
-
+function index({ }: Props) {
+    const URL = 'https://talents-valley-backend.herokuapp.com/api'
     const [tableData, settableData] = useState([]);
-    const [globalFilterValue, setGlobalFilterValue] = useState<string>('');
-    const [filters, setFilters] = useState<DataTableFilterMeta>({
-        global: { value: null, matchMode: FilterMatchMode.CONTAINS},
-    })
+    const [loading, setLoading] = useState(true);
+    const [search, setSearch] = useState("");
+    const [Status, setStatus] = useState('');
+    const [offset, setOffset] = useState(0);
+    const [limit, setlimit] = useState(5);
+    const [totalItems, setTotalItems] = useState(0);
+    const officeFetcher = async ([url, currentUser]) => {
+        // console.log("test" , url, currentUser)
+        const response = await axios.get(url, {
+            headers: {
+                Authorization: `Bearer ${currentUser.accessToken}`,
+            },
+        });
+        return response.data.data;
+    };
+    const currentUser = getCookie(COOKIES_KEYS.currentUser);
 
+    const { data: apiData, error: error1, isLoading: isLoading1 } = useSWR([`${URL}/${API_WITHDRAWAL_URLS.GET_WITHDRAWAL_REQUEST_LIST}?limit=${limit}&offset=${offset}&search=${search}&${Status ? `filter=${Status}` : "&"}`, currentUser],
+        officeFetcher,
+    )
 
-  const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    let _filters = { ...filters };
-
-    _filters['global'].value = value;
-
-    setFilters(_filters);
-    setGlobalFilterValue(value);
-  };
-
-    const renderHeader = () => {
-        return (
-
-          <div className="flex justify-content-end">
-            <span className="p-input-icon-left">
-              <i className="pi pi-search" />
-              <InputText
-                value={globalFilterValue}
-                onChange={onGlobalFilterChange}
-                placeholder="Search"
-              />
-            </span>
-          </div>
-        );
-      };
+    // useEffect(() => {
+    //     // DataTableInfo.getTable().then(data => settableData(data));
+    // }, []);
     useEffect(() => {
-        DataTableInfo.getTable().then(data => settableData(data));
-    }, []);
-    useEffect(() => {
+        if (apiData) {
+            setLoading(false);
+            settableData(apiData.withdraws)
+            setTotalItems(apiData.count)
+        }
+    }, [apiData])
+    // search
+    const onFilter = (event) => {
+        setSearch(event.target.value);
+        console.log(search);
+    };
+    // status
+    const onStatusChange = (event) => {
+        setStatus(event.value);
+    };
+    //   pagination
+    const onPageChange = (event) => {
+        // console.log(event.page);
+        // const first = event.first;
+        // const rows = event.rows;
+        setOffset(event.first);
+        setlimit(event.rows);
 
-      return () => {
-        // second
-      }
-    }, [])
+    };
+    // icon assenting
+
+
+    const customHeader = (
+        <div className="flex justify-between mb-1">
+            <div className="w-1/2 ">
+                <Input
+                    type="text"
+                    onChange={onFilter}
+                    placeholder="Search"
+                    value={search}
+                    withoutHelperText={true}
+                    startIcon={<Search className=''/>}
+
+                />
+            </div>
+            <div className="w-1/2 flex justify-end gap-10 ">
+                <div className=""><Button className='!bg-white !text-blue !font-normal'>Withdraw</Button></div>
+                <div className={`max-w-52`}>
+                    <Dropdown
+                        id="status"
+                        options={statusOptions}
+                        value={Status}
+                        placeholder="Filter a status"
+                        onChange={onStatusChange}
+                        className='w-full p-column-filter'
+                    />
+                </div>
+
+            </div>
+        </div>
+    );
+
 
     const customBodyOffice = (tableData) => (
-        <>
-          <div>{tableData.office?.name||tableData.bank.bankName}</div>
-          <div>{formatDateBodyTemplate(tableData)}</div>
-        </>
-      );
+        <><div>{tableData.office?.name || tableData.bank.bankName}</div>
+            <div className='text-gray'>{formatDateBodyTemplate(tableData)}</div>
+
+            </>
+    );
+
     const customBodyAmount = (tableData) => (
-        <>
-          <div>{`$${tableData.amount}`}</div>
+        <>  <span>{`$${tableData.amount}`}</span>
         </>
-      );
+    )
+
+
     const customBodyrecipient = (tableData) => (
         <>
-          <div>{tableData.recipient?.name}</div>
+            <div>{tableData.recipient?.name || 'Test'}</div>
         </>
-      );
-      const statusBodyTemplate = (tableData) => {
+    );
+    const statusBodyTemplate = (tableData) => {
         return <Tag>{tableData.status.charAt(0).toUpperCase() + tableData.status.slice(1)}</Tag>;
     };
     function formatDateBodyTemplate(tableData) {
         function getDateStr(dateStr) {
-          const date = new Date(dateStr);
-          const today = new Date();
-          let yesterday = new Date();
-          yesterday = new Date(yesterday.setDate(today.getDate() - 1));
-          const isToday = date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
-          const isYesterday = date.getDate() === yesterday.getDate() && date.getMonth() === yesterday.getMonth() && date.getFullYear() === yesterday.getFullYear();
-          const dayStr = date.getDate().toString().padStart(2, '0');
-          const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-          const monthName = monthNames[date.getMonth()];
+            const date = new Date(dateStr);
+            const today = new Date();
+            let yesterday = new Date();
+            yesterday = new Date(yesterday.setDate(today.getDate() - 1));
+            const isToday = date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+            const isYesterday = date.getDate() === yesterday.getDate() && date.getMonth() === yesterday.getMonth() && date.getFullYear() === yesterday.getFullYear();
+            const dayStr = date.getDate().toString().padStart(2, '0');
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const monthName = monthNames[date.getMonth()];
 
-          if (isToday) {
-            return `Today`;
-          } else if (isYesterday) {
-            return `Yesterday`;
-          } else {
-            return `${dayStr}-${monthName}`;
-          }
+            if (isToday) {
+                return `Today`;
+            } else if (isYesterday) {
+                return `Yesterday`;
+            } else {
+                return `${dayStr}-${monthName}`;
+            }
         }
 
         return getDateStr(tableData.createdAt);
-      }
-;
+    };
+    const emptyMessage = () => (
+        <>
+            <div className='text-center'>No data found.</div>
+        </>
+    );
 
-    const header = renderHeader();
-
-  return (
-    <div className="grid grid-cols-12 ">
-
-        <div className="col-span-8 ">
-        <Card className="">
-            <DataTable   header={header} value={tableData} paginator rows={5} tableStyle={{ minWidth: '50rem' }}>
-                <Column field="Office" header="Office" body={customBodyOffice} sortable style={{ width: '25%' }} ></Column>
-                <Column field="createdAt" header="Date" body={formatDateBodyTemplate}  sortable style={{ width: '25%' }} ></Column>
-                <Column field="amount" header="amount" body={customBodyAmount} sortable style={{ width: '25%' }} ></Column>
-                <Column field="Name" header="Name" body={customBodyrecipient} sortable style={{ width: '25%' }} ></Column>
-                <Column field="status" header="Status" body={statusBodyTemplate} sortable style={{ width: '25%' }} ></Column>
-
-            </DataTable>
-        </Card>
-
+    const headerOffice = (
+        <div className='text-gray-new font-normal'>
+          <span>Office</span>
         </div>
-        <div className="col-span-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit inventore placeat, accusamus fugiat illum incidunt molestiae repellendus, voluptatum at saepe omnis? Dolorem laudantium dignissimos iusto corporis beatae exercitationem aut qui.</div>
-    </div>
-  )
+      );
+      const headerDate = (
+        <div className='text-gray-new font-normal'>
+          <span>Office</span>
+        </div>
+      );
+      const headerAmount = (
+        <div className='text-gray-new font-normal'>
+          <span>Office</span>
+        </div>
+      );
+      const headerStatus = (
+        <div className='text-gray-new font-normal'>
+          <span>Office</span>
+        </div>
+      );
+      const headerRecipient = (
+        <div className='text-gray-new font-normal'>
+          <span>Office</span>
+        </div>
+      );
+
+    // Fake table
+    const items = Array.from({ length: 6 }, (v, i) => i);
+
+    const bodyTemplate = () => {
+        return <Skeleton></Skeleton>
+    }
+
+    return (
+        <div className="grid grid-cols-12 ">
+
+            <div className="col-span-8 ">
+                <div className="p-4 rounded-sm">
+                    <h2>Transactions</h2>
+                    {!loading && <div className="">
+                        <DataTable value={tableData} className="p-datatable-striped"  header={customHeader} stripedRows selectionMode="single" emptyMessage={emptyMessage} rows={5} tableStyle={{ minWidth: '50rem' }}>
+                            <Column className="text-center" field="Office"  header={headerOffice} body={customBodyOffice} sortable style={{ width: '25%' }} ></Column>
+                            <Column field="createdAt" header={headerDate} body={formatDateBodyTemplate} sortable style={{ width: '25%' }} ></Column>
+                            <Column field="amount" header={headerAmount} body={customBodyAmount} sortable style={{ width: '25%' }} ></Column>
+                            <Column field="Name" header={headerRecipient} body={customBodyrecipient} sortable style={{ width: '25%' }} ></Column>
+                            <Column field="status" header={headerStatus} body={statusBodyTemplate} sortable style={{ width: '25%' }} ></Column>
+                        </DataTable>
+                        <Paginator
+                            first={offset}
+                            rows={5}
+                            totalRecords={totalItems}
+                            onPageChange={onPageChange}
+
+                        />
+                    </div>
+
+                    }
+                    {loading && (
+                        <div className="card">
+                            <DataTable value={items} className="p-datatable-striped">
+                                <Column field="Office" header="Office" style={{ width: '25%' }} body={bodyTemplate}></Column>
+                                <Column field="Date" header="Date" style={{ width: '25%' }} body={bodyTemplate}></Column>
+                                <Column field="amount" header="Amount" style={{ width: '25%' }} body={bodyTemplate}></Column>
+                                <Column field="Name" header="Name" style={{ width: '25%' }} body={bodyTemplate}></Column>
+                                <Column field="Status" header="Status" style={{ width: '25%' }} body={bodyTemplate}></Column>
+                            </DataTable>
+                        </div>
+                    )}
+                </div>
+
+            </div>
+            <div className="col-span-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit inventore placeat, accusamus fugiat illum incidunt molestiae repellendus, voluptatum at saepe omnis? Dolorem laudantium dignissimos iusto corporis beatae exercitationem aut qui.</div>
+        </div>
+    )
 }
 
 export default index
