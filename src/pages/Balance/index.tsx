@@ -193,7 +193,7 @@ function balanc({ }: Props) {
     return (
         <div className="grid grid-cols-1 xl:grid-cols-12">
             <div className="grid-cols-1 xl:col-span-8 order-2 xl:order-1">
-                <div className="p-4 rounded-sm">
+                <div className="p-4 rounded-sm ">
                     <h2>Transactions</h2>
                     {!loading && <div className="">
                         <DataTable value={tableData} className="p-datatable-striped" header={customHeader} stripedRows selectionMode="single" emptyMessage={emptyMessage} rows={5} tableStyle={{ minWidth: '50rem' }}>
