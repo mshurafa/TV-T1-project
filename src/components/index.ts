@@ -20,3 +20,4 @@ export * from "./Skeleton";
 export * from "./ToggleButtons";
 export * from "./OffCanvas";
 export * from "./CellSkeleton";
+export * from "./RightSideBar";

@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useRef } from 'react'
 import { DataTable } from 'primereact/datatable';
 import { Dropdown } from 'primereact/dropdown';
 import { Skeleton } from 'primereact/skeleton';
 import { Paginator } from 'primereact/paginator';
-import { classNames } from 'primereact/utils';
 
 import { Column } from 'primereact/column';
-import { Button, Image, Input } from 'components';
+import { Button, Image, Input ,RightSideBar} from 'components';
 import Tag from 'components/Tag';
 import { useSWR, type Fetcher } from "lib/swr";
 import axios from "lib/axios";
@@ -34,6 +33,9 @@ function balanc({ }: Props) {
     const [Status, setStatus] = useState('');
     const [offset, setOffset] = useState(0);
     const [limit, setlimit] = useState(5);
+    const [selectedRow, setSelectedRow] = useState(0);
+    const [sidebarVisible, setSidebarVisible] = useState(false);
+
     const [totalItems, setTotalItems] = useState(0);
     const officeFetcher = async ([url, currentUser]) => {
         // console.log("test" , url, currentUser)
@@ -189,14 +191,22 @@ function balanc({ }: Props) {
     const bodyTemplate = () => {
         return <Skeleton></Skeleton>
     }
+    function handleRowSelect(event) {
+        setSelectedRow(event.data._id);
+        setSidebarVisible(!!event.data);
+        console.log(selectedRow);
+        console.log(sidebarVisible);
+
+      };
 
     return (
         <div className="grid grid-cols-1 xl:grid-cols-12">
             <div className="grid-cols-1 xl:col-span-8 order-2 xl:order-1">
                 <div className="p-4 rounded-sm ">
+                    <RightSideBar className="" userId="" visible={sidebarVisible} setVisible={setSidebarVisible}/>
                     <h2>Transactions</h2>
                     {!loading && <div className="">
-                        <DataTable value={tableData} className="p-datatable-striped" header={customHeader} stripedRows selectionMode="single" emptyMessage={emptyMessage} rows={5} tableStyle={{ minWidth: '50rem' }}>
+                        <DataTable value={tableData} className="p-datatable-striped" header={customHeader} stripedRows  selectionMode="single" onRowSelect={handleRowSelect} emptyMessage={emptyMessage} rows={5} tableStyle={{ minWidth: '50rem' }}>
                             <Column className="text-center" field="Office" header={headerOffice} body={customBodyOffice} sortable style={{ width: '25%' }} ></Column>
                             <Column field="createdAt" header={headerDate} body={formatDateBodyTemplate} sortable style={{ width: '25%' }} ></Column>
                             <Column field="amount" header={headerAmount} body={customBodyAmount} sortable style={{ width: '25%' }} ></Column>
