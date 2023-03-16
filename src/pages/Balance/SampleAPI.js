@@ -1,4 +1,4 @@
-export const withdrawalData = {
+const withdrawalData = {
     getWithdrawalData() {
         return [
             {
