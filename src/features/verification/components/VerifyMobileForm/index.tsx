@@ -8,7 +8,17 @@ import type {
   VerifyMobileResponseType,
 } from "../../types";
 
-export const VerifyMobileForm = ({ onVerify }: { onVerify: () => void }) => {
+export const VerifyMobileForm = ({
+  onVerify,
+  requestUrl,
+  requestBody,
+  codeKey,
+}: {
+  onVerify: () => void;
+  requestUrl: any;
+  requestBody: any;
+  codeKey: any;
+}) => {
   const [otpCode, setOtpCode] = useState("");
   const [otpError, setOtpError] = useState("");
   const {
@@ -18,7 +28,7 @@ export const VerifyMobileForm = ({ onVerify }: { onVerify: () => void }) => {
     clearError,
   } = useAxios<VerifyMobileResponseType, VerifyMobileFormPayloadType>({
     config: {
-      url: API_SERVICES_URLS.VERIFICATION.MOBILE,
+      url: requestUrl,
       method: "POST",
     },
     options: {
@@ -43,7 +53,7 @@ export const VerifyMobileForm = ({ onVerify }: { onVerify: () => void }) => {
       setOtpError("Please write the code to continue.");
       return;
     }
-    verifyCode({ verificationCode: otpCode });
+    verifyCode({ code: verifyCode, ...requestBody });
   };
 
   return (
