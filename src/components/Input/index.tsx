@@ -34,15 +34,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         input: `block w-full border-gray focus:ring-0 focus:border-blue rounded-md ${
           inputClassName || ""
         }`,
-        helperText: "inline-flex min-h-[20px] text-xs mt-1",
+        // helperText: "inline-flex min-h-[20px] text-xs mt-1",
       };
 
       if (inputSize === "large") {
         classes.input += " py-4 px-5";
         classes.inputContainer += " text-lg";
       } else if (inputSize === "small") {
-        classes.input += " py-2 px-3 text-sm";
+        classes.input += " py-3 px-3 text-sm";
         classes.inputContainer += " text-sm";
+      } else if (inputSize === "extrasmall") {
+        classes.input += " py-2 px-2 text-xm";
+        classes.inputContainer += " text-xm";
+        classes.helperText = "inline-flex min-h-[5px] text-xs ";
       } else {
         classes.input += " py-3 px-4";
         classes.inputContainer += " text-base";
@@ -82,11 +86,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             {...rest}
           />
-          {inputEndIcon && (
+          {/* {inputEndIcon && (
             <span className={`${classNames.icon} ${classNames.endIcon}`}>
               {inputEndIcon}
             </span>
-          )}
+          )} */}
         </div>
         {!withoutHelperText && (
           <p className={classNames.helperText}>{helperText}</p>
