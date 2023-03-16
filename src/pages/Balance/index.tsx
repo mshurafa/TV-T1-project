@@ -25,7 +25,7 @@ const statusOptions = [
 
 type Props = {}
 
-function balanc({ }: Props) {
+function Balance({ }: Props) {
     const URL = 'https://talents-valley-backend.herokuapp.com/api'
     const [tableData, settableData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -244,4 +244,4 @@ function balanc({ }: Props) {
     )
 }
 
-export default balanc
+export default Balance
