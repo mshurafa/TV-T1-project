@@ -92,3 +92,37 @@
 .p-sidebar-right .p-sidebar {
     width: 30rem;
 }
+
+.p-component-overlay-enter {
+    animation: none;
+    -webkit-animation: none;
+}
+
+.p-timeline-event-important .p-timeline-event-separator {
+    background-color: red;
+}
+
+.p-timeline-event-normal .p-timeline-event-separator {
+    background-color: blue;
+}
+
+.p-timeline .p-timeline-event-connector {
+    background-color: #8C8C8C;
+
+}
+
+.completed+.p-timeline-event-connector {
+    background-color: #4375FF;
+}
+
+.sent+.p-timeline-event-connector {
+    background-color: #4375FF;
+}
+
+.requested+.p-timeline-event-connector {
+    background-color: #4375FF;
+}
+
+.pi .pi-circle-fill {
+    color: #4375FF;
+}

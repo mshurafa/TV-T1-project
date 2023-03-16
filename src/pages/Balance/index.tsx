@@ -5,19 +5,19 @@ import { Skeleton } from 'primereact/skeleton';
 import { Paginator } from 'primereact/paginator';
 
 import { Column } from 'primereact/column';
-import { Button, Image, Input ,RightSideBar} from 'components';
-import Tag from 'components/Tag';
+import { Button, Image, Input ,RightSideBar,Tag} from 'components';
 import { useSWR, type Fetcher } from "lib/swr";
 import axios from "lib/axios";
 import { API_WITHDRAWAL_URLS, COOKIES_KEYS } from 'data/constants'
 import { getCookie } from 'lib/js-cookie';
 import { Search } from 'lib/@heroicons';
 import { images } from 'pages/home/homeImages';
+import SideBarInfo from './SideBarInfo';
 
 const statusOptions = [
     { label: 'All', value: null },
     { label: 'Pending', value: 'pending' },
-    { label: 'cancelled', value: 'cancelled' },
+    { label: 'Cancelled', value: 'cancelled' },
     { label: 'Ready', value: 'ready' },
     { label: 'Sent', value: 'sent' },
     { label: 'Completed', value: 'completed' },
@@ -128,9 +128,12 @@ function balanc({ }: Props) {
 
 
 
-    const statusBodyTemplate = (tableData) => {
-        return <Tag>{tableData.status.charAt(0).toUpperCase() + tableData.status.slice(1)}</Tag>;
-    };
+        const statusBodyTemplate = (tableData) => {
+            return <div className='flex flex-col'>
+                <Tag>{tableData.status}</Tag>
+                <span className='text-gray-300'>Expected within 24 hours</span>
+                  </div>
+        };
 
 
     const formatDateBodyTemplate = (tableData) => {
@@ -194,8 +197,7 @@ function balanc({ }: Props) {
     function handleRowSelect(event) {
         setSelectedRow(event.data._id);
         setSidebarVisible(!!event.data);
-        console.log(selectedRow);
-        console.log(sidebarVisible);
+
 
       };
 
@@ -203,14 +205,14 @@ function balanc({ }: Props) {
         <div className="grid grid-cols-1 xl:grid-cols-12">
             <div className="grid-cols-1 xl:col-span-8 order-2 xl:order-1">
                 <div className="p-4 rounded-sm ">
-                    <RightSideBar className="" userId="" visible={sidebarVisible} setVisible={setSidebarVisible}/>
+                    <SideBarInfo className="" Id={selectedRow} visible={sidebarVisible} setVisible={setSidebarVisible}/>
                     <h2>Transactions</h2>
                     {!loading && <div className="">
-                        <DataTable value={tableData} className="p-datatable-striped" header={customHeader} stripedRows  selectionMode="single" onRowSelect={handleRowSelect} emptyMessage={emptyMessage} rows={5} tableStyle={{ minWidth: '50rem' }}>
+                        <DataTable value={tableData} className="p-datatable-striped" header={customHeader} stripedRows  selectionMode="single" onRowSelect={handleRowSelect} emptyMessage={emptyMessage}  tableStyle={{ minWidth: '50rem' }}>
                             <Column className="text-center" field="Office" header={headerOffice} body={customBodyOffice} sortable style={{ width: '25%' }} ></Column>
-                            <Column field="createdAt" header={headerDate} body={formatDateBodyTemplate} sortable style={{ width: '25%' }} ></Column>
-                            <Column field="amount" header={headerAmount} body={customBodyAmount} sortable style={{ width: '25%' }} ></Column>
+                            <Column field="createdAt" header={headerDate} body={formatDateBodyTemplate} sortable  ></Column>
                             <Column field="Name" header={headerRecipient} body={customBodyrecipient} sortable style={{ width: '25%' }} ></Column>
+                            <Column field="amount" header={headerAmount} body={customBodyAmount} sortable style={{ width: '20%' }} ></Column>
                             <Column field="status" header={headerStatus} body={statusBodyTemplate} sortable style={{ width: '25%' }} ></Column>
                         </DataTable>
                         <Paginator
