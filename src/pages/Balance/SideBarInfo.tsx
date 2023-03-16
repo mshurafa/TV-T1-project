@@ -6,6 +6,12 @@ import { Timeline } from 'primereact/timeline';
 
 import Bank from '../../../public/assets/img/bank.png'
 import Cash from '../../../public/assets/img/cash.svg'
+import axios from 'axios';
+import { getCookie } from 'lib/js-cookie';
+
+import { API_WITHDRAWAL_URLS, COOKIES_KEYS } from 'data/constants'
+import { useSWR, type Fetcher } from "lib/swr";
+import { Skeleton } from 'primereact/skeleton';
 type Props = {
     ref:string
 }
@@ -53,7 +59,7 @@ function dateToRelativeString(inputDate) {
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
     if (diffDays === 0) {
-      return "today";
+      return "Today";
     } else if (diffDays === 1) {
       return "Yesterday";
     } else if (diffDays > 1 && diffDays <= 7) {
@@ -93,12 +99,38 @@ function dateToRelativeString(inputDate) {
   }
 
 const SideBarInfo =({Id,visible,title,setVisible,...rest}:props) => {
+    const URL = 'https://talents-valley-backend.herokuapp.com/api'
+    const [loading, setLoading] = useState(true);
+
     const [userInfo, setUserInfo] = useState({});
+    const officeFetcher = async ([url, currentUser]) => {
+        // console.log("test" , url, currentUser)
+        const response = await axios.get(url, {
+            headers: {
+                Authorization: `Bearer ${currentUser.accessToken}`,
+            },
+        });
+        return response.data.data;
+    };
+    const currentUser = getCookie(COOKIES_KEYS.currentUser);
+    const { data: apiData, error: error1, isLoading: isLoading1 } = useSWR(
+        [`${URL}/${API_WITHDRAWAL_URLS.WITHDRAWAL_DETAILS_ID(Id)}`, currentUser], officeFetcher,)
+
+        useEffect(() => {
+        if (apiData) {
+            setLoading(false);
+            setUserInfo(apiData.withdraw)
+            console.log(userInfo);
+
+        }
+    }, [apiData]);
+
     useEffect(() => {
-        withdrawalData.getTable().then(data => setUserInfo(data[0]));
+        // withdrawalData.getTable().then(data => setUserInfo(data[0]));
     }, []);
 
-    const historyLen = userInfo.history
+
+    const historyLen = userInfo?.history
 
     const customizedMarker = (item) => {
         return (
@@ -115,18 +147,22 @@ const SideBarInfo =({Id,visible,title,setVisible,...rest}:props) => {
     const customizeDateTime= (item)=>{
         return (
             <small className={`text-color-secondary flex flex-col -my-1 `} >
-                <span className='text-center'>{dateTo12HourTime(item.createdAt)}</span>
-                <span className='text-center text-xs text-gray-500'>{dateToRelativeString(item.createdAt)}</span>
+                <span className={`text-center
+                ${numberStatus(historyLen.length)==='Three'&&item.status==="completed"?"!text-black":"text-gray-new2"}
+                ${numberStatus(historyLen.length)==='Tow'&&item.status==="sent"?"!text-black":"text-gray-new2"}
+                ${numberStatus(historyLen.length)==='One'&&item.status==="pending"?"text-text-black":"text-gray-new2"}
+                `}>{dateTo12HourTime(item.createdAt)}</span>
+                <span className='text-center text-xs text-gray-new2'>{dateToRelativeString(item.createdAt)}</span>
             </small>
         );
     };
     const customizeStatus= (item)=>{
         return (
             <small className={`text-color-secondary flex -my-0.5 w-14 `} >
-                <span className={`capitalize
-                ${numberStatus(historyLen.length)==='Three'&&item.status==="completed"?"font-bold":""}
-                ${numberStatus(historyLen.length)==='Tow'&&item.status==="sent"?"font-bold":""}
-                ${numberStatus(historyLen.length)==='One'&&item.status==="pending"?"font-bold":""}
+                <span className={`capitalize text-sm
+                ${numberStatus(historyLen.length)==='Three'&&item.status==="completed"?"font-bold text-black":"text-gray-new2"}
+                ${numberStatus(historyLen.length)==='Tow'&&item.status==="sent"?"font-bold !text-black":"text-gray-new2"}
+                ${numberStatus(historyLen.length)==='One'&&item.status==="pending"?"font-bold !text-black":"text-gray-new2"}
                 `}>{item.status}</span>
             </small>
         );
@@ -134,27 +170,27 @@ const SideBarInfo =({Id,visible,title,setVisible,...rest}:props) => {
 
   return (
     <RightSideBar  title="Withdrawal" visible={visible} setVisible={setVisible}>
-        <div className="flex gap-4 flex-col">
+        {!loading&&<div className="flex gap-4 flex-col">
         <Card className='!shadow-none border  '>
             <div className="flex justify-between items-center border-b mx-4 pb-3 border-gray">
-                <div className="font-semibold text-xl ">${userInfo.amount}</div>
+                <div className="font-semibold text-xl ">${userInfo?.amount}</div>
                 <div className="">
-                    {<Tag style={true}>{userInfo.status}</Tag>}
+                    {<Tag style={true}>{userInfo?.status}</Tag>}
                 </div>
             </div>
             <div className="flex justify-between mt-3 mx-4">
                 <div className="">
-                   {userInfo.typeWithdraw=='cash'?
+                   {userInfo?.typeWithdraw=='cash'?
                    <div className="py-3 font-semibold">{userInfo.office?.name}</div>
                     :
                     <div className="flex flex-col">
-                        <div className="font-semibold">{userInfo.bank?.bankName}</div>
-                        <span className=''>{userInfo.bank?.accountNumber}</span>
+                        <div className="font-semibold">{userInfo?.bank?.bankName}</div>
+                        <span className=''>{userInfo?.bank?.accountNumber}</span>
                     </div>
                    }
                 </div>
                 <div className="">
-                    {userInfo.typeWithdraw=='cash'?
+                    {userInfo?.typeWithdraw=='cash'?
                      <div className="mr-7">
                         <Image src={Cash} alt='bank' width={30} height={30}/>
                      </div>
@@ -180,12 +216,12 @@ const SideBarInfo =({Id,visible,title,setVisible,...rest}:props) => {
         </Card>
         <Card className='!shadow-none border '>
         <p className='font-bold mx-4'>Details</p>
-        {userInfo.typeWithdraw=='cash'?
+        {userInfo?.typeWithdraw=='cash'?
         <div className="mx-4 mt-4">
             <div className="flex flex-col gap-4">
                     <div className="flex justify-between ">
                         <span className='text-gray-new2'>Recipient Name</span>
-                        <span>{userInfo.recipient.name}</span>
+                        <span>{userInfo?.recipient?.name}</span>
                     </div>
                     <div className="flex justify-between">
                     <span className='text-gray-new2'>Expected Date</span>
@@ -198,7 +234,7 @@ const SideBarInfo =({Id,visible,title,setVisible,...rest}:props) => {
         <div className="flex flex-col gap-4">
                 <div className="flex justify-between ">
                     <span className='text-gray-new2'>Bank Account Name</span>
-                    <span>{userInfo.bank?.accountName}</span>
+                    <span>{userInfo?.bank?.accountName}</span>
                 </div>
                 <div className="flex justify-between">
                 <span className='text-gray-new2'>Expected Date</span>
@@ -213,13 +249,13 @@ const SideBarInfo =({Id,visible,title,setVisible,...rest}:props) => {
         <p className='font-bold mx-4'>Timeline</p>
         <div className={`mx-4 mt-3`}>
             <ul className='list-disc mx-4 flex flex-col gap-2'>
-               {userInfo.typeWithdraw=='cash'?
+               {userInfo?.typeWithdraw=='cash'?
                    <div className="">
-                     <li>Address: {userInfo.office?.address}</li>
+                     <li>Address: {userInfo?.office?.address}</li>
                     <li>Working hours from 9:00 am to 7:00 pm</li>
                     <li>Bring your ID for identification</li>
                     <li>Confirm receiving your payment</li>
-                    <li>Office fees {userInfo.office?.fees}</li>
+                    <li>Office fees {userInfo?.office?.fees}</li>
                    </div>
                 :
                 <div className="">
@@ -231,8 +267,33 @@ const SideBarInfo =({Id,visible,title,setVisible,...rest}:props) => {
             </ul>
             </div>
         </Card>
-        <Button className='!bg-white !text-black drop-shadow-2xl py-4 mb-4'>Cancel Withdrawal</Button>
+        <div className="w-full">
+            {userInfo.status==='completed'&&<Button className='w-full !bg-white !text-black drop-shadow-2xl py-4 mb-4'>Report a Problem</Button>}
+            {userInfo.status==='ready' && <Button className='w-full !bg-white !text-black drop-shadow-2xl py-4 mb-4'>Cancel Withdrawal</Button>}
+            {userInfo.status==='pending' && <Button className='w-full !bg-white !text-black drop-shadow-2xl py-4 mb-4'>Cancel Withdrawal</Button>}
         </div>
+
+        </div>}
+        {loading&&
+            <div className="flex gap-4 flex-col">
+                <Card className='!shadow-none border'>
+                <Skeleton width="25.5rem" height="7rem"></Skeleton>
+                </Card>
+                <Card className='!shadow-none border'>
+                <Skeleton width="25.5rem" height="7rem"></Skeleton>
+                </Card>
+                <Card className='!shadow-none border'>
+                <Skeleton width="25.5rem" height="7rem"></Skeleton>
+                </Card>
+                <Card className='!shadow-none border'>
+                <Skeleton width="25.5rem" height="7rem"></Skeleton>
+                </Card>
+                <Card className='!shadow-none border'>
+                <Skeleton width="25.5rem" height="7rem"></Skeleton>
+                </Card>
+
+            </div>
+        }
     </RightSideBar>
   )
 }

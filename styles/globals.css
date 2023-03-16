@@ -119,6 +119,10 @@
     background-color: #4375FF;
 }
 
+.ready+.p-timeline-event-connector {
+    background-color: #4375FF;
+}
+
 .requested+.p-timeline-event-connector {
     background-color: #4375FF;
 }
