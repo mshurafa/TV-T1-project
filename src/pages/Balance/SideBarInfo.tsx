@@ -194,7 +194,18 @@ const SideBarInfo =({Id,visible,title,setVisible,...rest}:props) => {
             </div>
         </div>
         :
-        <div className=""></div>
+        <div className="mx-4 mt-4">
+        <div className="flex flex-col gap-4">
+                <div className="flex justify-between ">
+                    <span className='text-gray-new2'>Bank Account Name</span>
+                    <span>{userInfo.bank?.accountName}</span>
+                </div>
+                <div className="flex justify-between">
+                <span className='text-gray-new2'>Expected Date</span>
+                    <span>Within 24 Hours (Avg: 2hrs)</span>
+                </div>
+        </div>
+    </div>
         }
 
         </Card>
@@ -202,11 +213,21 @@ const SideBarInfo =({Id,visible,title,setVisible,...rest}:props) => {
         <p className='font-bold mx-4'>Timeline</p>
         <div className={`mx-4 mt-3`}>
             <ul className='list-disc mx-4 flex flex-col gap-2'>
-                <li>Address: {userInfo.office?.address}</li>
-                <li>Working hours from 9:00 am to 7:00 pm</li>
-                <li>Bring your ID for identification</li>
-                <li>Confirm receiving your payment</li>
-                <li>Office fees {userInfo.office?.fees}</li>
+               {userInfo.typeWithdraw=='cash'?
+                   <div className="">
+                     <li>Address: {userInfo.office?.address}</li>
+                    <li>Working hours from 9:00 am to 7:00 pm</li>
+                    <li>Bring your ID for identification</li>
+                    <li>Confirm receiving your payment</li>
+                    <li>Office fees {userInfo.office?.fees}</li>
+                   </div>
+                :
+                <div className="">
+                     <li>Open your bank account app to ensure payment delivery</li>
+                     <li>Confirm receiving your payment</li>
+                     <li>Confirm receiving your payment</li>
+                </div>
+               }
             </ul>
             </div>
         </Card>
