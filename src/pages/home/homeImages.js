@@ -13,3 +13,4 @@ export const images = {
     ClientPaysIt,
     GetPaid
 }
+export default images;

@@ -55,3 +55,4 @@ export const withdrawalData = {
         return Promise.resolve(this.getWithdrawalData());
     },
 }
+export default withdrawalData ;
