@@ -11,7 +11,7 @@ import axios from "lib/axios";
 import { API_WITHDRAWAL_URLS, COOKIES_KEYS } from 'data/constants'
 import { getCookie } from 'lib/js-cookie';
 import { Search } from 'lib/@heroicons';
-import { images } from 'pages/home/homeImages';
+// import { images } from 'pages/home/homeImages';
 import SideBarInfo from './SideBarInfo';
 
 const statusOptions = [
@@ -25,7 +25,7 @@ const statusOptions = [
 
 type Props = {}
 
-function balanc({ }: Props) {
+function Balance({ }: Props) {
     const URL = 'https://talents-valley-backend.herokuapp.com/api'
     const [tableData, settableData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -244,4 +244,4 @@ function balanc({ }: Props) {
     )
 }
 
-export default balanc
+export default Balance
