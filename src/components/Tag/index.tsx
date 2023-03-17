@@ -4,19 +4,34 @@ type Props = {
     style:boolean
     children:string
 }
-enum statusColor {
-    'Pending'='text-yellow-500',
-    'Ready'='text-blue-500',
-    'Sent'='text-dark',
-    'Completed'='text-dark',
-    'Canceled'='text-gray',
+type statusColorType = {
+    Pending: string,
+    Ready: string,
+    Sent: string,
+    Completed: string,
+    Canceled: string,
 }
-enum statusText {
-    'pending'='Pending',
-    'ready'='Ready',
-    'sent'='Sent',
-    'completed'='Completed',
-    'cancelled'='Cancelled',
+type statusTextType = {
+    pending: string,
+    ready: string,
+    sent: string,
+    completed: string,
+    cancelled: string,
+}
+
+const statusColor:statusColorType ={
+    'Pending':'text-yellow-500',
+    'Ready':'text-blue-500',
+    'Sent':'text-dark',
+    'Completed':'text-dark',
+    'Canceled':'text-gray',
+}
+const statusText:statusTextType ={
+    'pending':'Pending',
+    'ready':'Ready',
+    'sent':'Sent',
+    'completed':'Completed',
+    'cancelled':'Cancelled',
 }
 export function Tag({children , style}: Props) {
 const Pending = 'bg-[#FFF9F0] font-semibold border border-gray-100 text-[#DAA545] rounded-full px-4 py-2'
