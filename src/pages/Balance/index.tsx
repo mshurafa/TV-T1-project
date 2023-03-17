@@ -12,6 +12,7 @@ import { API_WITHDRAWAL_URLS, COOKIES_KEYS } from 'data/constants'
 import { getCookie } from 'lib/js-cookie';
 import { Search } from 'lib/@heroicons';
 // import { images } from 'pages/home/homeImages';
+import Withdraw from "../../../public/assets/img/Withdraw@2x.png"
 import SideBarInfo from './SideBarInfo';
 
 const statusOptions = [
@@ -89,7 +90,7 @@ function Balance({ }: Props) {
             <div className="xl:w-1/2 flex xl:justify-end justify-around gap-10">
                 <div className="">
                     <Button className='!bg-white px-6 !text-blue flex  !font-normal justify-center items-center'>
-                        <Image src={images.withdraw} alt='dsd' width={15} height={15} />
+                        <Image src={Withdraw} alt='dsd' width={15} height={15} />
                         <span className='ml-2'>Withdraw</span>
                     </Button>
                 </div>
