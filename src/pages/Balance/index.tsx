@@ -11,7 +11,7 @@ import axios from "lib/axios";
 import { API_WITHDRAWAL_URLS, COOKIES_KEYS } from 'data/constants'
 import { getCookie } from 'lib/js-cookie';
 import { Search } from 'lib/@heroicons';
-// import { images } from 'pages/home/homeImages';
+
 import Withdraw from "../../../public/assets/img/Withdraw@2x.png"
 import SideBarInfo from './SideBarInfo';
 

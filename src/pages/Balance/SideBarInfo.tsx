@@ -1,6 +1,5 @@
 import React,{forwardRef, useEffect, useState} from 'react'
 import { Button, Card, Image, RightSideBar } from 'components'
-import {withdrawalData} from './SampleAPI.js'
 import {Tag} from 'components'
 import { Timeline } from 'primereact/timeline';
 
