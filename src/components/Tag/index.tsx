@@ -5,19 +5,14 @@ type Props = {
     children:string
 }
 type statusColorType = {
-    Pending: string,
-    Ready: string,
-    Sent: string,
-    Completed: string,
-    Canceled: string,
+    [key: string]: string;
+    Pending: string;
+    Ready: string;
+    Sent: string;
+    Completed: string;
+    Canceled: string;
 }
-type statusTextType = {
-    pending: string,
-    ready: string,
-    sent: string,
-    completed: string,
-    cancelled: string,
-}
+
 
 const statusColor:statusColorType ={
     'Pending':'text-yellow-500',
@@ -25,6 +20,14 @@ const statusColor:statusColorType ={
     'Sent':'text-dark',
     'Completed':'text-dark',
     'Canceled':'text-gray',
+}
+type statusTextType = {
+    [key: string]: string;
+    pending:string;
+    ready: string;
+    sent: string;
+    completed: string;
+    cancelled: string;
 }
 const statusText:statusTextType ={
     'pending':'Pending',
