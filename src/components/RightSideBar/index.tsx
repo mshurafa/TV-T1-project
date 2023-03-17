@@ -5,10 +5,15 @@ import { Search } from 'lib/@heroicons';
 
 
 type Props = {
-    ref:string
+    Id:any,
+    children : any,
+    visible : any,
+    setVisible : any,
+    className : any,
+    title:any
 }
 
-export const RightSideBar =({Id,children,visible,setVisible,title,className,...rest}:props) => {
+export const RightSideBar =({Id,children,visible,setVisible,title,className,...rest}:Props) => {
 
     const customIcons = (
         <React.Fragment>
